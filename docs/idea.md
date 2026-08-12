@@ -12,6 +12,36 @@ Criar uma aplicação completa que demonstre capacidade de desenvolver um sistem
 
 O projeto deve priorizar **qualidade, organização e boas práticas**, e não a implementação mais rápida possível.
 
+## Mapa
+
+                         CHAMAdos 🔥
+                              │
+             ┌────────────────┴────────────────┐
+             │                                 │
+        PRODUTO                           FUNDAÇÃO
+             │                                 │
+             │                    ┌────────────┴────────────┐
+             │                    │                         │
+       O que o sistema       Backend                  Frontend
+       deve fazer             NestJS                    React
+             │                    │                         │
+             │                    ├── Banco               ├── UI
+             │                    ├── API                 ├── Estado
+             │                    ├── Auth                ├── Formulários
+             │                    ├── Regras              └── Consumo API
+             │                    └── Testes
+             │
+             └──────────────────────────────────────────────
+                              │
+                         Infraestrutura
+                              │
+                    ┌─────────┴─────────┐
+                    │                   │
+                  Docker              CI/CD
+                    │                   │
+                PostgreSQL          GitHub Actions
+
+
 ## 3. Usuários
 
 ### Solicitante
