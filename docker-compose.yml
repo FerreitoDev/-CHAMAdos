@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: chamados-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: chamados
+      POSTGRES_PASSWORD: chamados
+      POSTGRES_DB: chamados
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
