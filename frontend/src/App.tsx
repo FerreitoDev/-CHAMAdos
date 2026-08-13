@@ -1,10 +1,5 @@
 function App() {
-  return (
-    <div>
-      CHAMAdos
-
-    </div>
-  );
+  return <div>CHAMAdos</div>
 }
 
-export default App;
+export default App
