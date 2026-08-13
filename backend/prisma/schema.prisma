@@ -4,9 +4,9 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
-  moduleFormat = "cjs"
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "cjs"
   importFileExtension = "ts"
 }
 
@@ -14,10 +14,116 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  USER
+  TECHNICIAN
+  ADMIN
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  passwordHash  String
+  role          UserRole       @default(USER)
+  comments      Comment[]
+  audits        Audit[]
+  notifications Notification[]
+  active        Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  requestedTickets Ticket[] @relation("TicketRequester")
+  assignedTickets  Ticket[] @relation("TicketAssignee")
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tickets     Ticket[]
+}
+
+model Ticket {
+  id            String         @id @default(uuid())
+  title         String
+  description   String
+  status        TicketStatus   @default(OPEN)
+  priority      TicketPriority @default(MEDIUM)
+  comments      Comment[]
+  audits        Audit[]
+  notifications Notification[]
+
+  requesterId String
+  assigneeId  String?
+  categoryId  String
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  resolvedAt DateTime?
+  closedAt   DateTime?
+
+  requester User     @relation("TicketRequester", fields: [requesterId], references: [id])
+  assignee  User?    @relation("TicketAssignee", fields: [assigneeId], references: [id])
+  category  Category @relation(fields: [categoryId], references: [id])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  ticketId  String
+  authorId  String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+  author User   @relation(fields: [authorId], references: [id])
+}
+
+model Audit {
+  id        String   @id @default(uuid())
+  action    String
+  data      Json?
+  ticketId  String?
+  actorId   String?
+  createdAt DateTime @default(now())
+
+  ticket Ticket? @relation(fields: [ticketId], references: [id])
+  actor  User?   @relation(fields: [actorId], references: [id])
+}
+
+model Notification {
+  id          String    @id @default(uuid())
+  type        String
+  read        Boolean   @default(false)
+  readAt      DateTime?
+  recipientId String
+  ticketId    String?
+  createdAt   DateTime  @default(now())
+
+  recipient User    @relation(fields: [recipientId], references: [id])
+  ticket    Ticket? @relation(fields: [ticketId], references: [id])
+}
+
+model SystemSettings {
+  id                            String   @id @default(uuid())
+  allowTechnicianSelfAssignment Boolean  @default(true)
+  createdAt                     DateTime @default(now())
+  updatedAt                     DateTime @updatedAt
 }
