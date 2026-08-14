@@ -6,54 +6,85 @@ O objetivo é construir uma aplicação completa para gerenciamento de suporte t
 
 ## Status
 
-🚧 Em desenvolvimento
+🚧 Em desenvolvimento — fundação configurada, implementação das funcionalidades em andamento.
 
-A fundação do projeto está configurada. A implementação das funcionalidades de negócio ainda será realizada.
+## Repositório
+
+```text
+CHAMAdos/
+├── backend/        # API REST (NestJS + Prisma + PostgreSQL)
+├── frontend/       # Interface web (React + Vite + Tailwind)
+├── docs/           # Documentação técnica e de domínio
+└── docker-compose.yml
+```
 
 ## Stack
 
 ### Backend
 
-- NestJS
-- TypeScript
-- Prisma
+- NestJS 11
+- TypeScript 5
+- Prisma 7
 - PostgreSQL
 - Docker
 
+→ Veja [`backend/README.md`](backend/README.md) para setup e comandos.
+
 ### Frontend
 
-- React
-- TypeScript
-- Vite
+- React 19
+- TypeScript 6
+- Vite 8
+- Tailwind CSS 4
+- shadcn/ui
+
+→ Veja [`frontend/README.md`](frontend/README.md) para setup e comandos.
+
+## Início rápido
+
+### 1. Subir infraestrutura
+
+```bash
+docker compose up -d
+```
+
+### 2. Backend
+
+```bash
+cd backend
+npm install
+npx prisma migrate dev
+npm run start:dev
+```
+
+### 3. Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## Funcionalidades planejadas
 
-- Autenticação e autorização
+- Autenticação e autorização por papéis (USER, TECHNICIAN, ADMIN)
 - Abertura e gerenciamento de chamados
 - Categorias de chamados
-- Atribuição e reatribuição de chamados
-- Comentários
+- Atribuição e reatribuição de chamados a técnicos
+- Comentários por chamado
 - Notificações internas
-- Auditoria
+- Auditoria de ações
 - Gerenciamento de usuários
 - Relatórios administrativos
 
 ## Documentação
 
-A documentação do projeto está organizada no diretório `docs/`.
+A documentação está organizada por contexto:
 
-Ela contém:
-
-- arquitetura;
-- decisões de desenvolvimento;
-- comandos;
-- regras e definições do sistema.
-
-## Estrutura
-
-```text
-CHAMAdos/
-├── backend/
-├── frontend/
-├── docs/
-└── README.md
+| Diretório | Conteúdo |
+|---|---|
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Roadmap de desenvolvimento, fases, dependências e definição de MVP |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Arquitetura de domínio, regras de negócio, ciclo de vida dos chamados |
+| [`docs/idea.md`](docs/idea.md) | Visão original e princípios do projeto |
+| [`docs/backend/`](docs/backend/) | Decisões arquiteturais do backend |
+| [`docs/frontend/`](docs/frontend/) | Decisões arquiteturais e design system do frontend |

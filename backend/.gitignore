@@ -30,6 +30,8 @@ lerna-debug.log*
 .agents/
 .claude/
 .windsurf/
+.gemini/
+GEMINI.md
 
 # IDE - VSCode
 .vscode/*

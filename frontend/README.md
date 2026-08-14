@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# CHAMAdos — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web do sistema de gerenciamento de chamados CHAMAdos.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Tecnologia | Versão | Papel |
+|---|---|---|
+| React | 19 | UI |
+| TypeScript | 6 | Linguagem |
+| Vite | 8 | Build e dev server |
+| Tailwind CSS | 4 | Estilização |
+| shadcn/ui | 4 | Componentes base |
+| Lucide React | — | Ícones |
+| React Router | 8 | Roteamento |
+| Vitest | 4 | Testes unitários |
+| Testing Library | — | Testes de componentes |
 
-## React Compiler
+## Pré-requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 22+
+- Backend do CHAMAdos em execução (para integração completa)
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Instalar dependências
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Iniciar em modo de desenvolvimento
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+## Comandos
+
+```bash
+npm run dev           # servidor de desenvolvimento com HMR
+npm run build         # build de produção
+npm run preview       # prévia do build de produção
+npm run lint          # ESLint
+npm run format        # Prettier (apply)
+npm run format:check  # Prettier (check only)
+npm run test          # Vitest em watch mode
+npm run test:run      # Vitest em modo single run
+```
+
+## Estrutura
+
+```text
+frontend/src/
+├── app/
+│   ├── layouts/         # Layouts de página (AppLayout)
+│   ├── providers/       # Provedores globais (AppProviders)
+│   └── router/          # Definição de rotas (React Router)
+├── components/
+│   └── ui/              # Componentes de interface reutilizáveis (shadcn/ui)
+├── features/            # Features de negócio (organização por domínio)
+├── shared/              # Utilitários e tipos compartilhados
+├── lib/                 # Configurações de bibliotecas (cn utility)
+├── index.css            # Design system: tokens CSS, dark mode, tipografia
+├── main.tsx             # Entrypoint da aplicação
+└── App.tsx              # Componente raiz
+```
+
+### Convenção de organização
+
+O frontend segue **arquitetura feature-based**: cada funcionalidade de negócio
+(ex: `tickets`, `auth`, `users`) vive em seu próprio diretório dentro de `features/`,
+agrupando componentes, hooks, tipos e serviços relacionados.
+
+Componentes verdadeiramente reutilizáveis entre features ficam em `components/`.
+
+## Design System
+
+A identidade visual do CHAMAdos está definida em `src/index.css` como CSS custom properties.
+
+- **Tema padrão:** dark mode
+- **Cor primária:** laranja queimado (inspirado no conceito do "fogo" do CHAMAdos)
+- **Tipografia:** Inter Variable
+- **Componentes:** shadcn/ui adaptados à identidade do projeto
+
+## Documentação
+
+A documentação técnica detalhada do frontend está em [`../docs/frontend/`](../docs/frontend/).
+
+- [`decisions/`](../docs/frontend/decisions/) — Decisões arquiteturais (ADs)
+- [`design/`](../docs/frontend/design/) — Design system e identidade visual
