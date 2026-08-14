@@ -1,4 +1,4 @@
-# AD-006 — Stack Visual do Frontend
+# AD-003 — Stack Visual do Frontend
 
 **Decisão:** O frontend do CHAMAdos utilizará Tailwind CSS como ferramenta de estilização, shadcn/ui como base de componentes e Lucide Icons como biblioteca de ícones.
 
