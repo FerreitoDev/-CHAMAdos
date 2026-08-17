@@ -44,3 +44,38 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Ticket
+ * 
+ */
+export type Ticket = Prisma.TicketModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel
+/**
+ * Model Audit
+ * 
+ */
+export type Audit = Prisma.AuditModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model SystemSettings
+ * 
+ */
+export type SystemSettings = Prisma.SystemSettingsModel

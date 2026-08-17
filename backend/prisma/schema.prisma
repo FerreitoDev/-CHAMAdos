@@ -49,6 +49,17 @@ model User {
 
   requestedTickets Ticket[] @relation("TicketRequester")
   assignedTickets  Ticket[] @relation("TicketAssignee")
+  refreshTokens    RefreshToken[]
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Category {
