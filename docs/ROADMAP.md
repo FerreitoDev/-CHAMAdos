@@ -33,9 +33,10 @@
 
 ### 🚧 Parcialmente implementado
 
-- `users/` — módulo criado mas sem nenhuma lógica de negócio
-- `frontend/src/features/` — pasta criada, sem features dentro
-- `frontend/src/components/ui/` — pasta criada, sem componentes
+- `auth/` — Módulo estruturado para autenticação (`AuthModule`, `AuthController`, `AuthService`), aguardando regras e dependências JWT/Argon2.
+- `users/` — Módulo criado mas sem nenhuma lógica de negócio.
+- `frontend/src/features/` — Pasta criada, sem features dentro.
+- `frontend/src/components/ui/` — Pasta criada, sem componentes.
 
 ### ❌ Não existe
 
@@ -70,25 +71,25 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 
 **Objetivo:** Proteger a API com autenticação JWT e expor endpoints de login e token refresh.
 
-**Decisões pendentes:**
-- [ ] Estratégia de refresh token: cookie HttpOnly vs. body da resposta?
-- [ ] Expiração do access token (sugestão: 15min) e refresh token (sugestão: 7d)?
-- [ ] Hash de senha: bcrypt (padrão) ou argon2?
+**Decisões definidas:**
+- [x] Estratégia de refresh token: cookie HttpOnly (Definida em [AD-004](backend/decisions/AD-004-autenticacao.md))
+- [x] Expiração do access token (15min) e refresh token (7d) (Definida em [AD-004](backend/decisions/AD-004-autenticacao.md))
+- [x] Hash de senha: argon2id (Definida em [AD-004](backend/decisions/AD-004-autenticacao.md))
 
 **Tarefas — Backend**
-- [ ] Instalar `@nestjs/jwt`, `@nestjs/passport`, `passport`, `passport-jwt`, `bcrypt`
-- [ ] Criar `AuthModule` com `AuthService` e `AuthController`
-- [ ] Implementar `POST /auth/login` → retorna access token (+ refresh token se decidido)
+- [ ] Instalar `@nestjs/jwt`, `@nestjs/passport`, `passport`, `passport-jwt`, `argon2`
+- [x] Criar `AuthModule` com `AuthService` e `AuthController` (Scaffold e injeções criadas)
+- [x] Implementar `POST /auth/login` → retorna access token e define cookie de refresh token
 - [ ] Implementar `JwtStrategy` (passport) para validar o token
 - [ ] Criar `JwtAuthGuard` para proteger rotas
 - [ ] Criar `CurrentUser` decorator para extrair o usuário do token
-- [ ] Implementar `POST /auth/refresh` (se refresh token for adotado)
-- [ ] Teste unitário: `AuthService` (login com senha válida, senha inválida, usuário inexistente)
+- [ ] Implementar `POST /auth/refresh`
+- [x] Teste unitário: `AuthService` (login com senha válida, senha inválida, usuário inexistente)
 
 **Tarefas — Frontend**
 - [ ] Criar `features/auth/` com página de login
 - [ ] Formulário de login com validação
-- [ ] Armazenar token (localStorage ou cookie — **decisão pendente**)
+- [ ] Enviar requisição e receber tokens (access no payload, refresh no cookie automaticamente)
 - [ ] Interceptor HTTP para enviar Authorization header
 - [ ] Interceptor HTTP para redirecionar ao login em 401
 - [ ] Rota protegida: redirecionar não autenticados para `/login`
@@ -412,18 +413,16 @@ Comentários (F6) ────────────────────�
 
 ---
 
-## Decisões técnicas pendentes
-
-| # | Decisão | Impacto | Fase |
-|---|---|---|---|
-| D-1 | Estratégia de refresh token (cookie HttpOnly vs. body) | Segurança, UX | F1 |
-| D-2 | Hash de senha: bcrypt ou argon2 | Segurança | F1 |
-| D-3 | Armazenamento do token no frontend (localStorage vs. cookie) | Segurança, CSRF | F1 |
-| D-4 | Ao assumir chamado, status muda automaticamente para IN_PROGRESS? | Fluxo de negócio | F5 |
-| D-5 | Desativar categoria que tem tickets vinculados: permitir ou bloquear? | Integridade de dados | F3 |
-| D-6 | Notificações: polling ou WebSocket? | Arquitetura, complexidade | F9 |
-| D-7 | Paginação: cursor-based ou offset? | Performance | F4 |
-| D-8 | Quais relatórios são prioritários no pós-MVP? | Escopo | F10 |
+| # | Decisão | Impacto | Fase | Status / Resolução |
+|---|---|---|---|---|
+| D-1 | Estratégia de refresh token (cookie HttpOnly vs. body) | Segurança, UX | F1 | **Resolvido (Cookie HttpOnly - AD-004)** |
+| D-2 | Hash de senha: bcrypt ou argon2 | Segurança | F1 | **Resolvido (Argon2id - AD-004)** |
+| D-3 | Armazenamento do token no frontend (localStorage vs. cookie) | Segurança, CSRF | F1 | **Resolvido (Cookie/Memory - AD-004)** |
+| D-4 | Ao assumir chamado, status muda automaticamente para IN_PROGRESS? | Fluxo de negócio | F5 | Pendente |
+| D-5 | Desativar categoria que tem tickets vinculados: permitir ou bloquear? | Integridade de dados | F3 | Pendente |
+| D-6 | Notificações: polling ou WebSocket? | Arquitetura, complexidade | F9 | Pendente |
+| D-7 | Paginação: cursor-based ou offset? | Performance | F4 | Pendente |
+| D-8 | Quais relatórios são prioritários no pós-MVP? | Escopo | F10 | Pendente |
 
 ---
 
