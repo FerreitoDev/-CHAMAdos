@@ -88,12 +88,12 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: `AuthService` (login, validate, refresh, logout) e `JwtStrategy`
 
 **Tarefas — Frontend**
-- [ ] Criar `features/auth/` com página de login
-- [ ] Formulário de login com validação
-- [ ] Enviar requisição e receber tokens (access no payload, refresh no cookie automaticamente)
-- [ ] Interceptor HTTP para enviar Authorization header
-- [ ] Interceptor HTTP para redirecionar ao login em 401
-- [ ] Rota protegida: redirecionar não autenticados para `/login`
+- [x] Criar `features/auth/` com página de login
+- [x] Formulário de login com validação
+- [x] Enviar requisição e receber tokens (access no payload, refresh no cookie automaticamente)
+- [x] Interceptor HTTP para enviar Authorization header
+- [x] Interceptor HTTP para redirecionar ao login em 401
+- [x] Rota protegida: redirecionar não autenticados para `/login`
 
 **Dependências:** Nenhuma.
 

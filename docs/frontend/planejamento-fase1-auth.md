@@ -209,9 +209,9 @@ isAuthenticated === true → renderizar <Outlet />
 - Rota `/` passará a ser protegida
 
 **Checklist:**
-- [ ] Criar `ProtectedRoute.tsx`
-- [ ] Aplicar na rota `/` do `router`
-- [ ] Validar redirecionamento ao acessar `/` sem cookie
+- [x] Criar `ProtectedRoute.tsx`
+- [x] Aplicar na rota `/` do `router`
+- [x] Validar redirecionamento ao acessar `/` sem cookie
 
 ---
 
@@ -231,5 +231,5 @@ As etapas **1, 2 e 3** são infraestrutura. As etapas **4 e 5** são visíveis e
 - [x] Etapa 2: `AuthProvider` montado, hidratação automática via refresh funcionando
 - [x] Etapa 3: interceptors ativos, refresh silencioso funcionando
 - [x] Etapa 4: página de login funcional integrada com o backend
-- [ ] Etapa 5: rota `/` redireciona para `/login` sem cookie válido
-- [ ] Critério de conclusão da Fase 1: usuário faz login, acessa rota protegida, recarrega a página e continua autenticado
+- [x] Etapa 5: rota `/` redireciona para `/login` sem cookie válido
+- [x] Critério de conclusão da Fase 1: usuário faz login, acessa rota protegida, recarrega a página e continua autenticado
