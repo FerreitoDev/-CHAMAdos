@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 import { useAuth } from '../use-auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,12 +14,15 @@ export function LoginPage() {
 
     const { login, isAuthenticated } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/'
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/', { replace: true })
+            navigate(from, { replace: true })
         }
-    }, [isAuthenticated, navigate])
+    }, [isAuthenticated, navigate, from])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -30,7 +33,7 @@ export function LoginPage() {
 
         try {
             await login({ email, password })
-            navigate('/', { replace: true })
+            navigate(from, { replace: true })
         } catch {
             setError('Credenciais inválidas')
         } finally {

@@ -7,7 +7,16 @@ import type { AuthContextValue, AuthUser, LoginDto } from './auth.types'
 // Decodifica o payload de um JWT sem validar assinatura (seguro pois o token
 // é validado pelo backend a cada requisição protegida)
 function decodeJwtPayload(token: string): AuthUser {
-    const base64Payload = token.split('.')[1]
+    let base64Payload = token.split('.')[1]
+    // Converte Base64Url para Base64 padrão
+    base64Payload = base64Payload.replace(/-/g, '+').replace(/_/g, '/')
+
+    // Adiciona padding se faltar
+    const pad = base64Payload.length % 4
+    if (pad) {
+        base64Payload += '='.repeat(4 - pad)
+    }
+
     const decoded = JSON.parse(atob(base64Payload)) as {
         sub: string
         email: string
