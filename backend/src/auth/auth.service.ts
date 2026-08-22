@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
 import { UsersService } from '../users/users.service';
@@ -44,16 +44,15 @@ export class AuthService {
             role: user.role,
         };
 
-        // Gera o Access Token que expira em 15 minutos (definido no JwtModule signOptions ou aqui)
         const accessToken = this.jwtService.sign(payload);
 
         // Gera o Refresh Token puro de forma criptograficamente segura
-        const rawRefreshToken = crypto.randomBytes(32).toString('hex');
-        const tokenHash = await argon2.hash(rawRefreshToken);
+        const rawSecret = crypto.randomBytes(32).toString('hex');
+        const tokenHash = await argon2.hash(rawSecret);
 
         // Salva o hash do Refresh Token no banco com validade de 7 dias
         const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 dias
-        await this.prisma.refreshToken.create({
+        const tokenRecord = await this.prisma.refreshToken.create({
             data: {
                 tokenHash,
                 userId: user.id,
@@ -61,9 +60,55 @@ export class AuthService {
             },
         });
 
+        // O token compartilhado com o cliente contém o ID do banco concatenado ao segredo
+        // Isso permite busca indexada rápida (O(1)) no banco antes da verificação com argon2
+        const rawRefreshToken = `${tokenRecord.id}.${rawSecret}`;
+
         return {
             accessToken,
             rawRefreshToken,
         };
     }
+
+    async refresh(rawRefreshToken: string): Promise<{ accessToken: string }> {
+        const parts = rawRefreshToken.split('.');
+        if (parts.length !== 2) {
+            throw new UnauthorizedException('Token de atualização inválido');
+        }
+
+        const [id, secret] = parts;
+
+        const tokenRecord = await this.prisma.refreshToken.findUnique({
+            where: { id },
+            include: { user: true },
+        });
+
+        if (!tokenRecord) {
+            throw new UnauthorizedException('Token de atualização não encontrado');
+        }
+
+        if (tokenRecord.expiresAt < new Date()) {
+            throw new UnauthorizedException('Token de atualização expirado');
+        }
+
+        if (!tokenRecord.user.active) {
+            throw new UnauthorizedException('Usuário associado está inativo');
+        }
+
+        const isTokenValid = await argon2.verify(tokenRecord.tokenHash, secret);
+        if (!isTokenValid) {
+            throw new UnauthorizedException('Token de atualização inválido');
+        }
+
+        const payload = {
+            sub: tokenRecord.user.id,
+            email: tokenRecord.user.email,
+            role: tokenRecord.user.role,
+        };
+
+        const accessToken = this.jwtService.sign(payload);
+
+        return { accessToken };
+    }
 }
+

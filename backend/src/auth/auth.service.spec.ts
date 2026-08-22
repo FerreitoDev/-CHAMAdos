@@ -4,6 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserRole } from '../generated/prisma/client';
+import { UnauthorizedException } from '@nestjs/common';
 import * as argon2 from 'argon2';
 
 // Mock do módulo argon2
@@ -28,7 +29,14 @@ describe('AuthService', () => {
 
     const mockPrismaService = {
         refreshToken: {
-            create: jest.fn().mockResolvedValue({}),
+            create: jest.fn().mockResolvedValue({
+                id: 'token-uuid-1',
+                tokenHash: 'hashed-refresh-token',
+                userId: 'user-uuid-1',
+                expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                createdAt: new Date(),
+            }),
+            findUnique: jest.fn(),
         },
     };
 
@@ -137,7 +145,11 @@ describe('AuthService', () => {
                 role: mockUser.role,
             });
 
-            expect(argon2.hash).toHaveBeenCalledWith(result.rawRefreshToken);
+            const parts = result.rawRefreshToken.split('.');
+            expect(parts).toHaveLength(2);
+            expect(parts[0]).toBe('token-uuid-1');
+
+            expect(argon2.hash).toHaveBeenCalledWith(parts[1]);
 
             expect(prismaService.refreshToken.create).toHaveBeenCalledWith({
                 data: {
@@ -150,6 +162,87 @@ describe('AuthService', () => {
             expect(result).toHaveProperty('accessToken', 'mock-jwt-token');
             expect(result.rawRefreshToken).toBeDefined();
             expect(result.rawRefreshToken.length).toBeGreaterThan(0);
+        });
+    });
+
+    describe('refresh', () => {
+        const validRawRefreshToken = 'token-uuid-1.secret123';
+        const mockTokenRecord = {
+            id: 'token-uuid-1',
+            tokenHash: 'hashed-secret',
+            userId: 'user-uuid-1',
+            expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // expira amanhã
+            createdAt: new Date(),
+            user: {
+                id: 'user-uuid-1',
+                name: 'Fulano',
+                email: 'fulano@exemplo.com',
+                passwordHash: 'hashedpassword123',
+                role: UserRole.USER,
+                active: true,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+        };
+
+        it('deve renovar o access token com sucesso se o refresh token for válido e ativo', async () => {
+            mockPrismaService.refreshToken.findUnique.mockResolvedValue(mockTokenRecord);
+            (argon2.verify as jest.Mock).mockResolvedValue(true);
+
+            const result = await service.refresh(validRawRefreshToken);
+
+            expect(prismaService.refreshToken.findUnique).toHaveBeenCalledWith({
+                where: { id: 'token-uuid-1' },
+                include: { user: true },
+            });
+            expect(argon2.verify).toHaveBeenCalledWith('hashed-secret', 'secret123');
+            expect(jwtService.sign).toHaveBeenCalledWith({
+                sub: mockTokenRecord.user.id,
+                email: mockTokenRecord.user.email,
+                role: mockTokenRecord.user.role,
+            });
+            expect(result).toEqual({ accessToken: 'mock-jwt-token' });
+        });
+
+        it('deve lançar UnauthorizedException se o token não estiver no formato esperado', async () => {
+            await expect(service.refresh('token-sem-ponto')).rejects.toThrow(UnauthorizedException);
+            expect(prismaService.refreshToken.findUnique).not.toHaveBeenCalled();
+        });
+
+        it('deve lançar UnauthorizedException se o token não for encontrado no banco', async () => {
+            mockPrismaService.refreshToken.findUnique.mockResolvedValue(null);
+
+            await expect(service.refresh(validRawRefreshToken)).rejects.toThrow(UnauthorizedException);
+        });
+
+        it('deve lançar UnauthorizedException se o token estiver expirado', async () => {
+            const expiredTokenRecord = {
+                ...mockTokenRecord,
+                expiresAt: new Date(Date.now() - 1000), // expira há 1 segundo atrás
+            };
+            mockPrismaService.refreshToken.findUnique.mockResolvedValue(expiredTokenRecord);
+
+            await expect(service.refresh(validRawRefreshToken)).rejects.toThrow(UnauthorizedException);
+        });
+
+        it('deve lançar UnauthorizedException se o usuário associado estiver inativo', async () => {
+            const deactivatedUserTokenRecord = {
+                ...mockTokenRecord,
+                user: {
+                    ...mockTokenRecord.user,
+                    active: false,
+                },
+            };
+            mockPrismaService.refreshToken.findUnique.mockResolvedValue(deactivatedUserTokenRecord);
+
+            await expect(service.refresh(validRawRefreshToken)).rejects.toThrow(UnauthorizedException);
+        });
+
+        it('deve lançar UnauthorizedException se a verificação de hash falhar', async () => {
+            mockPrismaService.refreshToken.findUnique.mockResolvedValue(mockTokenRecord);
+            (argon2.verify as jest.Mock).mockResolvedValue(false);
+
+            await expect(service.refresh(validRawRefreshToken)).rejects.toThrow(UnauthorizedException);
         });
     });
 });

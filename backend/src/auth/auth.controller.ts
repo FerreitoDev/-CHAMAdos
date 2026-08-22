@@ -1,4 +1,4 @@
-import { Controller, HttpCode, HttpStatus, Post, Body, Res, UnauthorizedException } from '@nestjs/common';
+import { Controller, HttpCode, HttpStatus, Post, Body, Res, UnauthorizedException, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import * as Express from 'express';
@@ -35,8 +35,16 @@ export class AuthController {
 
     @Post('refresh')
     @HttpCode(HttpStatus.OK)
-    refresh() {
-        // TODO: Fase 1 — renovar access token a partir do refresh token no cookie
+    async refresh(
+        @Req() request: Express.Request,
+    ) {
+        const refreshToken = request.cookies?.['refreshToken'];
+        if (!refreshToken) {
+            throw new UnauthorizedException('Token de atualização não fornecido');
+        }
+
+        const { accessToken } = await this.authService.refresh(refreshToken);
+        return { accessToken };
     }
 
     @Post('logout')
