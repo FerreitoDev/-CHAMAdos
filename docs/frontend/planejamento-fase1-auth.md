@@ -152,10 +152,10 @@ src/shared/api/token-store.ts   # { get, set, clear } — simples singleton em m
 ```
 
 **Checklist:**
-- [ ] Criar `token-store.ts`
-- [ ] Implementar interceptor de request no `client.ts`
-- [ ] Implementar interceptor de response com refresh silencioso
-- [ ] Atualizar `AuthProvider` para chamar `tokenStore.set` e `tokenStore.clear`
+- [x] Criar `token-store.ts`
+- [x] Implementar interceptor de request no `client.ts`
+- [x] Implementar interceptor de response com refresh silencioso
+- [x] Atualizar `AuthProvider` para chamar `tokenStore.set` e `tokenStore.clear`
 
 ---
 
@@ -229,7 +229,7 @@ As etapas **1, 2 e 3** são infraestrutura. As etapas **4 e 5** são visíveis e
 
 - [x] Etapa 1: cliente HTTP criado e tipado
 - [x] Etapa 2: `AuthProvider` montado, hidratação automática via refresh funcionando
-- [ ] Etapa 3: interceptors ativos, refresh silencioso funcionando
+- [x] Etapa 3: interceptors ativos, refresh silencioso funcionando
 - [ ] Etapa 4: página de login funcional integrada com o backend
 - [ ] Etapa 5: rota `/` redireciona para `/login` sem cookie válido
 - [ ] Critério de conclusão da Fase 1: usuário faz login, acessa rota protegida, recarrega a página e continua autenticado

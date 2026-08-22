@@ -1,6 +1,7 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import type { PropsWithChildren } from 'react'
 import { authApi } from '@/shared/api/auth.api'
+import { tokenStore } from '@/shared/api/token-store'
 import type { AuthContextValue, AuthUser, LoginDto } from './auth.types'
 
 // Decodifica o payload de um JWT sem validar assinatura (seguro pois o token
@@ -32,6 +33,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         authApi
             .refresh()
             .then(({ accessToken: token }) => {
+                tokenStore.set(token)
                 setAccessToken(token)
                 setUser(decodeJwtPayload(token))
             })
@@ -43,14 +45,24 @@ export function AuthProvider({ children }: PropsWithChildren) {
             })
     }, [])
 
+    // Escuta evento de sessão expirada emitido silenciosamente pelo client axios
+    useEffect(() => {
+        tokenStore.onExpired(() => {
+            setAccessToken(null)
+            setUser(null)
+        })
+    }, [])
+
     const login = useCallback(async (dto: LoginDto) => {
         const { accessToken: token } = await authApi.login(dto)
+        tokenStore.set(token)
         setAccessToken(token)
         setUser(decodeJwtPayload(token))
     }, [])
 
     const logout = useCallback(async () => {
         await authApi.logout()
+        tokenStore.clear()
         setAccessToken(null)
         setUser(null)
     }, [])
