@@ -49,7 +49,21 @@ export class AuthController {
 
     @Post('logout')
     @HttpCode(HttpStatus.NO_CONTENT)
-    logout() {
-        // TODO: Fase 1 — invalidar refresh token no banco e limpar cookie
+    async logout(
+        @Req() request: Express.Request,
+        @Res({ passthrough: true }) response: Express.Response,
+    ) {
+        const refreshToken = request.cookies?.['refreshToken'];
+
+        if (refreshToken) {
+            await this.authService.logout(refreshToken);
+        }
+
+        response.clearCookie('refreshToken', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            path: '/auth',
+        });
     }
 }

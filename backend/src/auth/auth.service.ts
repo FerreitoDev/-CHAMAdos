@@ -110,5 +110,21 @@ export class AuthService {
 
         return { accessToken };
     }
+
+    async logout(rawRefreshToken: string): Promise<void> {
+        const parts = rawRefreshToken.split('.');
+        if (parts.length !== 2) {
+            // Token malformado — não vazar informação, apenas encerrar silenciosamente
+            return;
+        }
+
+        const [id] = parts;
+
+        try {
+            await this.prisma.refreshToken.delete({ where: { id } });
+        } catch {
+            // Token não encontrado no banco (já expirou ou foi revogado) — comportamento esperado
+        }
+    }
 }
 

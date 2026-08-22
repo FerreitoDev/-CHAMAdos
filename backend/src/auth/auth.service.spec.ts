@@ -37,6 +37,7 @@ describe('AuthService', () => {
                 createdAt: new Date(),
             }),
             findUnique: jest.fn(),
+            delete: jest.fn(),
         },
     };
 
@@ -243,6 +244,30 @@ describe('AuthService', () => {
             (argon2.verify as jest.Mock).mockResolvedValue(false);
 
             await expect(service.refresh(validRawRefreshToken)).rejects.toThrow(UnauthorizedException);
+        });
+    });
+
+    describe('logout', () => {
+        it('deve deletar o refresh token do banco quando o token for válido', async () => {
+            mockPrismaService.refreshToken.delete.mockResolvedValue({});
+
+            await service.logout('token-uuid-1.secret123');
+
+            expect(prismaService.refreshToken.delete).toHaveBeenCalledWith({
+                where: { id: 'token-uuid-1' },
+            });
+        });
+
+        it('deve encerrar silenciosamente se o token estiver malformado (sem ponto)', async () => {
+            await service.logout('token-sem-ponto');
+
+            expect(prismaService.refreshToken.delete).not.toHaveBeenCalled();
+        });
+
+        it('deve encerrar silenciosamente se o token não for encontrado no banco', async () => {
+            mockPrismaService.refreshToken.delete.mockRejectedValue(new Error('Record not found'));
+
+            await expect(service.logout('token-uuid-1.secret123')).resolves.toBeUndefined();
         });
     });
 });
