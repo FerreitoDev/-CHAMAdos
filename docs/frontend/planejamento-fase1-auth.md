@@ -117,10 +117,10 @@ interface AuthContextValue {
 - `AuthProvider` será adicionado dentro de `AppProviders.tsx`
 
 **Checklist:**
-- [ ] Criar `auth.types.ts`
-- [ ] Criar `auth.context.tsx` com `AuthProvider` e lógica de hidratação
-- [ ] Criar `use-auth.ts`
-- [ ] Registrar `AuthProvider` em `AppProviders.tsx`
+- [x] Criar `auth.types.ts`
+- [x] Criar `auth.context.tsx` com `AuthProvider` e lógica de hidratação
+- [x] Criar `use-auth.ts`
+- [x] Registrar `AuthProvider` em `AppProviders.tsx`
 
 ---
 
@@ -228,7 +228,7 @@ As etapas **1, 2 e 3** são infraestrutura. As etapas **4 e 5** são visíveis e
 ## Checklist geral de validação
 
 - [x] Etapa 1: cliente HTTP criado e tipado
-- [ ] Etapa 2: `AuthProvider` montado, hidratação automática via refresh funcionando
+- [x] Etapa 2: `AuthProvider` montado, hidratação automática via refresh funcionando
 - [ ] Etapa 3: interceptors ativos, refresh silencioso funcionando
 - [ ] Etapa 4: página de login funcional integrada com o backend
 - [ ] Etapa 5: rota `/` redireciona para `/login` sem cookie válido
