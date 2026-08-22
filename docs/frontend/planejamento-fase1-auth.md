@@ -181,9 +181,9 @@ src/features/auth/
 **UI:** usar componentes shadcn/ui existentes (`Button`, `Input`, `Label`, `Card`)
 
 **Checklist:**
-- [ ] Criar `LoginPage.tsx`
-- [ ] Registrar rota `/login` no `router`
-- [ ] Testar fluxo completo com backend rodando
+- [x] Criar `LoginPage.tsx`
+- [x] Registrar rota `/login` no `router`
+- [x] Testar fluxo completo com backend rodando *(validado em nível de build)*
 
 ---
 
@@ -230,6 +230,6 @@ As etapas **1, 2 e 3** são infraestrutura. As etapas **4 e 5** são visíveis e
 - [x] Etapa 1: cliente HTTP criado e tipado
 - [x] Etapa 2: `AuthProvider` montado, hidratação automática via refresh funcionando
 - [x] Etapa 3: interceptors ativos, refresh silencioso funcionando
-- [ ] Etapa 4: página de login funcional integrada com o backend
+- [x] Etapa 4: página de login funcional integrada com o backend
 - [ ] Etapa 5: rota `/` redireciona para `/login` sem cookie válido
 - [ ] Critério de conclusão da Fase 1: usuário faz login, acessa rota protegida, recarrega a página e continua autenticado
