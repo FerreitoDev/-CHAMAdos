@@ -77,14 +77,15 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Hash de senha: argon2id (Definida em [AD-004](backend/decisions/AD-004-autenticacao.md))
 
 **Tarefas — Backend**
-- [ ] Instalar `@nestjs/jwt`, `@nestjs/passport`, `passport`, `passport-jwt`, `argon2`
+- [x] Instalar `@nestjs/jwt`, `@nestjs/passport`, `passport`, `passport-jwt`, `argon2`
 - [x] Criar `AuthModule` com `AuthService` e `AuthController` (Scaffold e injeções criadas)
 - [x] Implementar `POST /auth/login` → retorna access token e define cookie de refresh token
-- [ ] Implementar `JwtStrategy` (passport) para validar o token
-- [ ] Criar `JwtAuthGuard` para proteger rotas
-- [ ] Criar `CurrentUser` decorator para extrair o usuário do token
-- [ ] Implementar `POST /auth/refresh`
-- [x] Teste unitário: `AuthService` (login com senha válida, senha inválida, usuário inexistente)
+- [x] Implementar `JwtStrategy` (passport) para validar o token
+- [x] Criar `JwtAuthGuard` para proteger rotas
+- [x] Criar `CurrentUser` decorator para extrair o usuário do token
+- [x] Implementar `POST /auth/refresh`
+- [x] Implementar `POST /auth/logout`
+- [x] Teste unitário: `AuthService` (login, validate, refresh, logout) e `JwtStrategy`
 
 **Tarefas — Frontend**
 - [ ] Criar `features/auth/` com página de login
