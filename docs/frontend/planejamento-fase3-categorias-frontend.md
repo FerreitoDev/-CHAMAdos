@@ -113,9 +113,9 @@ src/features/categories/components/
   - Coluna Ações: Botão Editar e Botão Desativar (desabilitado se a categoria já estiver inativa).
 
 **Checklist:**
-- [ ] Criar `CategoryStatusBadge.tsx`
-- [ ] Criar `CategoryTable.tsx`
-- [ ] Testes unitários de componente (`CategoryTable.test.tsx`) cobrindo renderização de dados e botões de ação
+- [x] Criar `CategoryStatusBadge.tsx`
+- [x] Criar `CategoryTable.tsx`
+- [x] Testes unitários de componente (`CategoryTable.test.tsx`) cobrindo renderização de dados e botões de ação
 
 ---
 
