@@ -136,9 +136,9 @@ src/features/tickets/components/
 - Dispara `assignTicket` ou `reassignTicket` e emite callback `onSuccess`.
 
 **Checklist:**
-- [ ] Criar componente `AssignTicketModal`
-- [ ] Criar testes unitários em `AssignTicketModal.test.tsx`
-- [ ] Executar `npm run test` garantindo aprovação dos testes
+- [x] Criar componente `AssignTicketModal`
+- [x] Criar testes unitários em `AssignTicketModal.test.tsx`
+- [x] Executar `npm run test` garantindo aprovação dos testes
 
 ---
 
