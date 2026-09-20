@@ -97,10 +97,10 @@ backend/src/comments/
 - `findAllByTicket(ticketId: string, user: AuthenticatedUser): Promise<SafeComment[]>`
 
 **Checklist:**
-- [ ] Implementar `create` com validação de status `CLOSED` e verificação de participação
-- [ ] Implementar `findAllByTicket` com ordenação cronológica e sanitização do autor
-- [ ] Criar testes unitários em `comments.service.spec.ts` cobrindo cenários de sucesso e erros (404, 403, 422)
-- [ ] Executar testes com `npm run test comments.service` garantindo 100% verdes
+- [x] Implementar `create` com validação de status `CLOSED` e verificação de participação
+- [x] Implementar `findAllByTicket` com ordenação cronológica e sanitização do autor
+- [x] Criar testes unitários em `comments.service.spec.ts` cobrindo cenários de sucesso e erros (404, 403, 422)
+- [x] Executar testes com `npm run test comments.service` garantindo 100% verdes
 
 ---
 
