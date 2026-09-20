@@ -8,12 +8,12 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/User.ts'
-export type * from './models/RefreshToken.ts'
-export type * from './models/Category.ts'
-export type * from './models/Ticket.ts'
-export type * from './models/Comment.ts'
-export type * from './models/Audit.ts'
-export type * from './models/Notification.ts'
-export type * from './models/SystemSettings.ts'
-export type * from './commonInputTypes.ts'
+export type * from './models/User.js'
+export type * from './models/RefreshToken.js'
+export type * from './models/Category.js'
+export type * from './models/Ticket.js'
+export type * from './models/Comment.js'
+export type * from './models/Audit.js'
+export type * from './models/Notification.js'
+export type * from './models/SystemSettings.js'
+export type * from './commonInputTypes.js'

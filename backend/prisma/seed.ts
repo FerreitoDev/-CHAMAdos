@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../src/generated/prisma/client';
 import * as argon2 from 'argon2';
@@ -5,7 +6,7 @@ import * as argon2 from 'argon2';
 const adapter = new PrismaPg({
   connectionString:
     process.env.DATABASE_URL ||
-    'postgresql://postgres:postgres@localhost:5432/chamados?schema=public',
+    'postgresql://chamados:chamados@localhost:5432/chamados?schema=public',
 });
 
 const prisma = new PrismaClient({ adapter });
