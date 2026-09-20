@@ -104,9 +104,9 @@ active?: boolean;
 | `deactivate(id)` | `prisma.category.update({ active: false })` | Soft delete. Lança `NotFoundException` se não encontrar |
 
 **Checklist:**
-- [ ] Criar `CategoriesService` com injeção do `PrismaService`
-- [ ] Implementar `create`, `findAll`, `findById`, `update` e `deactivate`
-- [ ] Testes unitários do `CategoriesService` (`categories.service.spec.ts`) cobrindo todos os métodos (sucesso, erro de não encontrado e duplicidade)
+- [x] Criar `CategoriesService` com injeção do `PrismaService`
+- [x] Implementar `create`, `findAll`, `findById`, `update` e `deactivate`
+- [x] Testes unitários do `CategoriesService` (`categories.service.spec.ts`) cobrindo todos os métodos (sucesso, erro de não encontrado e duplicidade)
 
 ---
 
