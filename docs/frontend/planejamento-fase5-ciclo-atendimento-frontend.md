@@ -111,10 +111,10 @@ src/features/tickets/components/
 - `ReopenTicketModal`: Textarea opcional para motivo da reabertura e botão de confirmação.
 
 **Checklist:**
-- [ ] Criar `ResolveTicketModal` com testes unitários
-- [ ] Criar `CloseTicketModal` com testes unitários
-- [ ] Criar `ReopenTicketModal` com testes unitários
-- [ ] Executar `npm run test` garantindo 100% de cobertura nos modais
+- [x] Criar `ResolveTicketModal` com testes unitários
+- [x] Criar `CloseTicketModal` com testes unitários
+- [x] Criar `ReopenTicketModal` com testes unitários
+- [x] Executar `npm run test` garantindo 100% de cobertura nos modais
 
 ---
 
