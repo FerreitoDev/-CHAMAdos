@@ -88,10 +88,10 @@ src/features/tickets/
   - `createComment(ticketId: string, payload: CreateCommentPayload): Promise<Comment>`
 
 **Checklist:**
-- [ ] Criar `comments.types.ts` com as interfaces de comentário e payload
-- [ ] Implementar `comments.api.ts` com métodos `getComments` e `createComment`
-- [ ] Criar testes unitários em `comments.api.test.ts` cobrindo sucesso e erros
-- [ ] Executar `npm run test` validando sucesso dos testes de API
+- [x] Criar `comments.types.ts` com as interfaces de comentário e payload
+- [x] Implementar `comments.api.ts` com métodos `getComments` e `createComment`
+- [x] Criar testes unitários em `comments.api.test.ts` cobrindo sucesso e erros
+- [x] Executar `npm run test` validando sucesso dos testes de API
 
 ---
 
