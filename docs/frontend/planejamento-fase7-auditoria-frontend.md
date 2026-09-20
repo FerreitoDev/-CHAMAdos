@@ -117,10 +117,10 @@ src/features/tickets/components/
 ```
 
 **Checklist:**
-- [ ] Implementar `TicketAuditItem.tsx` com mapeamento visual para as 6 ações de auditoria
-- [ ] Renderizar autor (com `UserRoleBadge`), data formatada e detalhes contextuais
-- [ ] Criar testes unitários em `TicketAuditItem.test.tsx` verificando renderização para todas as ações
-- [ ] Executar `npm run test TicketAuditItem` garantindo 100% de aprovação
+- [x] Implementar `TicketAuditItem.tsx` com mapeamento visual para as 6 ações de auditoria
+- [x] Renderizar autor (com `UserRoleBadge`), data formatada e detalhes contextuais
+- [x] Criar testes unitários em `TicketAuditItem.test.tsx` verificando renderização para todas as ações
+- [x] Executar `npm run test TicketAuditItem` garantindo 100% de aprovação
 
 ---
 
