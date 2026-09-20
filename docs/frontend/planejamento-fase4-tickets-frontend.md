@@ -246,9 +246,9 @@ src/app/router.tsx
   - Rota `/tickets/:id` (protegida para qualquer usuário autenticado).
 
 **Checklist:**
-- [ ] Criar `TicketsListPage.tsx` e `TicketDetailPage.tsx`
-- [ ] Registrar rotas `/tickets` e `/tickets/:id` em `src/app/router.tsx`
-- [ ] Executar testes de integração das telas e roteamento (`npm run test TicketsListPage TicketDetailPage`) garantindo 100% verdes
+- [x] Criar `TicketsListPage.tsx` e `TicketDetailPage.tsx`
+- [x] Registrar rotas `/tickets` e `/tickets/:id` em `src/app/router/index.tsx`
+- [x] Executar testes de integração das telas e roteamento (`npm run test TicketsListPage TicketDetailPage`) garantindo 100% verdes
 
 ---
 
@@ -262,11 +262,11 @@ Etapa 1 (API & Types + Tests) → Etapa 2 (Badges & Table + Tests) → Etapa 3 (
 
 ## Critérios de Conclusão da Fase 4 (Frontend)
 
-- [ ] Usuário comum, técnico ou admin consegue abrir chamados via modal com título, descrição, categoria e prioridade.
-- [ ] Usuário comum visualiza apenas seus próprios chamados na listagem e na tela de detalhe.
-- [ ] Técnico visualiza chamados sem responsável, seus atribuídos e solicitados.
-- [ ] Admin visualiza todos os chamados do sistema.
-- [ ] Filtros por status, prioridade, categoria e busca textual funcionam integrados à paginação.
-- [ ] Página de detalhes `/tickets/:id` exibe todas as informações do chamado e seus metadados.
-- [ ] Roteamento protegido impede acesso de usuários não autenticados.
-- [ ] Todos os testes da suíte do frontend executando 100% verdes.
+- [x] Usuário comum, técnico ou admin consegue abrir chamados via modal com título, descrição, categoria e prioridade.
+- [x] Usuário comum visualiza apenas seus próprios chamados na listagem e na tela de detalhe.
+- [x] Técnico visualiza chamados sem responsável, seus atribuídos e solicitados.
+- [x] Admin visualiza todos os chamados do sistema.
+- [x] Filtros por status, prioridade, categoria e busca textual funcionam integrados à paginação.
+- [x] Página de detalhes `/tickets/:id` exibe todas as informações do chamado e seus metadados.
+- [x] Roteamento protegido impede acesso de usuários não autenticados.
+- [x] Todos os testes da suíte do frontend executando 100% verdes.

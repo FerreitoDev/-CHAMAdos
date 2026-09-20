@@ -192,10 +192,10 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: criação, listagem por papel, detalhe
 
 **Tarefas — Frontend**
-- [ ] Criar `features/tickets/`
-- [ ] Página de listagem de chamados (com filtros básicos)
-- [ ] Página de detalhe do chamado
-- [ ] Formulário de criação de chamado
+- [x] Criar `features/tickets/`
+- [x] Página de listagem de chamados (com filtros básicos)
+- [x] Página de detalhe do chamado
+- [x] Formulário de criação de chamado
 
 **Dependências:** Fase 1, 2, 3.
 
