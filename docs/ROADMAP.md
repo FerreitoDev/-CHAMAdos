@@ -248,11 +248,11 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 **Objetivo:** Usuários e técnicos comentam em chamados para comunicação durante o atendimento.
 
 **Tarefas — Backend**
-- [ ] Criar `CommentsModule`, `CommentsService`, `CommentsController`
-- [ ] `POST /tickets/:id/comments` (USER solicitante, TECHNICIAN responsável, ADMIN)
-- [ ] `GET /tickets/:id/comments` (autenticado, com permissão ao ticket)
-- [ ] Validar que apenas participantes do chamado podem comentar (ou ADMIN)
-- [ ] Teste unitário: criar e listar comentários
+- [x] Criar `CommentsModule`, `CommentsService`, `CommentsController`
+- [x] `POST /tickets/:id/comments` (USER solicitante, TECHNICIAN responsável, ADMIN)
+- [x] `GET /tickets/:id/comments` (autenticado, com permissão ao ticket)
+- [x] Validar que apenas participantes do chamado podem comentar (ou ADMIN)
+- [x] Teste unitário: criar e listar comentários
 
 **Tarefas — Frontend**
 - [ ] Seção de comentários na página de detalhe do ticket

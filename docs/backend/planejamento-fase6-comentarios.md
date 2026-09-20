@@ -152,9 +152,9 @@ backend/src/
 **Objetivo:** Validar o funcionamento de toda a suíte de testes de regressão do backend e atualizar o documento de Roadmap.
 
 **Checklist:**
-- [ ] Executar `npm run build` garantindo zero erros de compilação
-- [ ] Executar `npm run test` com 100% de aprovação em todos os módulos
-- [ ] Atualizar `docs/ROADMAP.md` marcando a Fase 6 Backend como concluída
+- [x] Executar `npm run build` garantindo zero erros de compilação
+- [x] Executar `npm run test` com 100% de aprovação em todos os módulos
+- [x] Atualizar `docs/ROADMAP.md` marcando a Fase 6 Backend como concluída
 
 ---
 
@@ -168,9 +168,9 @@ Etapa 1 (DTO & Types) ➔ Etapa 2 (Service + Testes) ➔ Etapa 3 (Controller + T
 
 ## Critérios de Conclusão da Fase 6 (Backend)
 
-- [ ] Solicitante do chamado consegue adicionar comentários e visualizá-los.
-- [ ] Técnico responsável ou ADMIN consegue adicionar comentários no chamado.
-- [ ] Técnico não atribuído ou usuário que não seja o solicitante recebe `403 Forbidden` ao tentar comentar.
-- [ ] Tentativa de comentar em chamado com status `CLOSED` retorna `422 Unprocessable Entity`.
-- [ ] Comentários retornam ordenados em ordem cronológica ascendente com autor sanitizado.
-- [ ] Todos os testes unitários de `CommentsService` e `CommentsController` executando 100% verdes.
+- [x] Solicitante do chamado consegue adicionar comentários e visualizá-los.
+- [x] Técnico responsável ou ADMIN consegue adicionar comentários no chamado.
+- [x] Técnico não atribuído ou usuário que não seja o solicitante recebe `403 Forbidden` ao tentar comentar.
+- [x] Tentativa de comentar em chamado com status `CLOSED` retorna `422 Unprocessable Entity`.
+- [x] Comentários retornam ordenados em ordem cronológica ascendente com autor sanitizado.
+- [x] Todos os testes unitários de `CommentsService` e `CommentsController` executando 100% verdes.
