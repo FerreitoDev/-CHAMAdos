@@ -84,8 +84,8 @@ active?: boolean;
 ```
 
 **Checklist:**
-- [ ] Criar `CreateCategoryDto` com validações `class-validator`
-- [ ] Criar `UpdateCategoryDto` com validações `class-validator`
+- [x] Criar `CreateCategoryDto` com validações `class-validator`
+- [x] Criar `UpdateCategoryDto` com validações `class-validator`
 
 ---
 
@@ -128,7 +128,7 @@ active?: boolean;
 - [ ] Criar `CategoriesController` com decorators e guards adequados
 - [ ] Implementar os 5 endpoints HTTP
 - [ ] Registrar `CategoriesModule` no `AppModule`
-- [ ] Testes unitários do `CategoriesController` (`categories.controller.spec.ts`)
+- [ ] Testes unitários do `CategoriesController` (`categories.controller.spec.ts`) cobrindo todas as rotas e autorizações RBAC
 
 ---
 
