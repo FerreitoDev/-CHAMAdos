@@ -7,6 +7,7 @@ vi.mock('@/shared/api/client', () => ({
   apiClient: {
     get: vi.fn(),
     post: vi.fn(),
+    patch: vi.fn(),
   },
 }))
 
@@ -99,5 +100,59 @@ describe('ticketsApi', () => {
 
     expect(apiClient.post).toHaveBeenCalledWith('/tickets', payload)
     expect(result).toEqual(mockTicket)
+  })
+
+  it('assignTicket deve chamar PATCH /tickets/:id/assign com o payload', async () => {
+    const assignedTicket = { ...mockTicket, status: 'IN_PROGRESS' as const, assigneeId: 'tech-1' }
+    vi.mocked(apiClient.patch).mockResolvedValueOnce({ data: assignedTicket })
+
+    const payload = { assigneeId: 'tech-1' }
+    const result = await ticketsApi.assignTicket('ticket-1', payload)
+
+    expect(apiClient.patch).toHaveBeenCalledWith('/tickets/ticket-1/assign', payload)
+    expect(result).toEqual(assignedTicket)
+  })
+
+  it('reassignTicket deve chamar PATCH /tickets/:id/reassign com o payload', async () => {
+    const reassignedTicket = { ...mockTicket, status: 'IN_PROGRESS' as const, assigneeId: 'tech-2' }
+    vi.mocked(apiClient.patch).mockResolvedValueOnce({ data: reassignedTicket })
+
+    const payload = { assigneeId: 'tech-2' }
+    const result = await ticketsApi.reassignTicket('ticket-1', payload)
+
+    expect(apiClient.patch).toHaveBeenCalledWith('/tickets/ticket-1/reassign', payload)
+    expect(result).toEqual(reassignedTicket)
+  })
+
+  it('resolveTicket deve chamar PATCH /tickets/:id/resolve com o payload', async () => {
+    const resolvedTicket = { ...mockTicket, status: 'RESOLVED' as const, resolvedAt: '2026-09-20T01:00:00.000Z' }
+    vi.mocked(apiClient.patch).mockResolvedValueOnce({ data: resolvedTicket })
+
+    const payload = { solutionNotes: 'Troca da fonte realizada' }
+    const result = await ticketsApi.resolveTicket('ticket-1', payload)
+
+    expect(apiClient.patch).toHaveBeenCalledWith('/tickets/ticket-1/resolve', payload)
+    expect(result).toEqual(resolvedTicket)
+  })
+
+  it('closeTicket deve chamar PATCH /tickets/:id/close', async () => {
+    const closedTicket = { ...mockTicket, status: 'CLOSED' as const, closedAt: '2026-09-20T02:00:00.000Z' }
+    vi.mocked(apiClient.patch).mockResolvedValueOnce({ data: closedTicket })
+
+    const result = await ticketsApi.closeTicket('ticket-1')
+
+    expect(apiClient.patch).toHaveBeenCalledWith('/tickets/ticket-1/close')
+    expect(result).toEqual(closedTicket)
+  })
+
+  it('reopenTicket deve chamar PATCH /tickets/:id/reopen com o payload', async () => {
+    const reopenedTicket = { ...mockTicket, status: 'OPEN' as const, resolvedAt: null, closedAt: null }
+    vi.mocked(apiClient.patch).mockResolvedValueOnce({ data: reopenedTicket })
+
+    const payload = { reopenReason: 'Problema voltou a ocorrer' }
+    const result = await ticketsApi.reopenTicket('ticket-1', payload)
+
+    expect(apiClient.patch).toHaveBeenCalledWith('/tickets/ticket-1/reopen', payload)
+    expect(result).toEqual(reopenedTicket)
   })
 })

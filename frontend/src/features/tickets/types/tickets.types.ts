@@ -29,6 +29,22 @@ export interface CreateTicketPayload {
   categoryId: string
 }
 
+export interface AssignTicketPayload {
+  assigneeId?: string
+}
+
+export interface ReassignTicketPayload {
+  assigneeId: string
+}
+
+export interface ResolveTicketPayload {
+  solutionNotes?: string
+}
+
+export interface ReopenTicketPayload {
+  reopenReason?: string
+}
+
 export interface GetTicketsParams {
   status?: TicketStatus
   priority?: TicketPriority

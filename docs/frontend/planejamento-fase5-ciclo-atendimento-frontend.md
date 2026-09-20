@@ -83,10 +83,10 @@ src/features/tickets/
   - `reopenTicket(id: string, payload?: ReopenTicketPayload): Promise<Ticket>`
 
 **Checklist:**
-- [ ] Adicionar interfaces de payload em `tickets.types.ts`
-- [ ] Implementar os 5 métodos PATCH em `tickets.api.ts`
-- [ ] Criar testes unitários para cada método em `tickets.api.test.ts`
-- [ ] Executar `npm run test` validando sucesso dos testes de API
+- [x] Adicionar interfaces de payload em `tickets.types.ts`
+- [x] Implementar os 5 métodos PATCH em `tickets.api.ts`
+- [x] Criar testes unitários para cada método em `tickets.api.test.ts`
+- [x] Executar `npm run test` validando sucesso dos testes de API
 
 ---
 
