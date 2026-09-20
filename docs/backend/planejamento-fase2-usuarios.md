@@ -193,9 +193,9 @@ create(@Body() dto: CreateUserDto) { ... }
 **Regra de auto-proteção:** ADMIN não pode desativar a si mesmo. Se `dto.id === currentUser.id` → `400 Bad Request`.
 
 **Checklist:**
-- [ ] Implementar todos os 5 endpoints
-- [ ] Aplicar guards corretamente por endpoint
-- [ ] Aplicar regra de auto-proteção no `DELETE /users/:id`
+- [x] Implementar todos os 5 endpoints
+- [x] Aplicar guards corretamente por endpoint
+- [x] Aplicar regra de auto-proteção no `DELETE /users/:id`
 
 ---
 
@@ -211,9 +211,9 @@ As etapas 1–4 são infraestrutura. A Etapa 5 é superfície e depende de todas
 
 ## Critérios de conclusão da Fase 2 (Backend)
 
-- [ ] ADMIN cria, edita e desativa usuários via API
-- [ ] Usuário não-ADMIN recebe `403` ao tentar acessar endpoints de usuários
-- [ ] `GET /users/:id` retorna o perfil ao próprio usuário autenticado
-- [ ] `passwordHash` nunca aparece nas respostas da API
-- [ ] ADMIN não consegue se auto-desativar (`400`)
-- [ ] Testes unitários: `UsersService`, `RolesGuard` todos passando
+- [x] ADMIN cria, edita e desativa usuários via API
+- [x] Usuário não-ADMIN recebe `403` ao tentar acessar endpoints de usuários
+- [x] `GET /users/:id` retorna o perfil ao próprio usuário autenticado
+- [x] `passwordHash` nunca aparece nas respostas da API
+- [x] ADMIN não consegue se auto-desativar (`400`)
+- [x] Testes unitários: `UsersService`, `RolesGuard` todos passando
