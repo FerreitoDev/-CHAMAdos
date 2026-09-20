@@ -150,15 +150,15 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 **Objetivo:** ADMINs gerenciam categorias usadas para classificar chamados.
 
 **Tarefas — Backend**
-- [ ] Criar `CategoriesModule`, `CategoriesService`, `CategoriesController`
-- [ ] Endpoints:
+- [x] Criar `CategoriesModule`, `CategoriesService`, `CategoriesController`
+- [x] Endpoints:
   - `POST /categories` (ADMIN)
   - `GET /categories` (autenticado — retorna apenas ativas por padrão)
   - `GET /categories/:id` (autenticado)
   - `PATCH /categories/:id` (ADMIN)
-  - `DELETE /categories/:id` → desativação lógica (ADMIN) — rejeitar se não houver tickets vinculados? **decisão pendente**
-- [ ] Seed de categorias iniciais (Hardware, Software, Rede, Acesso, E-mail, Impressora, Outros)
-- [ ] Teste unitário: `CategoriesService`
+  - `DELETE /categories/:id` → desativação lógica (ADMIN)
+- [x] Seed de categorias iniciais (Hardware, Software, Rede, Acesso, E-mail, Impressora, Outros)
+- [x] Teste unitário: `CategoriesService` e `CategoriesController`
 
 **Tarefas — Frontend**
 - [ ] Criar `features/categories/` (tela de admin)

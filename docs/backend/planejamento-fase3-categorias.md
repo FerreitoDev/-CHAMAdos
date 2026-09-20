@@ -153,17 +153,17 @@ package.json                 # Adicionar chave "prisma": { "seed": "tsx prisma/s
 ```
 
 **Checklist:**
-- [ ] Criar `prisma/seed.ts` usando `PrismaClient` com `upsert` para idempotent execução
-- [ ] Configurar o comando de seed no `package.json`
-- [ ] Validar a execução do seed (`npx prisma db seed`)
+- [x] Criar `prisma/seed.ts` usando `PrismaClient` com `upsert` para idempotent execução
+- [x] Configurar o comando de seed no `package.json`
+- [x] Validar a execução do seed (`npx prisma db seed`)
 
 ---
 
 ## Critérios de Conclusão da Fase 3 (Backend)
 
-- [ ] ADMIN cria, edita e desativa categorias via API
-- [ ] Usuários comuns e técnicos visualizam apenas categorias ativas
-- [ ] Nomes duplicados de categorias são rejeitados com `409 Conflict`
-- [ ] `DELETE /categories/:id` realiza desativação lógica (`active: false`)
-- [ ] Script de seed cadastra as 7 categorias padrão sem duplicar em reexecuções
-- [ ] Testes unitários do `CategoriesService` e `CategoriesController` passando 100% verdes
+- [x] ADMIN cria, edita e desativa categorias via API
+- [x] Usuários comuns e técnicos visualizam apenas categorias ativas
+- [x] Nomes duplicados de categorias são rejeitados com `409 Conflict`
+- [x] `DELETE /categories/:id` realiza desativação lógica (`active: false`)
+- [x] Script de seed cadastra as 7 categorias padrão sem duplicar em reexecuções
+- [x] Testes unitários do `CategoriesService` e `CategoriesController` passando 100% verdes
