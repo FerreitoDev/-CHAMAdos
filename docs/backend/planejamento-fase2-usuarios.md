@@ -89,8 +89,8 @@ src/users/dto/
 **Segurança:** Exposição de `passwordHash` nunca deve ocorrer. Um tipo `SafeUser` será usado como retorno de todas as operações.
 
 **Checklist:**
-- [ ] Criar `CreateUserDto`
-- [ ] Criar `UpdateUserDto`
+- [x] Criar `CreateUserDto`
+- [x] Criar `UpdateUserDto`
 
 ---
 
@@ -116,10 +116,10 @@ Todas as operações retornam `SafeUser` (já definido em `auth.service.ts` como
 > **Ponto de centralização:** O tipo `SafeUser` está em `auth.service.ts`. Deve ser **movido** para `users/users.types.ts` e reexportado de `auth.service.ts` para evitar dependência cruzada de módulos invertida (`auth` depende de `users`, não o contrário).
 
 **Checklist:**
-- [ ] Mover `SafeUser` para `src/users/users.types.ts`
-- [ ] Atualizar import em `auth.service.ts`
-- [ ] Implementar `create`, `findAll`, `findById`, `update`, `deactivate`
-- [ ] Testes unitários: todos os métodos (sucesso e falha)
+- [x] Mover `SafeUser` para `src/users/users.types.ts`
+- [x] Atualizar import em `auth.service.ts`
+- [x] Implementar `create`, `findAll`, `findById`, `update`, `deactivate`
+- [x] Testes unitários: todos os métodos (sucesso e falha)
 
 ---
 
