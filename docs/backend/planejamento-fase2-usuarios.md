@@ -168,9 +168,9 @@ create(@Body() dto: CreateUserDto) { ... }
 ```
 
 **Checklist:**
-- [ ] Criar `roles.decorator.ts`
-- [ ] Criar `roles.guard.ts`
-- [ ] Teste unitário do `RolesGuard` (role compatível, role incompatível, sem `@Roles`)
+- [x] Criar `roles.decorator.ts`
+- [x] Criar `roles.guard.ts`
+- [x] Teste unitário do `RolesGuard` (role compatível, role incompatível, sem `@Roles`)
 
 ---
 
