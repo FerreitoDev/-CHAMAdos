@@ -136,9 +136,9 @@ export class FilterTicketsDto {
 ```
 
 **Checklist:**
-- [ ] Criar `CreateTicketDto` com validações via `class-validator`
-- [ ] Criar `FilterTicketsDto` com conversão de tipos e validações de paginação
-- [ ] Executar validação de tipos e compilação do TypeScript (`npx tsc --noEmit`)
+- [x] Criar `CreateTicketDto` com validações via `class-validator`
+- [x] Criar `FilterTicketsDto` com conversão de tipos e validações de paginação
+- [x] Executar validação de tipos e compilação do TypeScript (`npm run build`)
 
 ---
 
