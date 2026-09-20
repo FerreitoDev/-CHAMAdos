@@ -110,24 +110,24 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 **Objetivo:** Permitir que ADMINs gerenciem usuários do sistema.
 
 **Tarefas — Backend**
-- [ ] Implementar `UsersService`:
+- [x] Implementar `UsersService`:
   - `create(dto)` — criar usuário (hash de senha)
   - `findAll(filters?)` — listar usuários com paginação
   - `findById(id)` — buscar por ID
   - `findByEmail(email)` — buscar por email (uso interno da auth)
   - `update(id, dto)` — atualizar nome, role
   - `deactivate(id)` — soft delete (active = false)
-- [ ] Criar DTOs com `class-validator`: `CreateUserDto`, `UpdateUserDto`
-- [ ] Implementar `UsersController` com endpoints REST:
+- [x] Criar DTOs com `class-validator`: `CreateUserDto`, `UpdateUserDto`
+- [x] Implementar `UsersController` com endpoints REST:
   - `POST /users` (ADMIN)
   - `GET /users` (ADMIN)
   - `GET /users/:id` (ADMIN ou próprio usuário)
   - `PATCH /users/:id` (ADMIN)
   - `DELETE /users/:id` → desativação (ADMIN)
-- [ ] Criar `RolesGuard` para autorização baseada em papel
-- [ ] Criar `@Roles()` decorator
-- [ ] Validação global: `ValidationPipe` no bootstrap
-- [ ] Teste unitário: `UsersService` (criar, buscar, atualizar, desativar)
+- [x] Criar `RolesGuard` para autorização baseada em papel
+- [x] Criar `@Roles()` decorator
+- [x] Validação global: `ValidationPipe` no bootstrap
+- [x] Teste unitário: `UsersService` e `UsersController` (criar, buscar, atualizar, desativar)
 
 **Tarefas — Frontend**
 - [ ] Criar `features/users/` com listagem de usuários
