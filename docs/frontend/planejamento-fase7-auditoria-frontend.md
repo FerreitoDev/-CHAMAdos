@@ -98,10 +98,10 @@ src/features/tickets/
   - `getTicketAudit(ticketId: string): Promise<AuditItem[]>`
 
 **Checklist:**
-- [ ] Criar `audit.types.ts` com constantes e interfaces de auditoria
-- [ ] Implementar `audit.api.ts` com o método `getTicketAudit`
-- [ ] Criar testes unitários em `audit.api.test.ts` cobrindo sucesso e tratamento de erros
-- [ ] Executar `npm run test` validando sucesso dos testes de API
+- [x] Criar `audit.types.ts` com constantes e interfaces de auditoria
+- [x] Implementar `audit.api.ts` com o método `getTicketAudit`
+- [x] Criar testes unitários em `audit.api.test.ts` cobrindo sucesso e tratamento de erros
+- [x] Executar `npm run test` validando sucesso dos testes de API
 
 ---
 
