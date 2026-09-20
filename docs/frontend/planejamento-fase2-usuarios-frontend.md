@@ -14,22 +14,28 @@ Este documento detalha as etapas de implementação do módulo de usuários no f
 ## Estrutura da Feature
 
 ```text
+```text
 src/features/users/
 ├── api/
-│   └── users.api.ts             # Requisições HTTP para /users
+│   ├── users.api.ts             # Requisições HTTP para /users
+│   └── users.api.test.ts        # Testes unitários da integração HTTP
 ├── types/
 │   └── users.types.ts           # Interfaces SafeUser, CreateUserPayload, UpdateUserPayload
 ├── components/
 │   ├── UserRoleBadge.tsx        # Badge visual por papel (ADMIN, TECHNICIAN, USER)
 │   ├── UserStatusBadge.tsx      # Badge visual de status (Ativo / Inativo)
 │   ├── UserTable.tsx            # Tabela de listagem com ações
+│   ├── UserTable.test.tsx       # Teste de componente da tabela e bloqueio de auto-desativação
 │   ├── CreateUserModal.tsx      # Modal de formulário para criação
+│   ├── CreateUserModal.test.tsx # Teste de validação e submissão do formulário
 │   ├── EditUserModal.tsx        # Modal de formulário para edição
-│   └── DeactivateUserDialog.tsx # Modal de confirmação de desativação
+│   ├── EditUserModal.test.tsx   # Teste de edição de perfil
+│   ├── DeactivateUserDialog.tsx # Modal de confirmação de desativação
+│   └── DeactivateUserDialog.test.tsx # Teste de confirmação e disparo da desativação
 ├── pages/
 │   └── UsersPage.tsx            # Tela principal da gestão de usuários
 └── __tests__/
-    └── UsersPage.test.tsx       # Testes de integração/componente da tela
+    └── UsersPage.test.tsx       # Testes de integração/componente da tela e autorização
 ```
 
 ---
@@ -46,7 +52,8 @@ src/features/users/
 ```
 src/features/users/
 ├── types/users.types.ts
-└── api/users.api.ts
+├── api/users.api.ts
+└── api/users.api.test.ts
 ```
 
 **Tipos (`users.types.ts`):**
@@ -87,6 +94,7 @@ export interface UpdateUserPayload {
 - [x] Criar `src/features/users/types/users.types.ts`
 - [x] Criar `src/features/users/api/users.api.ts`
 - [x] Garantir o uso da instância centralizada do Axios (`src/shared/api/client.ts`)
+- [x] Testes unitários da API (`src/features/users/api/users.api.test.ts`)
 
 ---
 
@@ -99,7 +107,8 @@ export interface UpdateUserPayload {
 src/features/users/components/
 ├── UserRoleBadge.tsx
 ├── UserStatusBadge.tsx
-└── UserTable.tsx
+├── UserTable.tsx
+└── UserTable.test.tsx
 ```
 
 **Comportamento visual:**
@@ -113,6 +122,7 @@ src/features/users/components/
 - [ ] Criar `UserRoleBadge.tsx`
 - [ ] Criar `UserStatusBadge.tsx`
 - [ ] Criar `UserTable.tsx`
+- [ ] Testes unitários do componente `UserTable` (renderização e botão de desativação desabilitado para o próprio usuário logado)
 
 ---
 
@@ -124,7 +134,9 @@ src/features/users/components/
 ```
 src/features/users/components/
 ├── CreateUserModal.tsx
-└── EditUserModal.tsx
+├── CreateUserModal.test.tsx
+├── EditUserModal.tsx
+└── EditUserModal.test.tsx
 ```
 
 **Regras de Validação:**
@@ -135,6 +147,7 @@ src/features/users/components/
 **Checklist:**
 - [ ] Criar `CreateUserModal.tsx`
 - [ ] Criar `EditUserModal.tsx`
+- [ ] Testes unitários/componente dos formulários (`CreateUserModal.test.tsx` e `EditUserModal.test.tsx`)
 
 ---
 
@@ -142,9 +155,11 @@ src/features/users/components/
 
 **Objetivo:** Prover confirmação visual explícita antes de executar o soft delete de um usuário.
 
-**Arquivo a criar:**
+**Arquivos a criar:**
 ```
-src/features/users/components/DeactivateUserDialog.tsx
+src/features/users/components/
+├── DeactivateUserDialog.tsx
+└── DeactivateUserDialog.test.tsx
 ```
 
 **Comportamento:**
@@ -154,12 +169,13 @@ src/features/users/components/DeactivateUserDialog.tsx
 
 **Checklist:**
 - [ ] Criar `DeactivateUserDialog.tsx`
+- [ ] Testes unitários do componente (`DeactivateUserDialog.test.tsx`)
 
 ---
 
 ### Etapa 5 — Tela Principal, Proteção de Rota e Testes (`UsersPage` & Roteamento)
 
-**Objetivo:** Montar a tela de usuários (`UsersPage`), integrar o estado da página (busca, abertura de modais, recarregamento de lista após ações), proteger a rota `/users` no router e escrever testes unitários.
+**Objetivo:** Montar a tela de usuários (`UsersPage`), integrar o estado da página (busca, abertura de modais, recarregamento de lista após ações), proteger a rota `/users` no router e escrever testes de integração completos.
 
 **Arquivos a criar/modificar:**
 ```
@@ -175,7 +191,7 @@ src/app/router.tsx  # Atualizar com a nova rota protegida por ADMIN
 **Checklist:**
 - [ ] Implementar `UsersPage.tsx`
 - [ ] Registrar rota `/users` no `router.tsx` com restrição por role `ADMIN`
-- [ ] Escrever testes unitários em `UsersPage.test.tsx` (Vitest + Testing Library)
+- [ ] Escrever testes de integração em `UsersPage.test.tsx` (Vitest + Testing Library)
 
 ---
 
@@ -187,4 +203,4 @@ src/app/router.tsx  # Atualizar com a nova rota protegida por ADMIN
 - [ ] ADMIN desativa usuários com confirmação via modal
 - [ ] ADMIN não consegue clicar para se auto-desativar na interface
 - [ ] Usuários `USER` e `TECHNICIAN` não conseguem acessar a rota `/users`
-- [ ] Suíte de testes do frontend passando (Vitest)
+- [ ] Suíte de testes do frontend passando 100% verde (Vitest)
