@@ -108,10 +108,10 @@ backend/src/audit/
 - `findAllByTicket(ticketId: string, user: AuthenticatedUser): Promise<SafeAudit[]>`
 
 **Checklist:**
-- [ ] Implementar `AuditService.log` inserindo registro no Prisma
-- [ ] Implementar `AuditService.findAllByTicket` com checagem de existência (404) e RBAC (403 para não-ADMIN e técnico não-atribuído)
-- [ ] Criar testes unitários em `audit.service.spec.ts` cobrindo cenários de sucesso e erro (404, 403)
-- [ ] Executar testes com `npm run test audit.service` com 100% de aprovação
+- [x] Implementar `AuditService.log` inserindo registro no Prisma
+- [x] Implementar `AuditService.findAllByTicket` com checagem de existência (404) e RBAC (403 para não-ADMIN e técnico não-atribuído)
+- [x] Criar testes unitários em `audit.service.spec.ts` cobrindo cenários de sucesso e erro (404, 403)
+- [x] Executar testes com `npm run test audit.service` com 100% de aprovação
 
 ---
 
