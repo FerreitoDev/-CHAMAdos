@@ -75,9 +75,9 @@ backend/src/comments/
   - `author`: `SafeUser` (id, name, email, role, active, createdAt, updatedAt)
 
 **Checklist:**
-- [ ] Criar `CreateCommentDto` com validações de string e tamanho
-- [ ] Criar `comments.types.ts` com `SafeComment` e helpers de seleção segura
-- [ ] Validar compilação com `npm run build`
+- [x] Criar `CreateCommentDto` com validações de string e tamanho
+- [x] Criar `comments.types.ts` com `SafeComment` e helpers de seleção segura
+- [x] Validar compilação com `npm run build`
 
 ---
 
