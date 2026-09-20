@@ -187,9 +187,9 @@ src/features/tickets/components/
 - Botão "Limpar Filtros".
 
 **Checklist:**
-- [ ] Criar `TicketFilterBar.tsx`
-- [ ] Implementar carregamento dinâmico de categorias ativas no filtro
-- [ ] Executar testes unitários do filtro (`npm run test TicketFilterBar`) garantindo 100% verdes
+- [x] Criar `TicketFilterBar.tsx`
+- [x] Implementar carregamento dinâmico de categorias ativas no filtro
+- [x] Executar testes unitários do filtro (`npm run test TicketFilterBar`) garantindo 100% verdes
 
 ---
 
