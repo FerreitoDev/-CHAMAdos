@@ -212,9 +212,9 @@ src/features/tickets/components/
 - Submissão realiza chamada a `createTicket(payload)` e dispara callback `onSuccess` para recarregar a lista.
 
 **Checklist:**
-- [ ] Criar `CreateTicketModal.tsx` com validação de campos obrigatórios
-- [ ] Tratar mensagens de erro amigáveis caso a API retorne falha
-- [ ] Executar testes unitários do formulário (`npm run test CreateTicketModal`) garantindo 100% verdes
+- [x] Criar `CreateTicketModal.tsx` com validação de campos obrigatórios
+- [x] Tratar mensagens de erro amigáveis caso a API retorne falha
+- [x] Executar testes unitários do formulário (`npm run test CreateTicketModal`) garantindo 100% verdes
 
 ---
 
