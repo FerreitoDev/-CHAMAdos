@@ -95,9 +95,9 @@ src/tickets/dto/
 - `ReopenTicketDto`: Opcional `reopenReason?: string`.
 
 **Checklist:**
-- [ ] Criar `AssignTicketDto` e `ReassignTicketDto`
-- [ ] Criar `ResolveTicketDto` e `ReopenTicketDto`
-- [ ] Executar validação de tipos e compilação do TypeScript (`npm run build`)
+- [x] Criar `AssignTicketDto` e `ReassignTicketDto`
+- [x] Criar `ResolveTicketDto` e `ReopenTicketDto`
+- [x] Executar validação de tipos e compilação do TypeScript (`npm run build`)
 
 ---
 
