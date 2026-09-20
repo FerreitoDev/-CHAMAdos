@@ -161,8 +161,8 @@ src/features/categories/components/
 - Executa `deactivateCategory(id)` ao confirmar.
 
 **Checklist:**
-- [ ] Criar `DeactivateCategoryDialog.tsx`
-- [ ] Testes unitários do modal (`DeactivateCategoryDialog.test.tsx`)
+- [x] Criar `DeactivateCategoryDialog.tsx`
+- [x] Testes unitários do modal (`DeactivateCategoryDialog.test.tsx`)
 
 ---
 
