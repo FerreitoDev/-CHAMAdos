@@ -168,8 +168,8 @@ src/features/users/components/
 - Dispara a chamada `deactivateUser(id)` ao confirmar.
 
 **Checklist:**
-- [ ] Criar `DeactivateUserDialog.tsx`
-- [ ] Testes unitários do componente (`DeactivateUserDialog.test.tsx`)
+- [x] Criar `DeactivateUserDialog.tsx`
+- [x] Testes unitários do componente (`DeactivateUserDialog.test.tsx`)
 
 ---
 
