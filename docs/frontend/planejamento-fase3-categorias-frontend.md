@@ -138,9 +138,9 @@ src/features/categories/components/
 - Tratamento de erro 409 Conflict da API (exibe mensagem de nome de categoria duplicado).
 
 **Checklist:**
-- [ ] Criar `CreateCategoryModal.tsx`
-- [ ] Criar `EditCategoryModal.tsx`
-- [ ] Testes unitários/componente dos formulários (`CreateCategoryModal.test.tsx` e `EditCategoryModal.test.tsx`)
+- [x] Criar `CreateCategoryModal.tsx`
+- [x] Criar `EditCategoryModal.tsx`
+- [x] Testes unitários/componente dos formulários (`CreateCategoryModal.test.tsx` e `EditCategoryModal.test.tsx`)
 
 ---
 
