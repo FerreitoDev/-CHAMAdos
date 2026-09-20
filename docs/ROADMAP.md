@@ -273,17 +273,17 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 **Objetivo:** Registrar automaticamente ações relevantes para rastreabilidade.
 
 **Tarefas — Backend**
-- [ ] Criar `AuditService` (sem controller — não expõe endpoint de escrita)
-- [ ] `GET /tickets/:id/audit` (ADMIN e TECHNICIAN responsável)
-- [ ] `AuditService.log(action, ticketId?, actorId?, data?)` — método interno chamado por outros serviços
-- [ ] Ações a registrar:
+- [x] Criar `AuditService` (sem controller — não expõe endpoint de escrita)
+- [x] `GET /tickets/:id/audit` (ADMIN e TECHNICIAN responsável)
+- [x] `AuditService.log(action, ticketId?, actorId?, data?)` — método interno chamado por outros serviços
+- [x] Ações a registrar:
   - Ticket criado
   - Status alterado (de → para)
   - Responsável atribuído / alterado
   - Ticket resolvido
   - Ticket encerrado
   - Ticket reaberto
-- [ ] Teste unitário: verificar que cada ação gera o registro correto
+- [x] Teste unitário: verificar que cada ação gera o registro correto
 
 **Tarefas — Frontend**
 - [ ] Seção de histórico de auditoria no detalhe do ticket (ADMIN/TECHNICIAN)

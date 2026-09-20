@@ -171,17 +171,18 @@ backend/src/
 **Objetivo:** Garantir zero regressões em todo o ecossistema do backend e atualizar os documentos de acompanhamento.
 
 **Checklist:**
-- [ ] Executar `npm run build` com sucesso
-- [ ] Executar `npm run test` com 100% de aprovação em todos os módulos
-- [ ] Atualizar `docs/ROADMAP.md` marcando a Fase 7 Backend como concluída
+- [x] Executar `npm run build` com sucesso
+- [x] Executar `npm run test` com 100% de aprovação em todos os módulos
+- [x] Atualizar `docs/ROADMAP.md` marcando a Fase 7 Backend como concluída
 
 ---
 
 ## Critérios de Conclusão da Fase 7 (Backend)
 
-- [ ] Todas as 6 ações do ciclo de vida de tickets geram registros imutáveis de auditoria.
-- [ ] ADMIN visualiza o histórico completo de auditoria de qualquer chamado.
-- [ ] Técnico responsável visualiza o histórico de auditoria do chamado sob sua responsabilidade.
-- [ ] Usuários comuns e técnicos não atribuídos recebem `403 Forbidden` ao consultar a auditoria.
-- [ ] Histórico retornado em ordem cronológica ascendente com ator sanitizado (sem expor `passwordHash`).
-- [ ] 100% dos testes unitários passando sem erros.
+- [x] Todas as 6 ações do ciclo de vida de tickets geram registros imutáveis de auditoria.
+- [x] ADMIN visualiza o histórico completo de auditoria de qualquer chamado.
+- [x] Técnico responsável visualiza o histórico de auditoria do chamado sob sua responsabilidade.
+- [x] Usuários comuns e técnicos não atribuídos recebem `403 Forbidden` ao consultar a auditoria.
+- [x] Histórico retornado em ordem cronológica ascendente com ator sanitizado (sem expor `passwordHash`).
+- [x] 100% dos testes unitários passando sem erros.
+
