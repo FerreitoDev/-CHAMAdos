@@ -125,9 +125,9 @@ export interface PaginatedTicketsResponse {
 - `createTicket(payload: CreateTicketPayload)` → `POST /tickets`
 
 **Checklist:**
-- [ ] Criar `src/features/tickets/types/tickets.types.ts`
-- [ ] Criar `src/features/tickets/api/tickets.api.ts` utilizando a instância Axios centralizada
-- [ ] Executar testes unitários da API (`npm run test tickets.api`) garantindo 100% dos testes verdes
+- [x] Criar `src/features/tickets/types/tickets.types.ts`
+- [x] Criar `src/features/tickets/api/tickets.api.ts` utilizando a instância Axios centralizada
+- [x] Executar testes unitários da API (`npm run test tickets.api`) garantindo 100% dos testes verdes
 
 ---
 
