@@ -162,9 +162,9 @@ src/features/tickets/components/
   - Estado vazio (*Empty State*) quando a lista de chamados estiver vazia.
 
 **Checklist:**
-- [ ] Criar `TicketStatusBadge.tsx` e `TicketPriorityBadge.tsx`
-- [ ] Criar `TicketTable.tsx` com link/ação para a página de detalhes
-- [ ] Executar testes unitários dos componentes visuais (`npm run test TicketTable TicketStatusBadge`) garantindo 100% verdes
+- [x] Criar `TicketStatusBadge.tsx` e `TicketPriorityBadge.tsx`
+- [x] Criar `TicketTable.tsx` com link/ação para a página de detalhes
+- [x] Executar testes unitários dos componentes visuais (`npm run test TicketTable TicketStatusBadge`) garantindo 100% verdes
 
 ---
 
