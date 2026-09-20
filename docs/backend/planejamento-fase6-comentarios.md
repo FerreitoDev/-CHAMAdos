@@ -141,9 +141,9 @@ backend/src/
 ```
 
 **Checklist:**
-- [ ] Criar `CommentsModule` com `CommentsController` e `CommentsService`
-- [ ] Importar `CommentsModule` no `AppModule`
-- [ ] Validar compilação do NestJS (`npm run build`)
+- [x] Criar `CommentsModule` com `CommentsController` e `CommentsService`
+- [x] Importar `CommentsModule` no `AppModule`
+- [x] Validar compilação do NestJS (`npm run build`)
 
 ---
 
