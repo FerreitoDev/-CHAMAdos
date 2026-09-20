@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
-import { TicketPriority } from '../../generated/prisma';
+import { TicketPriority } from '../../generated/prisma/client';
 
 export class CreateTicketDto {
   @IsString()

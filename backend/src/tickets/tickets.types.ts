@@ -1,4 +1,4 @@
-import { Category, Ticket } from '../generated/prisma';
+import { Category, Ticket } from '../generated/prisma/client';
 import { SafeUser } from '../users/users.types';
 
 export type SafeTicket = Omit<Ticket, 'requester' | 'assignee'> & {

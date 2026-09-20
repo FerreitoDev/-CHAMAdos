@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
-import { TicketPriority, TicketStatus } from '../../generated/prisma';
+import { TicketPriority, TicketStatus } from '../../generated/prisma/client';
 
 export class FilterTicketsDto {
   @IsEnum(TicketStatus)
