@@ -238,10 +238,10 @@ Incluir função auxiliar de seleção do Prisma (`safeUserSelect`) ou mapper pa
 **Objetivo:** Conectar o `TicketsModule` na aplicação principal e validar a compilação e a suíte completa de testes do sistema.
 
 **Checklist:**
-- [ ] Criar `TicketsModule` exportando `TicketsService`
-- [ ] Registrar `TicketsModule` no `imports` do `AppModule`
-- [ ] Garantir build verde (`npm run build`)
-- [ ] Executar suíte completa de testes unitários do backend (`npm run test`) para validar regressão zero
+- [x] Criar `TicketsModule` exportando `TicketsService`
+- [x] Registrar `TicketsModule` no `imports` do `AppModule`
+- [x] Garantir build verde (`npm run build`)
+- [x] Executar suíte completa de testes unitários do backend (`npm run test`) para validar regressão zero
 
 ---
 
@@ -255,13 +255,13 @@ Etapa 1 (DTOs + Check de Tipos) → Etapa 2 (Types + Check de Tipos) → Etapa 3
 
 ## Critérios de Conclusão da Fase 4 (Backend)
 
-- [ ] Qualquer usuário autenticado consegue criar um chamado, associando a uma categoria ativa.
-- [ ] Tentativa de criação com categoria inexistente ou inativa retorna `400 Bad Request`.
-- [ ] `USER` visualiza apenas seus próprios chamados na listagem e na consulta por ID.
-- [ ] `TECHNICIAN` visualiza chamados sem responsável, seus atribuídos e seus solicitados.
-- [ ] `ADMIN` visualiza todos os chamados do sistema.
-- [ ] Acesso não autorizado a um chamado por ID retorna `403 Forbidden`.
-- [ ] Chamado não existente retorna `404 Not Found`.
-- [ ] Resposta da listagem inclui metadados de paginação e filtros funcionando.
-- [ ] Dados de usuário (`requester` e `assignee`) nunca vazam `passwordHash`.
-- [ ] Todos os testes unitários do `TicketsService` e `TicketsController` passando 100% verdes no final de cada etapa correspondente.
+- [x] Qualquer usuário autenticado consegue criar um chamado, associando a uma categoria ativa.
+- [x] Tentativa de criação com categoria inexistente ou inativa retorna `400 Bad Request`.
+- [x] `USER` visualiza apenas seus próprios chamados na listagem e na consulta por ID.
+- [x] `TECHNICIAN` visualiza chamados sem responsável, seus atribuídos e seus solicitados.
+- [x] `ADMIN` visualiza todos os chamados do sistema.
+- [x] Acesso não autorizado a um chamado por ID retorna `403 Forbidden`.
+- [x] Chamado não existente retorna `404 Not Found`.
+- [x] Resposta da listagem inclui metadados de paginação e filtros funcionando.
+- [x] Dados de usuário (`requester` e `assignee`) nunca vazam `passwordHash`.
+- [x] Todos os testes unitários do `TicketsService` e `TicketsController` passando 100% verdes no final de cada etapa correspondente.

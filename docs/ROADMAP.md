@@ -180,16 +180,16 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 **Objetivo:** Usuários criam chamados e qualquer papel pode consultá-los conforme sua permissão.
 
 **Tarefas — Backend**
-- [ ] Criar `TicketsModule`, `TicketsService`, `TicketsController`
-- [ ] `POST /tickets` (USER, TECHNICIAN) — cria chamado em OPEN
-- [ ] `GET /tickets` (autenticado) — listagem com filtros e paginação:
+- [x] Criar `TicketsModule`, `TicketsService`, `TicketsController`
+- [x] `POST /tickets` (USER, TECHNICIAN, ADMIN) — cria chamado em OPEN
+- [x] `GET /tickets` (autenticado) — listagem com filtros e paginação:
   - USER: apenas seus chamados
   - TECHNICIAN: chamados disponíveis + seus chamados
   - ADMIN: todos os chamados
-- [ ] `GET /tickets/:id` — detalhe com permissão verificada
-- [ ] DTOs: `CreateTicketDto` (title, description, priority, categoryId)
-- [ ] Filtros na listagem: status, priority, categoryId, assigneeId (query params)
-- [ ] Teste unitário: criação, listagem por papel, detalhe
+- [x] `GET /tickets/:id` — detalhe com permissão verificada
+- [x] DTOs: `CreateTicketDto` (title, description, priority, categoryId)
+- [x] Filtros na listagem: status, priority, categoryId, assigneeId (query params)
+- [x] Teste unitário: criação, listagem por papel, detalhe
 
 **Tarefas — Frontend**
 - [ ] Criar `features/tickets/`
