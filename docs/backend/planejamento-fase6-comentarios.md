@@ -123,9 +123,9 @@ backend/src/comments/
 | `GET` | `/tickets/:ticketId/comments` | `JwtAuthGuard`, `@Roles(USER, TECHNICIAN, ADMIN)` | Lista comentários do chamado |
 
 **Checklist:**
-- [ ] Criar `CommentsController` com decorators de rota `@Controller('tickets/:ticketId/comments')`
-- [ ] Escrever testes unitários em `comments.controller.spec.ts`
-- [ ] Executar `npm run test comments.controller` garantindo 100% verdes
+- [x] Criar `CommentsController` com decorators de rota `@Controller('tickets/:ticketId/comments')`
+- [x] Escrever testes unitários em `comments.controller.spec.ts`
+- [x] Executar `npm run test comments.controller` garantindo 100% verdes
 
 ---
 
