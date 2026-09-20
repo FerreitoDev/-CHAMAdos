@@ -173,16 +173,16 @@ docs/
 ```
 
 **Checklist:**
-- [ ] Executar `npm run build` garantindo zero erros de compilação/tipagem
-- [ ] Executar `npm run test` com 100% de aprovação em toda a suíte de testes do frontend
-- [ ] Atualizar `docs/ROADMAP.md` marcando as tarefas da Fase 7 Frontend como concluídas
+- [x] Executar `npm run build` garantindo zero erros de compilação/tipagem
+- [x] Executar `npm run test` com 100% de aprovação em toda a suíte de testes do frontend
+- [x] Atualizar `docs/ROADMAP.md` marcando as tarefas da Fase 7 Frontend como concluídas
 
 ---
 
 ## 5. Critérios de Conclusão da Fase 7 (Frontend)
 
-- [ ] Administrador visualiza a linha do tempo de auditoria em qualquer chamado.
-- [ ] Técnico responsável visualiza a linha do tempo de auditoria nos chamados atribuídos a ele.
-- [ ] Usuário comum (solicitante) e técnicos não atribuídos não visualizam a seção de auditoria.
-- [ ] A linha do tempo exibe ícone, ação amigável, ator, papel e data de cada evento.
-- [ ] 100% dos testes unitários do frontend passando e build do Vite com 0 erros.
+- [x] Administrador visualiza a linha do tempo de auditoria em qualquer chamado.
+- [x] Técnico responsável visualiza a linha do tempo de auditoria nos chamados atribuídos a ele.
+- [x] Usuário comum (solicitante) e técnicos não atribuídos não visualizam a seção de auditoria.
+- [x] A linha do tempo exibe ícone, ação amigável, ator, papel e data de cada evento.
+- [x] 100% dos testes unitários do frontend passando e build do Vite com 0 erros.

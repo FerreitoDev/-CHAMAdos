@@ -286,8 +286,8 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: verificar que cada ação gera o registro correto
 
 **Tarefas — Frontend**
-- [ ] Seção de histórico de auditoria no detalhe do ticket (ADMIN/TECHNICIAN)
-- [ ] Exibir: ação, ator, data
+- [x] Seção de histórico de auditoria no detalhe do ticket (ADMIN/TECHNICIAN)
+- [x] Exibir: ação, ator, data
 
 **Dependências:** Fase 4, 5 (auditoria é invocada durante o ciclo de atendimento).
 
