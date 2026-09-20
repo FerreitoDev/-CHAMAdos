@@ -143,9 +143,9 @@ src/features/tickets/components/
 ```
 
 **Checklist:**
-- [ ] Implementar `TicketCommentsSection.tsx` gerenciando estado assíncrono (loading, lista, erro, adição imediata)
-- [ ] Criar testes unitários em `TicketCommentsSection.test.tsx` simulando busca, empty state, exibição de comentários e envio bem-sucedido
-- [ ] Executar `npm run test TicketCommentsSection` com 100% de aprovação
+- [x] Implementar `TicketCommentsSection.tsx` gerenciando estado assíncrono (loading, lista, erro, adição imediata)
+- [x] Criar testes unitários em `TicketCommentsSection.test.tsx` simulando busca, empty state, exibição de comentários e envio bem-sucedido
+- [x] Executar `npm run test TicketCommentsSection` com 100% de aprovação
 
 ---
 
