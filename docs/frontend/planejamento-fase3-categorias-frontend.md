@@ -89,9 +89,9 @@ export interface GetCategoriesParams {
 - `deactivateCategory(id: string)` → `DELETE /categories/:id`
 
 **Checklist:**
-- [ ] Criar `src/features/categories/types/categories.types.ts`
-- [ ] Criar `src/features/categories/api/categories.api.ts` utilizando a instância Axios (`src/shared/api/client.ts`)
-- [ ] Testes unitários da API (`src/features/categories/api/categories.api.test.ts`)
+- [x] Criar `src/features/categories/types/categories.types.ts`
+- [x] Criar `src/features/categories/api/categories.api.ts` utilizando a instância Axios (`src/shared/api/client.ts`)
+- [x] Testes unitários da API (`src/features/categories/api/categories.api.test.ts`)
 
 ---
 
