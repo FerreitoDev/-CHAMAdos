@@ -204,12 +204,12 @@ Incluir função auxiliar de seleção do Prisma (`safeUserSelect`) ou mapper pa
 - Se a condição for falsa: lança `ForbiddenException('Você não tem permissão para acessar este chamado')`.
 
 **Checklist:**
-- [ ] Injetar `PrismaService` no `TicketsService`
-- [ ] Implementar validação de categoria ativa em `create`
-- [ ] Implementar filtro de escopo por papel em `findAll`
-- [ ] Implementar paginação e filtros em `findAll`
-- [ ] Implementar verificação de permissão granular em `findById`
-- [ ] Executar testes unitários em `tickets.service.spec.ts` (`npm run test tickets.service`) garantindo 100% dos testes verdes
+- [x] Injetar `PrismaService` no `TicketsService`
+- [x] Implementar validação de categoria ativa em `create`
+- [x] Implementar filtro de escopo por papel em `findAll`
+- [x] Implementar paginação e filtros em `findAll`
+- [x] Implementar verificação de permissão granular em `findById`
+- [x] Executar testes unitários em `tickets.service.spec.ts` (`npm run test tickets.service`) garantindo 100% dos testes verdes
 
 ---
 
