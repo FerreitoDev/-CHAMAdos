@@ -181,9 +181,9 @@ src/features/tickets/
 **Objetivo:** Validar que todo o frontend compila perfeitamente e que todos os testes unitários e de integração passam sem regressões.
 
 **Checklist:**
-- [ ] Executar validação de tipos e compilação do Vite (`npm run build`)
-- [ ] Executar suíte completa de testes do frontend (`npm run test`)
-- [ ] Atualizar `docs/ROADMAP.md` marcando a Fase 5 Frontend como concluída
+- [x] Executar validação de tipos e compilação do Vite (`npm run build`)
+- [x] Executar suíte completa de testes do frontend (`npm run test`)
+- [x] Atualizar `docs/ROADMAP.md` marcando a Fase 5 Frontend como concluída
 
 ---
 
@@ -197,10 +197,10 @@ Etapa 1 (API & Tipos) ➔ Etapa 2 (Modais Resolve/Close/Reopen) ➔ Etapa 3 (Mod
 
 ## Critérios de Conclusão da Fase 5 (Frontend)
 
-- [ ] Técnico visualiza e clica em "Assumir Chamado" em chamados abertos.
-- [ ] ADMIN visualiza e atribui/reatribui técnicos através do `AssignTicketModal`.
-- [ ] Técnico responsável ou ADMIN consegue resolver chamados em andamento via `ResolveTicketModal`.
-- [ ] ADMIN encerra chamados resolvidos via `CloseTicketModal`.
-- [ ] Solicitante ou ADMIN consegue reabrir chamados finalizados via `ReopenTicketModal`.
-- [ ] Os botões de ação aparecem e desaparecem estritamente de acordo com o papel e o estado do chamado.
-- [ ] Todos os testes do frontend executando 100% verdes e build do Vite aprovado.
+- [x] Técnico visualiza e clica em "Assumir Chamado" em chamados abertos.
+- [x] ADMIN visualiza e atribui/reatribui técnicos através do `AssignTicketModal`.
+- [x] Técnico responsável ou ADMIN consegue resolver chamados em andamento via `ResolveTicketModal`.
+- [x] ADMIN encerra chamados resolvidos via `CloseTicketModal`.
+- [x] Solicitante ou ADMIN consegue reabrir chamados finalizados via `ReopenTicketModal`.
+- [x] Os botões de ação aparecem e desaparecem estritamente de acordo com o papel e o estado do chamado.
+- [x] Todos os testes do frontend executando 100% verdes e build do Vite aprovado.

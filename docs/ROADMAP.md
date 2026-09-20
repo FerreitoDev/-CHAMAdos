@@ -227,11 +227,11 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: cada transição válida e inválida
 
 **Tarefas — Frontend**
-- [ ] Botão "Assumir chamado" (TECHNICIAN)
-- [ ] Botão "Resolver" com campo de comentário obrigatório
-- [ ] Botão "Encerrar" (ADMIN)
-- [ ] Botão "Reabrir" com campo de comentário obrigatório
-- [ ] Exibir status atual com badge visual
+- [x] Botão "Assumir chamado" (TECHNICIAN)
+- [x] Botão "Resolver" com campo de comentário/solução opcional
+- [x] Botão "Encerrar" (ADMIN)
+- [x] Botão "Reabrir" com campo de motivo opcional
+- [x] Exibir status atual com badge visual e ações contextuais integradas
 
 **Dependências:** Fase 4, Fase 7 (Auditoria precisa existir para ser chamada).
 
