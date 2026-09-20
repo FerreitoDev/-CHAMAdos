@@ -107,9 +107,9 @@ src/features/tickets/components/
 ```
 
 **Checklist:**
-- [ ] Implementar `CommentItem.tsx` com visual estilizado em card/caixa, badge de papel e formatação de data
-- [ ] Criar testes unitários em `CommentItem.test.tsx` verificando renderização de autor, data, badge e texto
-- [ ] Executar `npm run test CommentItem` garantindo 100% de aprovação
+- [x] Implementar `CommentItem.tsx` com visual estilizado em card/caixa, badge de papel e formatação de data
+- [x] Criar testes unitários em `CommentItem.test.tsx` verificando renderização de autor, data, badge e texto
+- [x] Executar `npm run test CommentItem` garantindo 100% de aprovação
 
 ---
 
