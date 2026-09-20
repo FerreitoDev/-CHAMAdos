@@ -130,11 +130,11 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: `UsersService` e `UsersController` (criar, buscar, atualizar, desativar)
 
 **Tarefas — Frontend**
-- [ ] Criar `features/users/` com listagem de usuários
-- [ ] Tabela de usuários com role, status e ações
-- [ ] Formulário de criação de usuário
-- [ ] Formulário de edição de usuário
-- [ ] Ação de desativação com confirmação
+- [x] Criar `features/users/` com listagem de usuários
+- [x] Tabela de usuários com role, status e ações
+- [x] Formulário de criação de usuário
+- [x] Formulário de edição de usuário
+- [x] Ação de desativação com confirmação
 
 **Dependências:** Fase 1 (autenticação + guards).
 

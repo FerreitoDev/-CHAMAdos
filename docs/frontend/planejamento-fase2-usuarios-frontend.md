@@ -189,18 +189,18 @@ src/app/router.tsx  # Atualizar com a nova rota protegida por ADMIN
 - Se um usuário comum (`USER` ou `TECHNICIAN`) tentar acessar `/users`, deve ser redirecionado para o dashboard/home com mensagem de acesso negado.
 
 **Checklist:**
-- [ ] Implementar `UsersPage.tsx`
-- [ ] Registrar rota `/users` no `router.tsx` com restrição por role `ADMIN`
-- [ ] Escrever testes de integração em `UsersPage.test.tsx` (Vitest + Testing Library)
+- [x] Implementar `UsersPage.tsx`
+- [x] Registrar rota `/users` no `router.tsx` com restrição por role `ADMIN`
+- [x] Escrever testes de integração em `UsersPage.test.tsx` (Vitest + Testing Library)
 
 ---
 
 ## Critérios de conclusão da Fase 2 (Frontend)
 
-- [ ] ADMIN visualiza a lista completa de usuários cadastrados
-- [ ] ADMIN cria novos usuários com nome, email, senha e role
-- [ ] ADMIN edita o nome e role de um usuário existente
-- [ ] ADMIN desativa usuários com confirmação via modal
-- [ ] ADMIN não consegue clicar para se auto-desativar na interface
-- [ ] Usuários `USER` e `TECHNICIAN` não conseguem acessar a rota `/users`
-- [ ] Suíte de testes do frontend passando 100% verde (Vitest)
+- [x] ADMIN visualiza a lista completa de usuários cadastrados
+- [x] ADMIN cria novos usuários com nome, email, senha e role
+- [x] ADMIN edita o nome e role de um usuário existente
+- [x] ADMIN desativa usuários com confirmação via modal
+- [x] ADMIN não consegue clicar para se auto-desativar na interface
+- [x] Usuários `USER` e `TECHNICIAN` não conseguem acessar a rota `/users`
+- [x] Suíte de testes do frontend passando 100% verde (Vitest)
