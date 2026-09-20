@@ -84,9 +84,9 @@ export interface UpdateUserPayload {
 - `deactivateUser(id: string)` → `DELETE /users/:id`
 
 **Checklist:**
-- [ ] Criar `src/features/users/types/users.types.ts`
-- [ ] Criar `src/features/users/api/users.api.ts`
-- [ ] Garantir o uso da instância centralizada do Axios (`src/shared/api/client.ts`)
+- [x] Criar `src/features/users/types/users.types.ts`
+- [x] Criar `src/features/users/api/users.api.ts`
+- [x] Garantir o uso da instância centralizada do Axios (`src/shared/api/client.ts`)
 
 ---
 
