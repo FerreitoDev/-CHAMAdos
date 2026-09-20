@@ -174,9 +174,9 @@ export interface PaginatedTicketsResponse {
 Incluir função auxiliar de seleção do Prisma (`safeUserSelect`) ou mapper para formatar `User` em `SafeUser`.
 
 **Checklist:**
-- [ ] Criar `src/tickets/tickets.types.ts` com `SafeTicket` e `PaginatedTicketsResponse`
-- [ ] Centralizar `safeUserSelect` para reutilização nas queries Prisma com relacionamentos
-- [ ] Executar validação de tipos e compilação do TypeScript (`npx tsc --noEmit`)
+- [x] Criar `src/tickets/tickets.types.ts` com `SafeTicket` e `PaginatedTicketsResponse`
+- [x] Centralizar `safeUserSelect` para reutilização nas queries Prisma com relacionamentos
+- [x] Executar validação de tipos e compilação do TypeScript (`npm run build`)
 
 ---
 
