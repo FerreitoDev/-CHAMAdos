@@ -125,10 +125,10 @@ active?: boolean;
 | `DELETE /categories/:id` | Desativar | `Jwt` + `Roles(ADMIN)` | Retorna `204 No Content` |
 
 **Checklist:**
-- [ ] Criar `CategoriesController` com decorators e guards adequados
-- [ ] Implementar os 5 endpoints HTTP
-- [ ] Registrar `CategoriesModule` no `AppModule`
-- [ ] Testes unitários do `CategoriesController` (`categories.controller.spec.ts`) cobrindo todas as rotas e autorizações RBAC
+- [x] Criar `CategoriesController` com decorators e guards adequados
+- [x] Implementar os 5 endpoints HTTP
+- [x] Registrar `CategoriesModule` no `AppModule`
+- [x] Testes unitários do `CategoriesController` (`categories.controller.spec.ts`) cobrindo todas as rotas e autorizações RBAC
 
 ---
 
