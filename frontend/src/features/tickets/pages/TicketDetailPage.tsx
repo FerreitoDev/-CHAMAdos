@@ -4,6 +4,7 @@ import { ticketsApi } from '../api/tickets.api'
 import type { Ticket } from '../types/tickets.types'
 import { TicketStatusBadge } from '../components/TicketStatusBadge'
 import { TicketPriorityBadge } from '../components/TicketPriorityBadge'
+import { TicketActionsBar } from '../components/TicketActionsBar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, Calendar, Tag, Ticket as TicketIcon, User, UserCheck } from 'lucide-react'
@@ -99,6 +100,12 @@ export const TicketDetailPage: React.FC = () => {
           {ticket.title}
         </h1>
       </div>
+
+      {/* Barra de Ações do Ciclo de Atendimento */}
+      <TicketActionsBar
+        ticket={ticket}
+        onTicketUpdated={(updated) => setTicket(updated)}
+      />
 
       {/* Grid de Informações Principais */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

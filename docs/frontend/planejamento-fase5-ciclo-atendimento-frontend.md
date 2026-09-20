@@ -168,11 +168,11 @@ src/features/tickets/
 - Atualiza o estado local do chamado em `TicketDetailPage` sem recarregar a página inteira após cada ação bem-sucedida.
 
 **Checklist:**
-- [ ] Criar `TicketActionsBar` com regras de renderização condicional por papel e status
-- [ ] Criar testes unitários para `TicketActionsBar.test.tsx`
-- [ ] Integrar `TicketActionsBar` no `TicketDetailPage.tsx`
-- [ ] Atualizar e expandir testes de `TicketDetailPage.test.tsx`
-- [ ] Executar `npm run test` garantindo 100% de sucesso
+- [x] Criar `TicketActionsBar` com regras de renderização condicional por papel e status
+- [x] Criar testes unitários para `TicketActionsBar.test.tsx`
+- [x] Integrar `TicketActionsBar` no `TicketDetailPage.tsx`
+- [x] Atualizar e expandir testes de `TicketDetailPage.test.tsx`
+- [x] Executar `npm run test` garantindo 100% de sucesso
 
 ---
 

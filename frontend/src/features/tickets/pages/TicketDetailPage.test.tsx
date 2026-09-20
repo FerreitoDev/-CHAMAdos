@@ -2,12 +2,29 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ticketsApi } from '../api/tickets.api'
+import { useAuth } from '@/features/auth/use-auth'
 import type { Ticket } from '../types/tickets.types'
+import type { AuthContextValue } from '@/features/auth/auth.types'
 import { TicketDetailPage } from './TicketDetailPage'
 
 vi.mock('../api/tickets.api', () => ({
   ticketsApi: {
     getTicketById: vi.fn(),
+    assignTicket: vi.fn(),
+    reassignTicket: vi.fn(),
+    resolveTicket: vi.fn(),
+    closeTicket: vi.fn(),
+    reopenTicket: vi.fn(),
+  },
+}))
+
+vi.mock('@/features/auth/use-auth', () => ({
+  useAuth: vi.fn(),
+}))
+
+vi.mock('@/features/users/api/users.api', () => ({
+  usersApi: {
+    getUsers: vi.fn().mockResolvedValue([]),
   },
 }))
 
@@ -64,9 +81,17 @@ describe('TicketDetailPage', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
+    vi.mocked(useAuth).mockReturnValue({
+      user: { id: 'tech-1', email: 'suporte@test.com', role: 'TECHNICIAN' },
+      accessToken: 'token',
+      isAuthenticated: true,
+      isLoading: false,
+      login: vi.fn(),
+      logout: vi.fn(),
+    } as AuthContextValue)
   })
 
-  it('deve buscar e exibir os detalhes do chamado', async () => {
+  it('deve buscar e exibir os detalhes do chamado e botão de resolver para o técnico responsável', async () => {
     vi.mocked(ticketsApi.getTicketById).mockResolvedValueOnce(mockTicket)
 
     render(
@@ -84,6 +109,7 @@ describe('TicketDetailPage', () => {
     expect(screen.getByText('Rede')).toBeInTheDocument()
     expect(screen.getByText('Em Atendimento')).toBeInTheDocument()
     expect(screen.getByText('Alta')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /resolver chamado/i })).toBeInTheDocument()
   })
 
   it('deve exibir mensagem de erro se a busca do chamado falhar', async () => {
