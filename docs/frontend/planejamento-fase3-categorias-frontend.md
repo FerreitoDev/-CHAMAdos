@@ -182,18 +182,18 @@ src/app/router.tsx
 - Usuários `USER` ou `TECHNICIAN` que tentarem acessar a rota devem ser redirecionados com mensagem de acesso restrito.
 
 **Checklist:**
-- [ ] Criar `CategoriesPage.tsx`
-- [ ] Registrar rota `/categories` no `router.tsx` restrita a `ADMIN`
-- [ ] Testes de integração da página (`CategoriesPage.test.tsx`)
+- [x] Criar `CategoriesPage.tsx`
+- [x] Registrar rota `/categories` no `router.tsx` restrita a `ADMIN`
+- [x] Testes de integração da página (`CategoriesPage.test.tsx`)
 
 ---
 
 ## Critérios de Conclusão da Fase 3 (Frontend)
 
-- [ ] ADMIN visualiza listagem completa de categorias (ativas e inativas via filtro/toggle)
-- [ ] ADMIN cria novas categorias especificando nome e descrição
-- [ ] ADMIN edita nome e descrição de categorias existentes
-- [ ] ADMIN desativa categorias com modal de confirmação
-- [ ] Tentar cadastrar nome duplicado exibe mensagem amigável de conflito (409)
-- [ ] Usuários sem papel `ADMIN` não possuem acesso à rota `/categories`
-- [ ] Suíte de testes do frontend executando 100% verde
+- [x] ADMIN visualiza listagem completa de categorias (ativas e inativas via filtro/toggle)
+- [x] ADMIN cria novas categorias especificando nome e descrição
+- [x] ADMIN edita nome e descrição de categorias existentes
+- [x] ADMIN desativa categorias com modal de confirmação
+- [x] Tentar cadastrar nome duplicado exibe mensagem amigável de conflito (409)
+- [x] Usuários sem papel `ADMIN` não possuem acesso à rota `/categories`
+- [x] Suíte de testes do frontend executando 100% verde

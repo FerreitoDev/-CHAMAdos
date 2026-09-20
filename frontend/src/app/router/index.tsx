@@ -3,6 +3,7 @@ import App from '@/App'
 import { AppLayout } from '@/app/layouts/AppLayout'
 import { LoginPage } from '@/features/auth/pages/LoginPage'
 import { UsersPage } from '@/features/users/pages/UsersPage'
+import { CategoriesPage } from '@/features/categories/pages/CategoriesPage'
 import { ProtectedRoute } from './ProtectedRoute'
 
 export const router = createBrowserRouter([
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
           {
             path: '/users',
             element: <UsersPage />,
+          },
+          {
+            path: '/categories',
+            element: <CategoriesPage />,
           },
         ],
       },

@@ -161,10 +161,10 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: `CategoriesService` e `CategoriesController`
 
 **Tarefas — Frontend**
-- [ ] Criar `features/categories/` (tela de admin)
-- [ ] Listagem de categorias (ativas e inativas)
-- [ ] Formulário de criação/edição
-- [ ] Ação de desativar
+- [x] Criar `features/categories/` (tela de admin)
+- [x] Listagem de categorias (ativas e inativas)
+- [x] Formulário de criação/edição
+- [x] Ação de desativar
 
 **Dependências:** Fase 1, Fase 2 (guards de role).
 
