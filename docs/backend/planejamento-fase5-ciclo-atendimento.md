@@ -160,8 +160,8 @@ src/tickets/dto/
 **Objetivo:** Garantir a compilação final do backend e validar o funcionamento de toda a suíte de testes de regressão.
 
 **Checklist:**
-- [ ] Verificar compilação NestJS (`npm run build`)
-- [ ] Executar suíte completa de testes unitários do backend (`npm run test`) para validar 100% de sucesso
+- [x] Verificar compilação NestJS (`npm run build`)
+- [x] Executar suíte completa de testes unitários do backend (`npm run test`) para validar 100% de sucesso
 
 ---
 
@@ -175,12 +175,12 @@ Etapa 1 (DTOs + Build) → Etapa 2 (Assign/Reassign + Testes) → Etapa 3 (Resol
 
 ## Critérios de Conclusão da Fase 5 (Backend)
 
-- [ ] Técnico assume chamado vago e chamado transiciona automaticamente para `IN_PROGRESS`.
-- [ ] Técnico é impedido de se autoatribuir quando `allowTechnicianSelfAssignment === false`.
-- [ ] ADMIN consegue atribuir ou reatribuir chamados a qualquer técnico.
-- [ ] Técnico responsável ou ADMIN consegue resolver chamado em `IN_PROGRESS` (preenchendo `resolvedAt`).
-- [ ] ADMIN encerra chamados resolvidos (preenchendo `closedAt`).
-- [ ] Tentativa de encerrar chamado não resolvido retorna `422 Unprocessable Entity`.
-- [ ] Solicitante ou ADMIN consegue reabrir chamados `RESOLVED` ou `CLOSED` (limpando datas de término).
-- [ ] Transições inválidas de estado retornam `422 Unprocessable Entity`.
-- [ ] Todos os testes unitários do `TicketsService` e `TicketsController` executando 100% verdes.
+- [x] Técnico assume chamado vago e chamado transiciona automaticamente para `IN_PROGRESS`.
+- [x] Técnico é impedido de se autoatribuir quando `allowTechnicianSelfAssignment === false`.
+- [x] ADMIN consegue atribuir ou reatribuir chamados a qualquer técnico.
+- [x] Técnico responsável ou ADMIN consegue resolver chamado em `IN_PROGRESS` (preenchendo `resolvedAt`).
+- [x] ADMIN encerra chamados resolvidos (preenchendo `closedAt`).
+- [x] Tentativa de encerrar chamado não resolvido retorna `422 Unprocessable Entity`.
+- [x] Solicitante ou ADMIN consegue reabrir chamados `RESOLVED` ou `CLOSED` (limpando datas de término).
+- [x] Transições inválidas de estado retornam `422 Unprocessable Entity`.
+- [x] Todos os testes unitários do `TicketsService` e `TicketsController` executando 100% verdes.

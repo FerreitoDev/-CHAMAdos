@@ -216,15 +216,15 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
   - Decisão atual na doc: muda para IN_PROGRESS na atribuição.
 
 **Tarefas — Backend**
-- [ ] `PATCH /tickets/:id/assign` (TECHNICIAN assume; ADMIN atribui a outro)
-- [ ] `PATCH /tickets/:id/reassign` (ADMIN reatribui a outro técnico)
-- [ ] `PATCH /tickets/:id/resolve` (TECHNICIAN responsável)
-- [ ] `PATCH /tickets/:id/close` (ADMIN)
-- [ ] `PATCH /tickets/:id/reopen` (USER solicitante, ADMIN)
-- [ ] Validar transições de estado (máquina de estados)
-- [ ] Verificar `allowTechnicianSelfAssignment` ao assumir chamado
+- [x] `PATCH /tickets/:id/assign` (TECHNICIAN assume; ADMIN atribui a outro)
+- [x] `PATCH /tickets/:id/reassign` (ADMIN reatribui a outro técnico)
+- [x] `PATCH /tickets/:id/resolve` (TECHNICIAN responsável)
+- [x] `PATCH /tickets/:id/close` (ADMIN)
+- [x] `PATCH /tickets/:id/reopen` (USER solicitante, ADMIN)
+- [x] Validar transições de estado (máquina de estados)
+- [x] Verificar `allowTechnicianSelfAssignment` ao assumir chamado
 - [ ] Registrar evento na Auditoria em cada transição relevante
-- [ ] Teste unitário: cada transição válida e inválida
+- [x] Teste unitário: cada transição válida e inválida
 
 **Tarefas — Frontend**
 - [ ] Botão "Assumir chamado" (TECHNICIAN)
