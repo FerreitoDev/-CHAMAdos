@@ -125,9 +125,9 @@ src/features/tickets/components/
 ```
 
 **Checklist:**
-- [ ] Implementar `CommentForm.tsx` com `Textarea`, botão de envio com ícone, contador de caracteres e tratamento de status `CLOSED`
-- [ ] Criar testes unitários em `CommentForm.test.tsx` testando envio, validação de campos vazios, estado desabilitado e bloqueio de chamado encerrado
-- [ ] Executar `npm run test CommentForm` garantindo 100% de aprovação
+- [x] Implementar `CommentForm.tsx` com `Textarea`, botão de envio com ícone, contador de caracteres e tratamento de status `CLOSED`
+- [x] Criar testes unitários em `CommentForm.test.tsx` testando envio, validação de campos vazios, estado desabilitado e bloqueio de chamado encerrado
+- [x] Executar `npm run test CommentForm` garantindo 100% de aprovação
 
 ---
 
