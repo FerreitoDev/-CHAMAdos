@@ -158,11 +158,11 @@ backend/src/
 ```
 
 **Checklist:**
-- [ ] Criar `AuditController` com `@Controller('tickets/:ticketId/audit')` e rota `GET`
-- [ ] Criar `AuditModule` exportando `AuditService`
-- [ ] Importar `AuditModule` no `TicketsModule` e no `AppModule`
-- [ ] Criar testes unitários em `audit.controller.spec.ts`
-- [ ] Validar compilação (`npm run build`) e testes (`npm run test audit`)
+- [x] Criar `AuditController` com `@Controller('tickets/:ticketId/audit')` e rota `GET`
+- [x] Criar `AuditModule` exportando `AuditService`
+- [x] Importar `AuditModule` no `TicketsModule` e no `AppModule`
+- [x] Criar testes unitários em `audit.controller.spec.ts`
+- [x] Validar compilação (`npm run build`) e testes (`npm run test audit`)
 
 ---
 
