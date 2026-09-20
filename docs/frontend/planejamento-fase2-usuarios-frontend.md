@@ -119,10 +119,10 @@ src/features/users/components/
   - Bloqueio de auto-desativação: O botão Desativar deve vir desabilitado para a linha do próprio usuário autenticado.
 
 **Checklist:**
-- [ ] Criar `UserRoleBadge.tsx`
-- [ ] Criar `UserStatusBadge.tsx`
-- [ ] Criar `UserTable.tsx`
-- [ ] Testes unitários do componente `UserTable` (renderização e botão de desativação desabilitado para o próprio usuário logado)
+- [x] Criar `UserRoleBadge.tsx`
+- [x] Criar `UserStatusBadge.tsx`
+- [x] Criar `UserTable.tsx`
+- [x] Testes unitários do componente `UserTable` (renderização e botão de desativação desabilitado para o próprio usuário logado)
 
 ---
 
