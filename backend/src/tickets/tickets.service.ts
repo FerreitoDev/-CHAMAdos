@@ -1,4 +1,6 @@
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { AUDIT_ACTIONS } from '../audit/audit.constants';
+import { AuditService } from '../audit/audit.service';
 import { AuthenticatedUser } from '../auth/jwt.strategy';
 import { Prisma, TicketPriority, TicketStatus, UserRole } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -12,7 +14,10 @@ import { PaginatedTicketsResponse, SafeTicket, safeUserSelect } from './tickets.
 
 @Injectable()
 export class TicketsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly auditService: AuditService,
+  ) {}
 
   private readonly validTransitions: Record<TicketStatus, TicketStatus[]> = {
     [TicketStatus.OPEN]: [TicketStatus.IN_PROGRESS],
@@ -56,6 +61,17 @@ export class TicketsService {
         assignee: { select: safeUserSelect },
       },
     });
+
+    await this.auditService.log(
+      AUDIT_ACTIONS.TICKET_CREATED,
+      ticket.id,
+      requesterId,
+      {
+        title: ticket.title,
+        priority: ticket.priority,
+        categoryId: ticket.categoryId,
+      },
+    );
 
     return ticket as SafeTicket;
   }
@@ -228,6 +244,17 @@ export class TicketsService {
       },
     });
 
+    await this.auditService.log(
+      AUDIT_ACTIONS.TICKET_ASSIGNED,
+      updated.id,
+      user.id,
+      {
+        assigneeId: targetAssigneeId,
+        previousAssigneeId: ticket.assigneeId,
+        status: TicketStatus.IN_PROGRESS,
+      },
+    );
+
     return updated as SafeTicket;
   }
 
@@ -267,6 +294,16 @@ export class TicketsService {
       },
     });
 
+    await this.auditService.log(
+      AUDIT_ACTIONS.TICKET_REASSIGNED,
+      updated.id,
+      user.id,
+      {
+        assigneeId: dto.assigneeId,
+        previousAssigneeId: ticket.assigneeId,
+      },
+    );
+
     return updated as SafeTicket;
   }
 
@@ -297,6 +334,16 @@ export class TicketsService {
         assignee: { select: safeUserSelect },
       },
     });
+
+    await this.auditService.log(
+      AUDIT_ACTIONS.TICKET_RESOLVED,
+      updated.id,
+      user.id,
+      {
+        previousStatus: ticket.status,
+        status: TicketStatus.RESOLVED,
+      },
+    );
 
     return updated as SafeTicket;
   }
@@ -330,6 +377,16 @@ export class TicketsService {
         assignee: { select: safeUserSelect },
       },
     });
+
+    await this.auditService.log(
+      AUDIT_ACTIONS.TICKET_CLOSED,
+      updated.id,
+      user.id,
+      {
+        previousStatus: ticket.status,
+        status: TicketStatus.CLOSED,
+      },
+    );
 
     return updated as SafeTicket;
   }
@@ -367,6 +424,17 @@ export class TicketsService {
       },
     });
 
+    await this.auditService.log(
+      AUDIT_ACTIONS.TICKET_REOPENED,
+      updated.id,
+      user.id,
+      {
+        previousStatus: ticket.status,
+        status: TicketStatus.OPEN,
+      },
+    );
+
     return updated as SafeTicket;
   }
 }
+

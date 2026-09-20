@@ -1,5 +1,7 @@
 import { BadRequestException, ForbiddenException, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { AUDIT_ACTIONS } from '../audit/audit.constants';
+import { AuditService } from '../audit/audit.service';
 import { AuthenticatedUser } from '../auth/jwt.strategy';
 import { TicketPriority, TicketStatus, UserRole } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
@@ -8,6 +10,7 @@ import { TicketsService } from './tickets.service';
 describe('TicketsService', () => {
   let service: TicketsService;
   let prismaService: PrismaService;
+  let auditService: AuditService;
 
   const mockCategory = {
     id: 'cat-uuid-1',
@@ -81,6 +84,10 @@ describe('TicketsService', () => {
     },
   };
 
+  const mockAuditService = {
+    log: jest.fn().mockResolvedValue({}),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -89,11 +96,16 @@ describe('TicketsService', () => {
           provide: PrismaService,
           useValue: mockPrismaService,
         },
+        {
+          provide: AuditService,
+          useValue: mockAuditService,
+        },
       ],
     }).compile();
 
     service = module.get<TicketsService>(TicketsService);
     prismaService = module.get<PrismaService>(PrismaService);
+    auditService = module.get<AuditService>(AuditService);
   });
 
   afterEach(() => {
@@ -118,7 +130,7 @@ describe('TicketsService', () => {
   });
 
   describe('create', () => {
-    it('deve criar um chamado com sucesso quando a categoria for válida e ativa', async () => {
+    it('deve criar um chamado com sucesso e registrar auditoria TICKET_CREATED', async () => {
       mockPrismaService.category.findUnique.mockResolvedValue(mockCategory);
       mockPrismaService.ticket.create.mockResolvedValue(mockTicket);
 
@@ -144,6 +156,16 @@ describe('TicketsService', () => {
         },
         include: expect.any(Object),
       });
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_CREATED,
+        mockTicket.id,
+        mockUser.id,
+        {
+          title: mockTicket.title,
+          priority: mockTicket.priority,
+          categoryId: mockTicket.categoryId,
+        },
+      );
       expect(result).toEqual(mockTicket);
     });
 
@@ -158,6 +180,7 @@ describe('TicketsService', () => {
 
       await expect(service.create(mockUser.id, dto)).rejects.toThrow(BadRequestException);
       expect(prismaService.ticket.create).not.toHaveBeenCalled();
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar BadRequestException se a categoria estiver inativa', async () => {
@@ -174,6 +197,7 @@ describe('TicketsService', () => {
 
       await expect(service.create(mockUser.id, dto)).rejects.toThrow(BadRequestException);
       expect(prismaService.ticket.create).not.toHaveBeenCalled();
+      expect(auditService.log).not.toHaveBeenCalled();
     });
   });
 
@@ -269,7 +293,7 @@ describe('TicketsService', () => {
   });
 
   describe('assign', () => {
-    it('deve permitir que o técnico assuma um chamado sem responsável', async () => {
+    it('deve permitir que o técnico assuma um chamado e registrar auditoria TICKET_ASSIGNED', async () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(mockTicket);
       mockPrismaService.systemSettings.findFirst.mockResolvedValue({ allowTechnicianSelfAssignment: true });
       mockPrismaService.user.findUnique.mockResolvedValue({ id: mockTech.id, active: true, role: UserRole.TECHNICIAN });
@@ -284,6 +308,16 @@ describe('TicketsService', () => {
           data: { assigneeId: mockTech.id, status: TicketStatus.IN_PROGRESS },
         }),
       );
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_ASSIGNED,
+        assignedTicket.id,
+        mockTech.id,
+        {
+          assigneeId: mockTech.id,
+          previousAssigneeId: mockTicket.assigneeId,
+          status: TicketStatus.IN_PROGRESS,
+        },
+      );
       expect(result).toEqual(assignedTicket);
     });
 
@@ -292,11 +326,12 @@ describe('TicketsService', () => {
       mockPrismaService.systemSettings.findFirst.mockResolvedValue({ allowTechnicianSelfAssignment: false });
 
       await expect(service.assign(mockTicket.id, mockTech)).rejects.toThrow(ForbiddenException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
   });
 
   describe('reassign', () => {
-    it('deve permitir que o ADMIN reatribua um chamado a outro técnico', async () => {
+    it('deve permitir que o ADMIN reatribua um chamado e registrar auditoria TICKET_REASSIGNED', async () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(mockTicket);
       mockPrismaService.user.findUnique.mockResolvedValue({ id: 'other-tech', active: true, role: UserRole.TECHNICIAN });
       const reassignedTicket = { ...mockTicket, assigneeId: 'other-tech', status: TicketStatus.IN_PROGRESS };
@@ -310,16 +345,26 @@ describe('TicketsService', () => {
           data: { assigneeId: 'other-tech', status: TicketStatus.IN_PROGRESS },
         }),
       );
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_REASSIGNED,
+        reassignedTicket.id,
+        mockAdmin.id,
+        {
+          assigneeId: 'other-tech',
+          previousAssigneeId: mockTicket.assigneeId,
+        },
+      );
       expect(result).toEqual(reassignedTicket);
     });
 
     it('deve lançar ForbiddenException se um não-ADMIN tentar reatribuir', async () => {
       await expect(service.reassign(mockTicket.id, mockTech, { assigneeId: 'other-tech' })).rejects.toThrow(ForbiddenException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
   });
 
   describe('resolve', () => {
-    it('deve permitir que o técnico responsável resolva um chamado EM_ANDAMENTO', async () => {
+    it('deve permitir que o técnico responsável resolva e registrar auditoria TICKET_RESOLVED', async () => {
       const ticketInProgress = { ...mockTicket, status: TicketStatus.IN_PROGRESS, assigneeId: mockTech.id };
       const resolvedTicket = { ...ticketInProgress, status: TicketStatus.RESOLVED, resolvedAt: new Date() };
 
@@ -337,6 +382,15 @@ describe('TicketsService', () => {
           }),
         }),
       );
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_RESOLVED,
+        resolvedTicket.id,
+        mockTech.id,
+        {
+          previousStatus: TicketStatus.IN_PROGRESS,
+          status: TicketStatus.RESOLVED,
+        },
+      );
       expect(result).toEqual(resolvedTicket);
     });
 
@@ -350,6 +404,15 @@ describe('TicketsService', () => {
       const result = await service.resolve(mockTicket.id, mockAdmin);
 
       expect(result).toEqual(resolvedTicket);
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_RESOLVED,
+        resolvedTicket.id,
+        mockAdmin.id,
+        {
+          previousStatus: TicketStatus.IN_PROGRESS,
+          status: TicketStatus.RESOLVED,
+        },
+      );
     });
 
     it('deve lançar ForbiddenException se um técnico não responsável tentar resolver', async () => {
@@ -358,6 +421,7 @@ describe('TicketsService', () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(ticketInProgress);
 
       await expect(service.resolve(mockTicket.id, mockTech)).rejects.toThrow(ForbiddenException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar UnprocessableEntityException se o chamado não estiver EM_ANDAMENTO', async () => {
@@ -366,17 +430,19 @@ describe('TicketsService', () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(openTicket);
 
       await expect(service.resolve(mockTicket.id, mockTech)).rejects.toThrow(UnprocessableEntityException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar NotFoundException se o chamado não for encontrado', async () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(null);
 
       await expect(service.resolve('inexistente', mockTech)).rejects.toThrow(NotFoundException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
   });
 
   describe('close', () => {
-    it('deve permitir que o ADMIN encerre um chamado RESOLVIDO', async () => {
+    it('deve permitir que o ADMIN encerre um chamado e registrar auditoria TICKET_CLOSED', async () => {
       const resolvedTicket = { ...mockTicket, status: TicketStatus.RESOLVED, resolvedAt: new Date() };
       const closedTicket = { ...resolvedTicket, status: TicketStatus.CLOSED, closedAt: new Date() };
 
@@ -394,11 +460,21 @@ describe('TicketsService', () => {
           }),
         }),
       );
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_CLOSED,
+        closedTicket.id,
+        mockAdmin.id,
+        {
+          previousStatus: TicketStatus.RESOLVED,
+          status: TicketStatus.CLOSED,
+        },
+      );
       expect(result).toEqual(closedTicket);
     });
 
     it('deve lançar ForbiddenException se um não-ADMIN tentar encerrar', async () => {
       await expect(service.close(mockTicket.id, mockTech)).rejects.toThrow(ForbiddenException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar UnprocessableEntityException se o chamado não estiver RESOLVIDO', async () => {
@@ -407,17 +483,19 @@ describe('TicketsService', () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(inProgressTicket);
 
       await expect(service.close(mockTicket.id, mockAdmin)).rejects.toThrow(UnprocessableEntityException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar NotFoundException se o chamado não for encontrado', async () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(null);
 
       await expect(service.close('inexistente', mockAdmin)).rejects.toThrow(NotFoundException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
   });
 
   describe('reopen', () => {
-    it('deve permitir que o solicitante reabra um chamado RESOLVIDO', async () => {
+    it('deve permitir que o solicitante reabra um chamado e registrar auditoria TICKET_REOPENED', async () => {
       const resolvedTicket = { ...mockTicket, status: TicketStatus.RESOLVED, resolvedAt: new Date(), requesterId: mockUser.id };
       const reopenedTicket = { ...resolvedTicket, status: TicketStatus.OPEN, resolvedAt: null, closedAt: null };
 
@@ -436,10 +514,19 @@ describe('TicketsService', () => {
           },
         }),
       );
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_REOPENED,
+        reopenedTicket.id,
+        mockUser.id,
+        {
+          previousStatus: TicketStatus.RESOLVED,
+          status: TicketStatus.OPEN,
+        },
+      );
       expect(result).toEqual(reopenedTicket);
     });
 
-    it('deve permitir que o ADMIN reabra um chamado ENCERRADO', async () => {
+    it('deve permitir que o ADMIN reabra um chamado ENCERRADO e registrar auditoria TICKET_REOPENED', async () => {
       const closedTicket = { ...mockTicket, status: TicketStatus.CLOSED, closedAt: new Date() };
       const reopenedTicket = { ...closedTicket, status: TicketStatus.OPEN, resolvedAt: null, closedAt: null };
 
@@ -449,6 +536,15 @@ describe('TicketsService', () => {
       const result = await service.reopen(mockTicket.id, mockAdmin);
 
       expect(result).toEqual(reopenedTicket);
+      expect(auditService.log).toHaveBeenCalledWith(
+        AUDIT_ACTIONS.TICKET_REOPENED,
+        reopenedTicket.id,
+        mockAdmin.id,
+        {
+          previousStatus: TicketStatus.CLOSED,
+          status: TicketStatus.OPEN,
+        },
+      );
     });
 
     it('deve lançar ForbiddenException se outro usuário (não solicitante e não ADMIN) tentar reabrir', async () => {
@@ -457,6 +553,7 @@ describe('TicketsService', () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(resolvedTicket);
 
       await expect(service.reopen(mockTicket.id, mockUser)).rejects.toThrow(ForbiddenException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar UnprocessableEntityException se o chamado já estiver EM_ANDAMENTO', async () => {
@@ -465,13 +562,16 @@ describe('TicketsService', () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(inProgressTicket);
 
       await expect(service.reopen(mockTicket.id, mockUser)).rejects.toThrow(UnprocessableEntityException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
 
     it('deve lançar NotFoundException se o chamado não for encontrado', async () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(null);
 
       await expect(service.reopen('inexistente', mockUser)).rejects.toThrow(NotFoundException);
+      expect(auditService.log).not.toHaveBeenCalled();
     });
   });
 });
+
 

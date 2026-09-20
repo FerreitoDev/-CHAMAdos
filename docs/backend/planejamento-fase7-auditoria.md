@@ -136,10 +136,10 @@ backend/src/
 6. `reopen` ➔ Dispara `TICKET_REOPENED` com status anterior
 
 **Checklist:**
-- [ ] Injetar `AuditService` no `TicketsService`
-- [ ] Adicionar chamadas de auditoria nos 6 métodos de ciclo de vida
-- [ ] Atualizar suíte de testes `tickets.service.spec.ts` validando a invocação do `auditService.log`
-- [ ] Executar `npm run test tickets.service` garantindo 100% verdes
+- [x] Injetar `AuditService` no `TicketsService`
+- [x] Adicionar chamadas de auditoria nos 6 métodos de ciclo de vida
+- [x] Atualizar suíte de testes `tickets.service.spec.ts` validando a invocação do `auditService.log`
+- [x] Executar `npm run test tickets.service` garantindo 100% verdes
 
 ---
 
