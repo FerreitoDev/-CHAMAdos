@@ -226,10 +226,10 @@ Incluir função auxiliar de seleção do Prisma (`safeUserSelect`) ou mapper pa
 | `GET /tickets/:id` | Obter detalhe | `JwtAuthGuard` (Todos autenticados) | Recebe `:id` (Param) e `@CurrentUser() user`. Retorna `SafeTicket` ou `403`/`404`. |
 
 **Checklist:**
-- [ ] Criar `TicketsController` com `@UseGuards(JwtAuthGuard, RolesGuard)`
-- [ ] Implementar `POST /tickets`, `GET /tickets` e `GET /tickets/:id`
-- [ ] Injetar `@CurrentUser()` para identificação do usuário logado
-- [ ] Executar testes unitários em `tickets.controller.spec.ts` (`npm run test tickets.controller`) garantindo 100% dos testes verdes
+- [x] Criar `TicketsController` com `@UseGuards(JwtAuthGuard, RolesGuard)`
+- [x] Implementar `POST /tickets`, `GET /tickets` e `GET /tickets/:id`
+- [x] Injetar `@CurrentUser()` para identificação do usuário logado
+- [x] Executar testes unitários em `tickets.controller.spec.ts` (`npm run test tickets.controller`) garantindo 100% dos testes verdes
 
 ---
 
