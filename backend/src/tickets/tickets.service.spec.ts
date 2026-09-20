@@ -1,7 +1,7 @@
-import { BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthenticatedUser } from '../auth/jwt.strategy';
-import { TicketPriority, TicketStatus, UserRole } from '../generated/prisma';
+import { TicketPriority, TicketStatus, UserRole } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { TicketsService } from './tickets.service';
 
@@ -66,10 +66,17 @@ describe('TicketsService', () => {
     category: {
       findUnique: jest.fn(),
     },
+    user: {
+      findUnique: jest.fn(),
+    },
+    systemSettings: {
+      findFirst: jest.fn(),
+    },
     ticket: {
       create: jest.fn(),
       findMany: jest.fn(),
       findUnique: jest.fn(),
+      update: jest.fn(),
       count: jest.fn(),
     },
   };
@@ -95,6 +102,19 @@ describe('TicketsService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  describe('validateStateTransition', () => {
+    it('deve permitir transições de estado válidas', () => {
+      expect(() => service.validateStateTransition(TicketStatus.OPEN, TicketStatus.IN_PROGRESS)).not.toThrow();
+      expect(() => service.validateStateTransition(TicketStatus.IN_PROGRESS, TicketStatus.RESOLVED)).not.toThrow();
+      expect(() => service.validateStateTransition(TicketStatus.RESOLVED, TicketStatus.CLOSED)).not.toThrow();
+    });
+
+    it('deve lançar UnprocessableEntityException para transições de estado inválidas', () => {
+      expect(() => service.validateStateTransition(TicketStatus.OPEN, TicketStatus.CLOSED)).toThrow(UnprocessableEntityException);
+      expect(() => service.validateStateTransition(TicketStatus.IN_PROGRESS, TicketStatus.CLOSED)).toThrow(UnprocessableEntityException);
+    });
   });
 
   describe('create', () => {
@@ -245,6 +265,56 @@ describe('TicketsService', () => {
       mockPrismaService.ticket.findUnique.mockResolvedValue(null);
 
       await expect(service.findById('ticket-inexistente', mockUser)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe('assign', () => {
+    it('deve permitir que o técnico assuma um chamado sem responsável', async () => {
+      mockPrismaService.ticket.findUnique.mockResolvedValue(mockTicket);
+      mockPrismaService.systemSettings.findFirst.mockResolvedValue({ allowTechnicianSelfAssignment: true });
+      mockPrismaService.user.findUnique.mockResolvedValue({ id: mockTech.id, active: true, role: UserRole.TECHNICIAN });
+      const assignedTicket = { ...mockTicket, assigneeId: mockTech.id, status: TicketStatus.IN_PROGRESS };
+      mockPrismaService.ticket.update.mockResolvedValue(assignedTicket);
+
+      const result = await service.assign(mockTicket.id, mockTech);
+
+      expect(prismaService.ticket.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTicket.id },
+          data: { assigneeId: mockTech.id, status: TicketStatus.IN_PROGRESS },
+        }),
+      );
+      expect(result).toEqual(assignedTicket);
+    });
+
+    it('deve lançar ForbiddenException se a autoatribuição estiver desabilitada em SystemSettings', async () => {
+      mockPrismaService.ticket.findUnique.mockResolvedValue(mockTicket);
+      mockPrismaService.systemSettings.findFirst.mockResolvedValue({ allowTechnicianSelfAssignment: false });
+
+      await expect(service.assign(mockTicket.id, mockTech)).rejects.toThrow(ForbiddenException);
+    });
+  });
+
+  describe('reassign', () => {
+    it('deve permitir que o ADMIN reatribua um chamado a outro técnico', async () => {
+      mockPrismaService.ticket.findUnique.mockResolvedValue(mockTicket);
+      mockPrismaService.user.findUnique.mockResolvedValue({ id: 'other-tech', active: true, role: UserRole.TECHNICIAN });
+      const reassignedTicket = { ...mockTicket, assigneeId: 'other-tech', status: TicketStatus.IN_PROGRESS };
+      mockPrismaService.ticket.update.mockResolvedValue(reassignedTicket);
+
+      const result = await service.reassign(mockTicket.id, mockAdmin, { assigneeId: 'other-tech' });
+
+      expect(prismaService.ticket.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTicket.id },
+          data: { assigneeId: 'other-tech', status: TicketStatus.IN_PROGRESS },
+        }),
+      );
+      expect(result).toEqual(reassignedTicket);
+    });
+
+    it('deve lançar ForbiddenException se um não-ADMIN tentar reatribuir', async () => {
+      await expect(service.reassign(mockTicket.id, mockTech, { assigneeId: 'other-tech' })).rejects.toThrow(ForbiddenException);
     });
   });
 });

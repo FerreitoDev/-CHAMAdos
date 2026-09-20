@@ -111,10 +111,10 @@ src/tickets/dto/
 - `reassign(id: string, user: AuthenticatedUser, dto: ReassignTicketDto): Promise<SafeTicket>`
 
 **Checklist:**
-- [ ] Implementar validador centralizado de transições de estado (`UnprocessableEntityException`)
-- [ ] Implementar `assign` com consulta ao `SystemSettings` (`allowTechnicianSelfAssignment`)
-- [ ] Implementar `reassign` com atribuição exclusiva para ADMIN
-- [ ] Executar testes unitários em `tickets.service.spec.ts` (`npm run test tickets.service`) garantindo 100% verdes
+- [x] Implementar validador centralizado de transições de estado (`UnprocessableEntityException`)
+- [x] Implementar `assign` com consulta ao `SystemSettings` (`allowTechnicianSelfAssignment`)
+- [x] Implementar `reassign` com atribuição exclusiva para ADMIN
+- [x] Executar testes unitários em `tickets.service.spec.ts` (`npm run test tickets.service`) garantindo 100% verdes
 
 ---
 
