@@ -6,6 +6,7 @@ import { TicketStatusBadge } from '../components/TicketStatusBadge'
 import { TicketPriorityBadge } from '../components/TicketPriorityBadge'
 import { TicketActionsBar } from '../components/TicketActionsBar'
 import { TicketCommentsSection } from '../components/TicketCommentsSection'
+import { TicketAuditSection } from '../components/TicketAuditSection'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, Calendar, Tag, Ticket as TicketIcon, User, UserCheck } from 'lucide-react'
@@ -125,6 +126,12 @@ export const TicketDetailPage: React.FC = () => {
           <TicketCommentsSection
             ticketId={ticket.id}
             isClosed={ticket.status === 'CLOSED'}
+          />
+
+          {/* Seção de Linha do Tempo de Auditoria (ADMIN / Técnico Responsável) */}
+          <TicketAuditSection
+            ticketId={ticket.id}
+            assigneeId={ticket.assigneeId}
           />
         </div>
 

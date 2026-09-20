@@ -25,6 +25,12 @@ vi.mock('../api/comments.api', () => ({
   },
 }))
 
+vi.mock('../api/audit.api', () => ({
+  auditApi: {
+    getTicketAudit: vi.fn().mockResolvedValue([]),
+  },
+}))
+
 vi.mock('@/features/auth/use-auth', () => ({
   useAuth: vi.fn(),
 }))
@@ -117,7 +123,32 @@ describe('TicketDetailPage', () => {
     expect(screen.getByText('Em Atendimento')).toBeInTheDocument()
     expect(screen.getByText('Alta')).toBeInTheDocument()
     expect(screen.getByText('Comentários')).toBeInTheDocument()
+    expect(screen.getByText('Histórico de Auditoria')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /resolver chamado/i })).toBeInTheDocument()
+  })
+
+  it('não deve exibir a seção de auditoria para usuários comuns', async () => {
+    vi.mocked(useAuth).mockReturnValue({
+      user: { id: 'user-1', email: 'carlos@test.com', role: 'USER' },
+      accessToken: 'token',
+      isAuthenticated: true,
+      isLoading: false,
+      login: vi.fn(),
+      logout: vi.fn(),
+    } as AuthContextValue)
+
+    vi.mocked(ticketsApi.getTicketById).mockResolvedValueOnce(mockTicket)
+
+    render(
+      <MemoryRouter initialEntries={['/tickets/ticket-123']}>
+        <Routes>
+          <Route path="/tickets/:id" element={<TicketDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    )
+
+    expect(await screen.findByText('Sem acesso a VPN')).toBeInTheDocument()
+    expect(screen.queryByText('Histórico de Auditoria')).not.toBeInTheDocument()
   })
 
   it('deve exibir mensagem de erro se a busca do chamado falhar', async () => {

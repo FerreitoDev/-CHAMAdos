@@ -136,10 +136,10 @@ src/features/tickets/components/
 ```
 
 **Checklist:**
-- [ ] Implementar `TicketAuditSection.tsx` com busca assíncrona e estados visuais
-- [ ] Aplicar verificação de permissão (`ADMIN` ou `TECHNICIAN` responsável)
-- [ ] Criar testes unitários em `TicketAuditSection.test.tsx` testando carregamento, lista de eventos, fallback de erro e permissões
-- [ ] Executar `npm run test TicketAuditSection` com 100% de aprovação
+- [x] Implementar `TicketAuditSection.tsx` com busca assíncrona e estados visuais
+- [x] Aplicar verificação de permissão (`ADMIN` ou `TECHNICIAN` responsável)
+- [x] Criar testes unitários em `TicketAuditSection.test.tsx` testando carregamento, lista de eventos, fallback de erro e permissões
+- [x] Executar `npm run test TicketAuditSection` com 100% de aprovação
 
 ---
 
@@ -155,9 +155,9 @@ src/features/tickets/pages/
 ```
 
 **Checklist:**
-- [ ] Integrar `<TicketAuditSection ticket={ticket} />` na `TicketDetailPage.tsx`
-- [ ] Atualizar `TicketDetailPage.test.tsx` com testes de exibição condicional por papel de usuário
-- [ ] Executar `npm run test TicketDetailPage` garantindo 100% de aprovação
+- [x] Integrar `<TicketAuditSection ticketId={ticket.id} assigneeId={ticket.assigneeId} />` na `TicketDetailPage.tsx`
+- [x] Atualizar `TicketDetailPage.test.tsx` com testes de exibição condicional por papel de usuário
+- [x] Executar `npm run test TicketDetailPage` garantindo 100% de aprovação
 
 ---
 
