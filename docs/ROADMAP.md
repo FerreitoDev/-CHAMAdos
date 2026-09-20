@@ -255,9 +255,9 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 - [x] Teste unitário: criar e listar comentários
 
 **Tarefas — Frontend**
-- [ ] Seção de comentários na página de detalhe do ticket
-- [ ] Input de novo comentário
-- [ ] Exibir autor, data e conteúdo de cada comentário
+- [x] Seção de comentários na página de detalhe do ticket
+- [x] Input de novo comentário
+- [x] Exibir autor, data e conteúdo de cada comentário
 
 **Dependências:** Fase 4.
 

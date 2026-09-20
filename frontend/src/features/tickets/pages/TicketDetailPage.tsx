@@ -5,6 +5,7 @@ import type { Ticket } from '../types/tickets.types'
 import { TicketStatusBadge } from '../components/TicketStatusBadge'
 import { TicketPriorityBadge } from '../components/TicketPriorityBadge'
 import { TicketActionsBar } from '../components/TicketActionsBar'
+import { TicketCommentsSection } from '../components/TicketCommentsSection'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, Calendar, Tag, Ticket as TicketIcon, User, UserCheck } from 'lucide-react'
@@ -109,7 +110,7 @@ export const TicketDetailPage: React.FC = () => {
 
       {/* Grid de Informações Principais */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Coluna Esquerda: Descrição */}
+        {/* Coluna Esquerda: Descrição e Comentários */}
         <div className="md:col-span-2 space-y-6">
           <Card>
             <CardHeader className="pb-3 border-b border-border">
@@ -119,6 +120,12 @@ export const TicketDetailPage: React.FC = () => {
               {ticket.description}
             </CardContent>
           </Card>
+
+          {/* Seção de Comentários */}
+          <TicketCommentsSection
+            ticketId={ticket.id}
+            isClosed={ticket.status === 'CLOSED'}
+          />
         </div>
 
         {/* Coluna Direita: Metadados */}

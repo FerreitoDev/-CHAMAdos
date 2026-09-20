@@ -18,6 +18,13 @@ vi.mock('../api/tickets.api', () => ({
   },
 }))
 
+vi.mock('../api/comments.api', () => ({
+  commentsApi: {
+    getComments: vi.fn().mockResolvedValue([]),
+    createComment: vi.fn(),
+  },
+}))
+
 vi.mock('@/features/auth/use-auth', () => ({
   useAuth: vi.fn(),
 }))
@@ -109,6 +116,7 @@ describe('TicketDetailPage', () => {
     expect(screen.getByText('Rede')).toBeInTheDocument()
     expect(screen.getByText('Em Atendimento')).toBeInTheDocument()
     expect(screen.getByText('Alta')).toBeInTheDocument()
+    expect(screen.getByText('Comentários')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /resolver chamado/i })).toBeInTheDocument()
   })
 

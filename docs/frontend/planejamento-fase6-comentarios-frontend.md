@@ -161,19 +161,19 @@ src/features/tickets/pages/
 ```
 
 **Checklist:**
-- [ ] Integrar `<TicketCommentsSection ticketId={ticket.id} isClosed={ticket.status === 'CLOSED'} />` na coluna principal da `TicketDetailPage.tsx`
-- [ ] Atualizar `TicketDetailPage.test.tsx` para verificar a integração da seção de comentários
-- [ ] Executar `npm run build` garantindo zero erros de tipagem/compilação no frontend
-- [ ] Executar `npm run test` com 100% de aprovação em todos os testes do frontend
-- [ ] Atualizar `docs/ROADMAP.md` marcando a Fase 6 Frontend como concluída
+- [x] Integrar `<TicketCommentsSection ticketId={ticket.id} isClosed={ticket.status === 'CLOSED'} />` na coluna principal da `TicketDetailPage.tsx`
+- [x] Atualizar `TicketDetailPage.test.tsx` para verificar a integração da seção de comentários
+- [x] Executar `npm run build` garantindo zero erros de tipagem/compilação no frontend
+- [x] Executar `npm run test` com 100% de aprovação em todos os testes do frontend
+- [x] Atualizar `docs/ROADMAP.md` marcando a Fase 6 Frontend como concluída
 
 ---
 
 ## 5. Critérios de Conclusão da Fase 6 (Frontend)
 
-- [ ] Usuário visualiza a lista cronológica de comentários de um chamado na página de detalhes.
-- [ ] Autor, data formatada e badge de papel são visíveis em cada comentário.
-- [ ] Solicitante, técnico responsável ou administrador consegue digitar e enviar um novo comentário.
-- [ ] A lista de comentários é atualizada imediatamente após o envio com sucesso.
-- [ ] Chamados encerrados (`CLOSED`) exibem aviso e não permitem novos comentários.
-- [ ] 100% dos testes unitários do frontend passando e build do Vite com 0 erros.
+- [x] Usuário visualiza a lista cronológica de comentários de um chamado na página de detalhes.
+- [x] Autor, data formatada e badge de papel são visíveis em cada comentário.
+- [x] Solicitante, técnico responsável ou administrador consegue digitar e enviar um novo comentário.
+- [x] A lista de comentários é atualizada imediatamente após o envio com sucesso.
+- [x] Chamados encerrados (`CLOSED`) exibem aviso e não permitem novos comentários.
+- [x] 100% dos testes unitários do frontend passando e build do Vite com 0 erros.
