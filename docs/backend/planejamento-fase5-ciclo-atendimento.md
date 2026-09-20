@@ -150,8 +150,8 @@ src/tickets/dto/
 | `PATCH /tickets/:id/reopen` | Reabrir | `JwtAuthGuard`, `@Roles(USER, ADMIN)` | Reabre chamado `RESOLVED` ou `CLOSED` |
 
 **Checklist:**
-- [ ] Adicionar os 5 endpoints no `TicketsController` com os devidos decorators de rota e `@Roles()`
-- [ ] Escrever e executar testes unitários em `tickets.controller.spec.ts` (`npm run test tickets.controller`) garantindo 100% verdes
+- [x] Adicionar os 5 endpoints no `TicketsController` com os devidos decorators de rota e `@Roles()`
+- [x] Escrever e executar testes unitários em `tickets.controller.spec.ts` (`npm run test tickets.controller`) garantindo 100% verdes
 
 ---
 

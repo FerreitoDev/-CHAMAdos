@@ -62,6 +62,11 @@ describe('TicketsController', () => {
     create: jest.fn(),
     findAll: jest.fn(),
     findById: jest.fn(),
+    assign: jest.fn(),
+    reassign: jest.fn(),
+    resolve: jest.fn(),
+    close: jest.fn(),
+    reopen: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -123,6 +128,70 @@ describe('TicketsController', () => {
 
       expect(service.findById).toHaveBeenCalledWith(mockTicket.id, mockUser);
       expect(result).toEqual(mockTicket);
+    });
+  });
+
+  describe('assign', () => {
+    it('deve chamar service.assign com o ID do chamado, usuário logado e DTO opcional', async () => {
+      const assignedTicket = { ...mockTicket, status: TicketStatus.IN_PROGRESS, assigneeId: 'tech-uuid-1' };
+      mockTicketsService.assign.mockResolvedValue(assignedTicket);
+      const dto = { assigneeId: 'tech-uuid-1' };
+
+      const result = await controller.assign(mockTicket.id, mockUser, dto);
+
+      expect(service.assign).toHaveBeenCalledWith(mockTicket.id, mockUser, dto);
+      expect(result).toEqual(assignedTicket);
+    });
+  });
+
+  describe('reassign', () => {
+    it('deve chamar service.reassign com o ID do chamado, usuário logado e DTO', async () => {
+      const reassignedTicket = { ...mockTicket, status: TicketStatus.IN_PROGRESS, assigneeId: 'other-tech-id' };
+      mockTicketsService.reassign.mockResolvedValue(reassignedTicket);
+      const dto = { assigneeId: 'other-tech-id' };
+
+      const result = await controller.reassign(mockTicket.id, mockUser, dto);
+
+      expect(service.reassign).toHaveBeenCalledWith(mockTicket.id, mockUser, dto);
+      expect(result).toEqual(reassignedTicket);
+    });
+  });
+
+  describe('resolve', () => {
+    it('deve chamar service.resolve com o ID do chamado, usuário logado e DTO opcional', async () => {
+      const resolvedTicket = { ...mockTicket, status: TicketStatus.RESOLVED, resolvedAt: new Date() };
+      mockTicketsService.resolve.mockResolvedValue(resolvedTicket);
+      const dto = { solutionNotes: 'Problema corrigido' };
+
+      const result = await controller.resolve(mockTicket.id, mockUser, dto);
+
+      expect(service.resolve).toHaveBeenCalledWith(mockTicket.id, mockUser, dto);
+      expect(result).toEqual(resolvedTicket);
+    });
+  });
+
+  describe('close', () => {
+    it('deve chamar service.close com o ID do chamado e o usuário logado', async () => {
+      const closedTicket = { ...mockTicket, status: TicketStatus.CLOSED, closedAt: new Date() };
+      mockTicketsService.close.mockResolvedValue(closedTicket);
+
+      const result = await controller.close(mockTicket.id, mockUser);
+
+      expect(service.close).toHaveBeenCalledWith(mockTicket.id, mockUser);
+      expect(result).toEqual(closedTicket);
+    });
+  });
+
+  describe('reopen', () => {
+    it('deve chamar service.reopen com o ID do chamado, usuário logado e DTO opcional', async () => {
+      const reopenedTicket = { ...mockTicket, status: TicketStatus.OPEN };
+      mockTicketsService.reopen.mockResolvedValue(reopenedTicket);
+      const dto = { reopenReason: 'Ainda apresenta falha' };
+
+      const result = await controller.reopen(mockTicket.id, mockUser, dto);
+
+      expect(service.reopen).toHaveBeenCalledWith(mockTicket.id, mockUser, dto);
+      expect(result).toEqual(reopenedTicket);
     });
   });
 });
