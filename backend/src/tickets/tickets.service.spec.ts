@@ -317,4 +317,161 @@ describe('TicketsService', () => {
       await expect(service.reassign(mockTicket.id, mockTech, { assigneeId: 'other-tech' })).rejects.toThrow(ForbiddenException);
     });
   });
+
+  describe('resolve', () => {
+    it('deve permitir que o técnico responsável resolva um chamado EM_ANDAMENTO', async () => {
+      const ticketInProgress = { ...mockTicket, status: TicketStatus.IN_PROGRESS, assigneeId: mockTech.id };
+      const resolvedTicket = { ...ticketInProgress, status: TicketStatus.RESOLVED, resolvedAt: new Date() };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(ticketInProgress);
+      mockPrismaService.ticket.update.mockResolvedValue(resolvedTicket);
+
+      const result = await service.resolve(mockTicket.id, mockTech);
+
+      expect(prismaService.ticket.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTicket.id },
+          data: expect.objectContaining({
+            status: TicketStatus.RESOLVED,
+            resolvedAt: expect.any(Date),
+          }),
+        }),
+      );
+      expect(result).toEqual(resolvedTicket);
+    });
+
+    it('deve permitir que o ADMIN resolva qualquer chamado EM_ANDAMENTO', async () => {
+      const ticketInProgress = { ...mockTicket, status: TicketStatus.IN_PROGRESS, assigneeId: mockTech.id };
+      const resolvedTicket = { ...ticketInProgress, status: TicketStatus.RESOLVED, resolvedAt: new Date() };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(ticketInProgress);
+      mockPrismaService.ticket.update.mockResolvedValue(resolvedTicket);
+
+      const result = await service.resolve(mockTicket.id, mockAdmin);
+
+      expect(result).toEqual(resolvedTicket);
+    });
+
+    it('deve lançar ForbiddenException se um técnico não responsável tentar resolver', async () => {
+      const ticketInProgress = { ...mockTicket, status: TicketStatus.IN_PROGRESS, assigneeId: 'outro-tech-id' };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(ticketInProgress);
+
+      await expect(service.resolve(mockTicket.id, mockTech)).rejects.toThrow(ForbiddenException);
+    });
+
+    it('deve lançar UnprocessableEntityException se o chamado não estiver EM_ANDAMENTO', async () => {
+      const openTicket = { ...mockTicket, status: TicketStatus.OPEN, assigneeId: mockTech.id };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(openTicket);
+
+      await expect(service.resolve(mockTicket.id, mockTech)).rejects.toThrow(UnprocessableEntityException);
+    });
+
+    it('deve lançar NotFoundException se o chamado não for encontrado', async () => {
+      mockPrismaService.ticket.findUnique.mockResolvedValue(null);
+
+      await expect(service.resolve('inexistente', mockTech)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe('close', () => {
+    it('deve permitir que o ADMIN encerre um chamado RESOLVIDO', async () => {
+      const resolvedTicket = { ...mockTicket, status: TicketStatus.RESOLVED, resolvedAt: new Date() };
+      const closedTicket = { ...resolvedTicket, status: TicketStatus.CLOSED, closedAt: new Date() };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(resolvedTicket);
+      mockPrismaService.ticket.update.mockResolvedValue(closedTicket);
+
+      const result = await service.close(mockTicket.id, mockAdmin);
+
+      expect(prismaService.ticket.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTicket.id },
+          data: expect.objectContaining({
+            status: TicketStatus.CLOSED,
+            closedAt: expect.any(Date),
+          }),
+        }),
+      );
+      expect(result).toEqual(closedTicket);
+    });
+
+    it('deve lançar ForbiddenException se um não-ADMIN tentar encerrar', async () => {
+      await expect(service.close(mockTicket.id, mockTech)).rejects.toThrow(ForbiddenException);
+    });
+
+    it('deve lançar UnprocessableEntityException se o chamado não estiver RESOLVIDO', async () => {
+      const inProgressTicket = { ...mockTicket, status: TicketStatus.IN_PROGRESS };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(inProgressTicket);
+
+      await expect(service.close(mockTicket.id, mockAdmin)).rejects.toThrow(UnprocessableEntityException);
+    });
+
+    it('deve lançar NotFoundException se o chamado não for encontrado', async () => {
+      mockPrismaService.ticket.findUnique.mockResolvedValue(null);
+
+      await expect(service.close('inexistente', mockAdmin)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe('reopen', () => {
+    it('deve permitir que o solicitante reabra um chamado RESOLVIDO', async () => {
+      const resolvedTicket = { ...mockTicket, status: TicketStatus.RESOLVED, resolvedAt: new Date(), requesterId: mockUser.id };
+      const reopenedTicket = { ...resolvedTicket, status: TicketStatus.OPEN, resolvedAt: null, closedAt: null };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(resolvedTicket);
+      mockPrismaService.ticket.update.mockResolvedValue(reopenedTicket);
+
+      const result = await service.reopen(mockTicket.id, mockUser);
+
+      expect(prismaService.ticket.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTicket.id },
+          data: {
+            status: TicketStatus.OPEN,
+            resolvedAt: null,
+            closedAt: null,
+          },
+        }),
+      );
+      expect(result).toEqual(reopenedTicket);
+    });
+
+    it('deve permitir que o ADMIN reabra um chamado ENCERRADO', async () => {
+      const closedTicket = { ...mockTicket, status: TicketStatus.CLOSED, closedAt: new Date() };
+      const reopenedTicket = { ...closedTicket, status: TicketStatus.OPEN, resolvedAt: null, closedAt: null };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(closedTicket);
+      mockPrismaService.ticket.update.mockResolvedValue(reopenedTicket);
+
+      const result = await service.reopen(mockTicket.id, mockAdmin);
+
+      expect(result).toEqual(reopenedTicket);
+    });
+
+    it('deve lançar ForbiddenException se outro usuário (não solicitante e não ADMIN) tentar reabrir', async () => {
+      const resolvedTicket = { ...mockTicket, status: TicketStatus.RESOLVED, requesterId: 'outro-user-id' };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(resolvedTicket);
+
+      await expect(service.reopen(mockTicket.id, mockUser)).rejects.toThrow(ForbiddenException);
+    });
+
+    it('deve lançar UnprocessableEntityException se o chamado já estiver EM_ANDAMENTO', async () => {
+      const inProgressTicket = { ...mockTicket, status: TicketStatus.IN_PROGRESS, requesterId: mockUser.id };
+
+      mockPrismaService.ticket.findUnique.mockResolvedValue(inProgressTicket);
+
+      await expect(service.reopen(mockTicket.id, mockUser)).rejects.toThrow(UnprocessableEntityException);
+    });
+
+    it('deve lançar NotFoundException se o chamado não for encontrado', async () => {
+      mockPrismaService.ticket.findUnique.mockResolvedValue(null);
+
+      await expect(service.reopen('inexistente', mockUser)).rejects.toThrow(NotFoundException);
+    });
+  });
 });
+

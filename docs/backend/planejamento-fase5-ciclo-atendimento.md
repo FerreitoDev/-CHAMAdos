@@ -128,10 +128,10 @@ src/tickets/dto/
 - `reopen(id: string, user: AuthenticatedUser, dto?: ReopenTicketDto): Promise<SafeTicket>`
 
 **Checklist:**
-- [ ] Implementar `resolve` com validação de técnico responsável ou ADMIN
-- [ ] Implementar `close` com validação estrita de estado prévio `RESOLVED`
-- [ ] Implementar `reopen` com reset dos campos `resolvedAt` e `closedAt`
-- [ ] Executar testes unitários em `tickets.service.spec.ts` (`npm run test tickets.service`) garantindo 100% verdes
+- [x] Implementar `resolve` com validação de técnico responsável ou ADMIN
+- [x] Implementar `close` com validação estrita de estado prévio `RESOLVED`
+- [x] Implementar `reopen` com reset dos campos `resolvedAt` e `closedAt`
+- [x] Executar testes unitários em `tickets.service.spec.ts` (`npm run test tickets.service`) garantindo 100% verdes
 
 ---
 

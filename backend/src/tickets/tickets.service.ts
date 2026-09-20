@@ -6,6 +6,8 @@ import { AssignTicketDto } from './dto/assign-ticket.dto';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { FilterTicketsDto } from './dto/filter-tickets.dto';
 import { ReassignTicketDto } from './dto/reassign-ticket.dto';
+import { ReopenTicketDto } from './dto/reopen-ticket.dto';
+import { ResolveTicketDto } from './dto/resolve-ticket.dto';
 import { PaginatedTicketsResponse, SafeTicket, safeUserSelect } from './tickets.types';
 
 @Injectable()
@@ -257,6 +259,106 @@ export class TicketsService {
       data: {
         assigneeId: dto.assigneeId,
         status: newStatus,
+      },
+      include: {
+        category: true,
+        requester: { select: safeUserSelect },
+        assignee: { select: safeUserSelect },
+      },
+    });
+
+    return updated as SafeTicket;
+  }
+
+  async resolve(id: string, user: AuthenticatedUser, _dto?: ResolveTicketDto): Promise<SafeTicket> {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: { id },
+    });
+
+    if (!ticket) {
+      throw new NotFoundException('Chamado não encontrado');
+    }
+
+    if (user.role !== UserRole.ADMIN && ticket.assigneeId !== user.id) {
+      throw new ForbiddenException('Apenas o técnico responsável ou um administrador podem resolver este chamado');
+    }
+
+    this.validateStateTransition(ticket.status, TicketStatus.RESOLVED);
+
+    const updated = await this.prisma.ticket.update({
+      where: { id },
+      data: {
+        status: TicketStatus.RESOLVED,
+        resolvedAt: new Date(),
+      },
+      include: {
+        category: true,
+        requester: { select: safeUserSelect },
+        assignee: { select: safeUserSelect },
+      },
+    });
+
+    return updated as SafeTicket;
+  }
+
+  async close(id: string, user: AuthenticatedUser): Promise<SafeTicket> {
+    if (user.role !== UserRole.ADMIN) {
+      throw new ForbiddenException('Apenas administradores podem encerrar chamados');
+    }
+
+    const ticket = await this.prisma.ticket.findUnique({
+      where: { id },
+    });
+
+    if (!ticket) {
+      throw new NotFoundException('Chamado não encontrado');
+    }
+
+    if (ticket.status !== TicketStatus.RESOLVED) {
+      throw new UnprocessableEntityException('Um chamado só pode ser encerrado após ser resolvido');
+    }
+
+    const updated = await this.prisma.ticket.update({
+      where: { id },
+      data: {
+        status: TicketStatus.CLOSED,
+        closedAt: new Date(),
+      },
+      include: {
+        category: true,
+        requester: { select: safeUserSelect },
+        assignee: { select: safeUserSelect },
+      },
+    });
+
+    return updated as SafeTicket;
+  }
+
+  async reopen(id: string, user: AuthenticatedUser, _dto?: ReopenTicketDto): Promise<SafeTicket> {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: { id },
+    });
+
+    if (!ticket) {
+      throw new NotFoundException('Chamado não encontrado');
+    }
+
+    if (user.role !== UserRole.ADMIN && ticket.requesterId !== user.id) {
+      throw new ForbiddenException('Apenas o solicitante do chamado ou um administrador podem reabri-lo');
+    }
+
+    if (ticket.status !== TicketStatus.RESOLVED && ticket.status !== TicketStatus.CLOSED) {
+      throw new UnprocessableEntityException(
+        `Transição de estado inválida de ${ticket.status} para ${TicketStatus.OPEN}`,
+      );
+    }
+
+    const updated = await this.prisma.ticket.update({
+      where: { id },
+      data: {
+        status: TicketStatus.OPEN,
+        resolvedAt: null,
+        closedAt: null,
       },
       include: {
         category: true,
