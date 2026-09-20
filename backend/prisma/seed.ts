@@ -1,5 +1,6 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../src/generated/prisma/client';
+import * as argon2 from 'argon2';
 
 const adapter = new PrismaPg({
   connectionString:
@@ -43,8 +44,9 @@ const initialCategories = [
 ];
 
 async function main() {
-  console.log('🌱 Iniciando o seed de categorias padrão...');
+  console.log('🌱 Iniciando o seed do banco de dados...');
 
+  // 1. Seed de Categorias
   for (const cat of initialCategories) {
     const category = await prisma.category.upsert({
       where: { name: cat.name },
@@ -59,6 +61,61 @@ async function main() {
     });
     console.log(`✅ Categoria: ${category.name}`);
   }
+
+  // 2. Seed de Usuários Padrão para Testes
+  const defaultPassword = 'AdminPassword123!';
+  const hashedPassword = await argon2.hash(defaultPassword);
+
+  const adminUser = await prisma.user.upsert({
+    where: { email: 'admin@chamados.local' },
+    update: {
+      passwordHash: hashedPassword,
+      role: 'ADMIN',
+      active: true,
+    },
+    create: {
+      name: 'Administrador de Teste',
+      email: 'admin@chamados.local',
+      passwordHash: hashedPassword,
+      role: 'ADMIN',
+      active: true,
+    },
+  });
+  console.log(`✅ Usuário ADMIN: ${adminUser.email}`);
+
+  const techUser = await prisma.user.upsert({
+    where: { email: 'tecnico@chamados.local' },
+    update: {
+      passwordHash: await argon2.hash('TecnicoPassword123!'),
+      role: 'TECHNICIAN',
+      active: true,
+    },
+    create: {
+      name: 'Técnico de Teste',
+      email: 'tecnico@chamados.local',
+      passwordHash: await argon2.hash('TecnicoPassword123!'),
+      role: 'TECHNICIAN',
+      active: true,
+    },
+  });
+  console.log(`✅ Usuário TECHNICIAN: ${techUser.email}`);
+
+  const normalUser = await prisma.user.upsert({
+    where: { email: 'usuario@chamados.local' },
+    update: {
+      passwordHash: await argon2.hash('UsuarioPassword123!'),
+      role: 'USER',
+      active: true,
+    },
+    create: {
+      name: 'Usuário de Teste',
+      email: 'usuario@chamados.local',
+      passwordHash: await argon2.hash('UsuarioPassword123!'),
+      role: 'USER',
+      active: true,
+    },
+  });
+  console.log(`✅ Usuário USER: ${normalUser.email}`);
 
   console.log('🎉 Seed concluído com sucesso!');
 }

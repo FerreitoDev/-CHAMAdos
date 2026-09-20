@@ -145,5 +145,6 @@ A documentação técnica detalhada do backend está em [`../docs/backend/`](../
 
 - [`decisions/`](../docs/backend/decisions/) — Decisões arquiteturais (ADs)
 - [`COMMANDS.md`](../docs/backend/COMMANDS.md) — Referência rápida de comandos
+- [`CREDENCIAIS-TESTE.md`](../docs/CREDENCIAIS-TESTE.md) — Credenciais padrão para testes e desenvolvimento
 
 A arquitetura de domínio e regras de negócio estão em [`../docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md).
