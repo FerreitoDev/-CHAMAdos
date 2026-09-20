@@ -145,9 +145,9 @@ src/features/users/components/
 - Tratamento de mensagens de erro amigáveis vindas da API (ex: 400 Bad Request / email duplicado).
 
 **Checklist:**
-- [ ] Criar `CreateUserModal.tsx`
-- [ ] Criar `EditUserModal.tsx`
-- [ ] Testes unitários/componente dos formulários (`CreateUserModal.test.tsx` e `EditUserModal.test.tsx`)
+- [x] Criar `CreateUserModal.tsx`
+- [x] Criar `EditUserModal.tsx`
+- [x] Testes unitários/componente dos formulários (`CreateUserModal.test.tsx` e `EditUserModal.test.tsx`)
 
 ---
 
