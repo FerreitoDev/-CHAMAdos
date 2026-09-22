@@ -84,10 +84,10 @@ Estrutura visual em 3 zonas:
 4. Renderizar identificação do usuário, badge de papel e botão de logout.
 
 **Checklist:**
-- [ ] `src/app/layouts/AppHeader.tsx` criado.
-- [ ] Suporte a controle de visibilidade RBAC para ADMIN (`/categories`, `/users`).
-- [ ] Estilo de rota ativa em laranja suave implementado.
-- [ ] Botão de logout integrado à função `logout()` do `useAuth`.
+- [x] `src/app/layouts/AppHeader.tsx` criado.
+- [x] Suporte a controle de visibilidade RBAC para ADMIN (`/categories`, `/users`).
+- [x] Estilo de rota ativa em laranja suave implementado.
+- [x] Botão de logout integrado à função `logout()` do `useAuth`.
 
 ---
 
