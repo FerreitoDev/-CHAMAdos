@@ -125,8 +125,8 @@ Estrutura visual em 3 zonas:
 5. Disparo do método `logout` ao acionar o botão de sair.
 
 **Checklist:**
-- [ ] `src/app/layouts/AppHeader.test.tsx` criado com 5+ testes unitários.
-- [ ] Todos os testes passando verde via `npm run test:run`.
+- [x] `src/app/layouts/AppHeader.test.tsx` criado com 5+ testes unitários.
+- [x] Todos os testes passando verde via `npm run test:run`.
 
 ---
 

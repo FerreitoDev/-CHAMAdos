@@ -38,6 +38,7 @@ export function AppHeader() {
         <div className="flex items-center gap-6">
           <Link
             to="/tickets"
+            aria-label="CHAMAdos - Página Inicial"
             className="flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
           >
             <div className="flex size-9 items-center justify-center rounded-lg border border-orange-200 bg-orange-100 text-primary shadow-2xs">
