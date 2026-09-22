@@ -102,9 +102,9 @@ Variantes alinhadas ao AD-001:
 3. Assegurar consistência de estados de foco (`focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50`).
 
 **Checklist:**
-- [ ] `src/components/ui/textarea.tsx` criado.
-- [ ] `src/components/ui/select.tsx` criado com subcomponentes.
-- [ ] Alinhamento visual e altura `h-9` verificados.
+- [x] `src/components/ui/textarea.tsx` criado.
+- [x] `src/components/ui/select.tsx` criado com subcomponentes.
+- [x] Alinhamento visual e altura `h-9` verificados.
 
 ---
 
