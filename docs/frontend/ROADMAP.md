@@ -116,13 +116,13 @@ Este roadmap define o plano de evolução visual do frontend, transformando o CH
 ### Fase 4: Padronização Visual da Autenticação (`src/features/auth`)
 **Objetivo:** Modernizar a experiência da tela de login alinhando-a à identidade monocromática em laranja.
 
-- [ ] Refinar [src/features/auth/pages/LoginPage.tsx](file:///home/ferreito/Sistema%20de%20chamados/frontend/src/features/auth/pages/LoginPage.tsx):
+- [x] Refinar [src/features/auth/pages/LoginPage.tsx](file:///home/ferreito/Sistema%20de%20chamados/frontend/src/features/auth/pages/LoginPage.tsx):
   - Card centralizado com borda neutra nítida (`border-border`), fundo branco puro (`bg-card`) e sombra sutil.
   - Título CHAMAdos com ícone e destaque primário em laranja.
   - Inputs de email e senha com estados de validação e foco em laranja.
   - Botão CTA em laranja sólido com transição para `primary-hover`.
   - Tratamento de erro com alerta padronizado em tom suave de erro (`bg-red-50 text-red-700 border-red-200`).
-- [ ] Validar testes unitários existentes de autenticação.
+- [x] Validar testes unitários existentes de autenticação.
 
 ---
 

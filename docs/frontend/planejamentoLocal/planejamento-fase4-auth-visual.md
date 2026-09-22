@@ -1,6 +1,6 @@
 # Planejamento Técnico — Fase 4 Visual: Padronização Visual da Autenticação (`src/features/auth`)
 
-> **Status:** Pronto para Execução  
+> **Status:** Concluído  
 > **Roadmap:** [ROADMAP do Frontend](../ROADMAP.md) — Fase 4  
 > **Diretrizes:** [AD-001 — Paleta de Cores](../design/AD-001-paleta-de-cores.md) e [Design System README](../design/README.md)  
 > **Objetivo:** Modernizar a experiência da tela de autenticação (`/login`), integrando-a à identidade visual monocromática em laranja (marca com ícone de chama), superfícies claras em zinc, alerta semântico de erro e foco acessível, criando também testes unitários automatizados para a página.
@@ -113,14 +113,14 @@ Atualmente:
 2. `npm run test:run`
 
 **Checklist:**
-- [ ] `npm run build` verde sem erros de TypeScript ou CSS.
-- [ ] `npm run test:run` aprovado com 35 arquivos e 174+ testes verdes.
+- [x] `npm run build` verde sem erros de TypeScript ou CSS.
+- [x] `npm run test:run` aprovado com 35 arquivos e 174 testes verdes.
 
 ---
 
 ## 4. Critérios de Aceitação da Fase 4
 
-1. **Consistência Visual:** Tela de login 100% harmonizada com o tema claro e escala monocromática de laranja do AD-001.
-2. **Feedback Semântico Claro:** Mensagens de credenciais inválidas apresentadas em banner com contraste WCAG AA.
-3. **Usabilidade e Acessibilidade:** Foco visível com anel em laranja e semântica de formulário preservada.
-4. **Qualidade Garantida:** Suíte dedicada de testes unitários aprovada e zero quebras na aplicação.
+1. [x] **Consistência Visual:** Tela de login 100% harmonizada com o tema claro e escala monocromática de laranja do AD-001.
+2. [x] **Feedback Semântico Claro:** Mensagens de credenciais inválidas apresentadas em banner com contraste WCAG AA.
+3. [x] **Usabilidade e Acessibilidade:** Foco visível com anel em laranja e semântica de formulário preservada.
+4. [x] **Qualidade Garantida:** Suíte dedicada de testes unitários aprovada e zero quebras na aplicação (174/174).
