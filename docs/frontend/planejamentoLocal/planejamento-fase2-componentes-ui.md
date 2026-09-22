@@ -82,9 +82,9 @@ Variantes alinhadas ao AD-001:
 3. Garantir que os imports utilizem `@/lib/utils` (padrão do projeto).
 
 **Checklist:**
-- [ ] `src/components/ui/badge.tsx` criado e tipado.
-- [ ] `src/components/ui/skeleton.tsx` criado.
-- [ ] Variantes de cores do AD-001 validadas.
+- [x] `src/components/ui/badge.tsx` criado e tipado.
+- [x] `src/components/ui/skeleton.tsx` criado.
+- [x] Variantes de cores do AD-001 validadas.
 
 ---
 
