@@ -57,7 +57,11 @@ export function LoginPage() {
           <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-xl border border-orange-200 bg-orange-100 text-primary shadow-2xs">
             <Flame className="size-6 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-foreground">
+          <CardTitle
+            role="heading"
+            aria-level={1}
+            className="text-2xl font-bold tracking-tight text-foreground"
+          >
             CHAMAdos
           </CardTitle>
           <CardDescription className="text-sm text-muted-foreground">

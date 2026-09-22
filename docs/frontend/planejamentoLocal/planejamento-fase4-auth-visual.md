@@ -99,8 +99,8 @@ Atualmente:
 5. Redirecionamento automático caso o usuário já esteja autenticado (`isAuthenticated === true`).
 
 **Checklist:**
-- [ ] `src/features/auth/pages/LoginPage.test.tsx` criado com 5+ testes.
-- [ ] Todos os testes passando verde via `vitest`.
+- [x] `src/features/auth/pages/LoginPage.test.tsx` criado com 5+ testes.
+- [x] Todos os testes passando verde via `vitest`.
 
 ---
 
