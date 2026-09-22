@@ -145,9 +145,9 @@ O módulo de tickets é a principal funcionalidade do CHAMAdos. Funcionalmente, 
 2. Em `TicketActionsBar.tsx`: botões com variantes semânticas adequadas (`default` em laranja para assumir/resolver, `outline` para reabrir, `destructive` para encerrar).
 
 **Checklist:**
-- [ ] `TicketDetailPage.tsx` com layout 2 colunas responsivo.
-- [ ] `TicketActionsBar.tsx` com variantes semânticas atualizadas.
-- [ ] Testes de `TicketDetailPage.test.tsx` e `TicketActionsBar.test.tsx` verdes.
+- [x] `TicketDetailPage.tsx` com layout 2 colunas responsivo.
+- [x] `TicketActionsBar.tsx` com variantes semânticas atualizadas.
+- [x] Testes de `TicketDetailPage.test.tsx` e `TicketActionsBar.test.tsx` verdes.
 
 ---
 

@@ -80,42 +80,48 @@ export const TicketDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl space-y-6">
+    <div className="container mx-auto px-4 py-8 max-w-7xl space-y-6">
       {/* Header com Ação de Voltar */}
-      <div className="flex items-center justify-between border-b border-border pb-4">
-        <Button variant="ghost" size="sm" onClick={() => navigate('/tickets')}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-5">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => navigate('/tickets')}
+          className="w-fit text-muted-foreground hover:text-foreground -ml-2"
+        >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Voltar para Chamados
         </Button>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <TicketPriorityBadge priority={ticket.priority} />
           <TicketStatusBadge status={ticket.status} />
         </div>
       </div>
 
-      {/* Título e ID */}
-      <div className="space-y-1">
-        <div className="text-xs text-muted-foreground font-mono">Chamado #{ticket.id}</div>
-        <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-          <TicketIcon className="w-6 h-6 text-primary shrink-0" />
-          {ticket.title}
+      {/* Título e Identificador */}
+      <div className="space-y-1.5">
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider font-mono">
+          Chamado #{ticket.id}
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground flex items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <TicketIcon className="w-5 h-5" />
+          </div>
+          <span className="truncate">{ticket.title}</span>
         </h1>
       </div>
 
-      {/* Barra de Ações do Ciclo de Atendimento */}
-      <TicketActionsBar
-        ticket={ticket}
-        onTicketUpdated={(updated) => setTicket(updated)}
-      />
-
-      {/* Grid de Informações Principais */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Coluna Esquerda: Descrição e Comentários */}
-        <div className="md:col-span-2 space-y-6">
-          <Card>
+      {/* Grid Corporativo 70% / 30% */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        {/* Coluna Principal (70%): Descrição, Comentários e Auditoria */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Card Descrição do Problema */}
+          <Card className="rounded-xl border border-border bg-card shadow-xs">
             <CardHeader className="pb-3 border-b border-border">
-              <CardTitle className="text-base font-semibold">Descrição do Problema</CardTitle>
+              <CardTitle className="text-base font-semibold text-foreground">
+                Descrição do Problema
+              </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 text-sm text-foreground whitespace-pre-wrap leading-relaxed">
               {ticket.description}
@@ -135,10 +141,16 @@ export const TicketDetailPage: React.FC = () => {
           />
         </div>
 
-        {/* Coluna Direita: Metadados */}
-        <div className="space-y-6">
+        {/* Coluna Lateral (30%): Ações e Metadados Corporativos */}
+        <div className="lg:col-span-1 space-y-6">
+          {/* Barra de Ações de Atendimento */}
+          <TicketActionsBar
+            ticket={ticket}
+            onTicketUpdated={(updated) => setTicket(updated)}
+          />
+
           {/* Card Solicitante */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card shadow-xs">
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-xs uppercase font-semibold text-muted-foreground tracking-wider flex items-center gap-2">
                 <User className="w-4 h-4 text-primary" />
@@ -151,8 +163,8 @@ export const TicketDetailPage: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* Card Responsável */}
-          <Card>
+          {/* Card Técnico Responsável */}
+          <Card className="rounded-xl border border-border bg-card shadow-xs">
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-xs uppercase font-semibold text-muted-foreground tracking-wider flex items-center gap-2">
                 <UserCheck className="w-4 h-4 text-primary" />
@@ -174,7 +186,7 @@ export const TicketDetailPage: React.FC = () => {
           </Card>
 
           {/* Card Categoria */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card shadow-xs">
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-xs uppercase font-semibold text-muted-foreground tracking-wider flex items-center gap-2">
                 <Tag className="w-4 h-4 text-primary" />
@@ -189,24 +201,24 @@ export const TicketDetailPage: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* Card Datas */}
-          <Card>
+          {/* Card Histórico de Datas */}
+          <Card className="rounded-xl border border-border bg-card shadow-xs">
             <CardHeader className="pb-3 border-b border-border">
               <CardTitle className="text-xs uppercase font-semibold text-muted-foreground tracking-wider flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-primary" />
                 Histórico de Datas
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-4 space-y-2 text-xs">
-              <div>
+            <CardContent className="pt-4 space-y-2.5 text-xs">
+              <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Aberto em: </span>
                 <span className="font-medium text-foreground">{formatDate(ticket.createdAt)}</span>
               </div>
-              <div>
+              <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Resolvido em: </span>
                 <span className="font-medium text-foreground">{formatDate(ticket.resolvedAt)}</span>
               </div>
-              <div>
+              <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Encerrado em: </span>
                 <span className="font-medium text-foreground">{formatDate(ticket.closedAt)}</span>
               </div>

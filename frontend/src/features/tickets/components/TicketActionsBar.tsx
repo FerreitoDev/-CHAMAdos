@@ -73,12 +73,12 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
 
   return (
     <>
-      <div className="bg-card text-card-foreground border border-border rounded-xl p-4 shadow-sm space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-card text-card-foreground border border-border rounded-xl p-4 shadow-xs space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h3 className="text-sm font-semibold text-foreground">Ações de Atendimento</h3>
-            <p className="text-xs text-muted-foreground">
-              Ações disponíveis para o seu papel ({user.role}) no estado atual ({ticket.status}).
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Ações disponíveis para o seu perfil ({user.role}) no estado atual ({ticket.status}).
             </p>
           </div>
 
@@ -90,6 +90,7 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
                 size="sm"
                 onClick={handleSelfAssign}
                 disabled={isSelfAssigning}
+                className="shadow-xs"
               >
                 {isSelfAssigning ? (
                   <>
@@ -111,6 +112,7 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
                 variant="outline"
                 size="sm"
                 onClick={() => setIsAssignModalOpen(true)}
+                className="shadow-xs"
               >
                 <UserCheck className="w-4 h-4 mr-2" />
                 {ticket.assigneeId ? 'Reatribuir Técnico' : 'Atribuir Técnico'}
@@ -123,7 +125,7 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
                 variant="default"
                 size="sm"
                 onClick={() => setIsResolveModalOpen(true)}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs"
               >
                 <CheckCircle2 className="w-4 h-4 mr-2" />
                 Resolver Chamado
@@ -136,6 +138,7 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
                 variant="destructive"
                 size="sm"
                 onClick={() => setIsCloseModalOpen(true)}
+                className="shadow-xs"
               >
                 <Lock className="w-4 h-4 mr-2" />
                 Encerrar Chamado
@@ -145,10 +148,10 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
             {/* Botão Reabrir Chamado */}
             {canReopen && (
               <Button
-                variant="default"
+                variant="outline"
                 size="sm"
                 onClick={() => setIsReopenModalOpen(true)}
-                className="bg-amber-600 hover:bg-amber-700 text-white"
+                className="border-amber-300 text-amber-900 bg-amber-50 hover:bg-amber-100 hover:text-amber-950 shadow-xs"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reabrir Chamado
@@ -159,7 +162,7 @@ export const TicketActionsBar: React.FC<TicketActionsBarProps> = ({
 
         {/* Action Error */}
         {actionError && (
-          <div className="p-2.5 rounded-lg bg-destructive/15 border border-destructive/30 text-destructive text-xs flex items-center gap-2">
+          <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs flex items-center gap-2.5">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{actionError}</span>
           </div>
