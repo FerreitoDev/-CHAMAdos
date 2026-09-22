@@ -104,9 +104,9 @@ Estrutura visual em 3 zonas:
 3. Se for rota autenticada, renderizar o App Shell completo com `<AppHeader />` e `<main className="max-w-7xl ...">`.
 
 **Checklist:**
-- [ ] `src/app/layouts/AppLayout.tsx` atualizado com o App Shell.
-- [ ] Isolamento da rota `/login` sem cabeçalho confirmado.
-- [ ] Grid centralizado com `max-w-7xl` aplicado ao conteúdo principal.
+- [x] `src/app/layouts/AppLayout.tsx` atualizado com o App Shell.
+- [x] Isolamento da rota `/login` sem cabeçalho confirmado.
+- [x] Grid centralizado com `max-w-7xl` aplicado ao conteúdo principal.
 
 ---
 
