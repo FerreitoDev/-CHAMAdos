@@ -138,9 +138,9 @@ Variantes alinhadas ao AD-001:
 2. Criar `dropdown-menu.tsx` utilizando `@base-ui/react/menu` com posicionamento dinâmico e estilos de seleção.
 
 **Checklist:**
-- [ ] `src/components/ui/dialog.tsx` criado.
-- [ ] `src/components/ui/dropdown-menu.tsx` criado.
-- [ ] Acessibilidade e animações suaves conferidas.
+- [x] `src/components/ui/dialog.tsx` criado.
+- [x] `src/components/ui/dropdown-menu.tsx` criado.
+- [x] Acessibilidade e animações suaves conferidas.
 
 ---
 
