@@ -120,8 +120,8 @@ Variantes alinhadas ao AD-001:
 2. Estilizar com cabeçalho em tom neutro suave, divisores finos e suporte a scroll horizontal responsivo via wrapper `div.relative.w-full.overflow-auto`.
 
 **Checklist:**
-- [ ] `src/components/ui/table.tsx` criado e com exportações semânticas completas.
-- [ ] Responsividade com overflow horizontal garantida.
+- [x] `src/components/ui/table.tsx` criado e com exportações semânticas completas.
+- [x] Responsividade com overflow horizontal garantida.
 
 ---
 
