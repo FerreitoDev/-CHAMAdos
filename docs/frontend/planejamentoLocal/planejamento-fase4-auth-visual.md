@@ -77,10 +77,10 @@ Atualmente:
 5. Manter intactas todas as regras de negócio existentes (integração com `useAuth`, navegação com `from` e estados de submissão).
 
 **Checklist:**
-- [ ] Marca com ícone de chama integrada ao topo do card.
-- [ ] Alerta de erro estruturado em `bg-red-50 text-red-800 border-red-200`.
-- [ ] Inputs com foco em laranja e altura padronizada.
-- [ ] Botão CTA em laranja com feedback de carregamento.
+- [x] Marca com ícone de chama integrada ao topo do card.
+- [x] Alerta de erro estruturado em `bg-red-50 text-red-800 border-red-200`.
+- [x] Inputs com foco em laranja e altura padronizada.
+- [x] Botão CTA em laranja com feedback de carregamento.
 
 ---
 
