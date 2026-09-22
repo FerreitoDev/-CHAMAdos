@@ -97,10 +97,10 @@ O frontend do **CHAMAdos** possui 100% da lógica do MVP implementada e testada.
    - Garantir preservação das extensões existentes (`--font-sans`, cores de chart, raios de borda).
 
 **Checklist:**
-- [ ] `--color-primary-hover` registrado em `@theme inline`.
-- [ ] `--color-primary-subtle` registrado em `@theme inline`.
-- [ ] `--color-destructive-foreground` registrado em `@theme inline`.
-- [ ] Sintaxe `@theme inline` validada pelo compilador do Tailwind v4.
+- [x] `--color-primary-hover` registrado em `@theme inline`.
+- [x] `--color-primary-subtle` registrado em `@theme inline`.
+- [x] `--color-destructive-foreground` registrado em `@theme inline`.
+- [x] Sintaxe `@theme inline` validada pelo compilador do Tailwind v4.
 
 ---
 
