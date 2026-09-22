@@ -125,8 +125,8 @@ O módulo de tickets é a principal funcionalidade do CHAMAdos. Funcionalmente, 
 3. Estados de carregamento e empty state com ícone semântico.
 
 **Checklist:**
-- [ ] `TicketsListPage.tsx` refatorado.
-- [ ] Testes de `TicketsListPage.test.tsx` verdes.
+- [x] `TicketsListPage.tsx` refatorado.
+- [x] Testes de `TicketsListPage.test.tsx` verdes.
 
 ---
 
