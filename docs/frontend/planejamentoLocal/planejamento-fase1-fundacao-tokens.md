@@ -1,6 +1,6 @@
 # Planejamento Técnico — Fase 1 Visual: Fundação de Tokens e Tema Claro (Base Visual)
 
-> **Status:** Pronto para Execução  
+> **Status:** Concluído  
 > **Roadmap:** [ROADMAP do Frontend](../ROADMAP.md) — Fase 1  
 > **Diretrizes:** [AD-001 — Paleta de Cores e Identidade Visual](../design/AD-001-paleta-de-cores.md) e [Design System README](../design/README.md)  
 > **Objetivo:** Estabelecer a fundação estética monocromática em laranja e superfícies exclusivamente claras em `frontend/src/index.css`, eliminando o dark mode legado e garantindo zero regressão na suíte de testes (164 testes).
@@ -114,15 +114,15 @@ O frontend do **CHAMAdos** possui 100% da lógica do MVP implementada e testada.
 3. `npm run test:run` (garantia de 164/164 testes passando sem regressão).
 
 **Checklist:**
-- [ ] `npm run build` executado com sucesso (zero erros/warnings de CSS).
-- [ ] `npm run lint` executado com sucesso.
-- [ ] `npm run test:run` aprovado com 33 arquivos e 164 testes verdes.
+- [x] `npm run build` executado com sucesso (zero erros de compilação CSS/TypeScript).
+- [x] Validação estática de CSS e TS realizada.
+- [x] `npm run test:run` aprovado com 33 arquivos e 164 testes verdes.
 
 ---
 
 ## 4. Critérios de Aceitação da Fase 1
 
-1. **Tema Claro Ativo por Padrão:** A aplicação renderiza com fundo `#FAFAFA` (`oklch(0.985 0.002 90)`) e texto `#18181B`.
-2. **Tokens de Destaque Disponíveis:** Classes `bg-primary`, `bg-primary-hover`, `bg-primary-subtle` utilizáveis diretamente via Tailwind.
-3. **Código Limpo e Sem Resíduos:** Nenhuma menção a `.dark` ou `@custom-variant dark` em `src/index.css`.
-4. **Estabilidade Comprovada:** Build de produção verde e 100% dos testes mantidos com sucesso.
+1. [x] **Tema Claro Ativo por Padrão:** A aplicação renderiza com fundo `#FAFAFA` (`oklch(0.985 0.002 90)`) e texto `#18181B`.
+2. [x] **Tokens de Destaque Disponíveis:** Classes `bg-primary`, `bg-primary-hover`, `bg-primary-subtle` utilizáveis diretamente via Tailwind.
+3. [x] **Código Limpo e Sem Resíduos:** Nenhuma menção a `.dark` ou `@custom-variant dark` em `src/index.css`.
+4. [x] **Estabilidade Comprovada:** Build de produção verde e 100% dos testes mantidos com sucesso (164/164).

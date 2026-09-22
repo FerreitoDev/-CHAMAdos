@@ -63,7 +63,7 @@ Este roadmap define o plano de evolução visual do frontend, transformando o CH
 ### Fase 1: Fundação de Tokens e Tema Claro (Base Visual)
 **Objetivo:** Substituir as diretivas e variáveis antigas de dark mode em `frontend/src/index.css` pelos novos tokens de tema exclusivamente claro e pela escala tonal de laranja.
 
-- [ ] Atualizar `:root` em `src/index.css` com as cores do [AD-001](design/AD-001-paleta-de-cores.md):
+- [x] Atualizar `:root` em `src/index.css` com as cores do [AD-001](design/AD-001-paleta-de-cores.md):
   - `--background`: `oklch(0.985 0.002 90)` (`#FAFAFA`)
   - `--foreground`: `oklch(0.18 0.01 260)` (`#18181B`)
   - `--card` / `--popover`: `oklch(1 0 0)` (`#FFFFFF`)
@@ -72,9 +72,9 @@ Este roadmap define o plano de evolução visual do frontend, transformando o CH
   - `--primary-subtle`: `oklch(0.95 0.03 65)` (`#FFEDD5` - Orange 100)
   - `--border` / `--input`: `oklch(0.92 0.005 260)` (`#E4E4E7` - Zinc 200)
   - `--ring`: `oklch(0.62 0.20 40)` (`#EA580C`)
-- [ ] Mapear as variáveis no `@theme inline` do Tailwind v4 para consumo com classes utilitárias (`bg-primary`, `text-primary-foreground`, `border-border`, etc.).
-- [ ] Remover a variante de classe `.dark` para manter o tema estritamente claro sem comportamentos ambíguos.
-- [ ] Validar compilação e tipagem com `npm run build`.
+- [x] Mapear as variáveis no `@theme inline` do Tailwind v4 para consumo com classes utilitárias (`bg-primary`, `text-primary-foreground`, `border-border`, etc.).
+- [x] Remover a variante de classe `.dark` para manter o tema estritamente claro sem comportamentos ambíguos.
+- [x] Validar compilação e tipagem com `npm run build`.
 
 ---
 
