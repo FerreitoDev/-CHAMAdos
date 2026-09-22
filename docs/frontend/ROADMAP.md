@@ -97,7 +97,7 @@ Este roadmap define o plano de evolução visual do frontend, transformando o CH
 ### Fase 3: App Shell Corporativo (Layout Global & Navegação)
 **Objetivo:** Criar a moldura da aplicação que une todas as páginas com identidade visual coesa, navegação e controle de perfil.
 
-- [ ] Construir o componente `AppHeader`:
+- [x] Construir o componente `AppHeader`:
   - **Identidade da Marca:** Logo do CHAMAdos com ícone de chama/ticket em laranja e tipografia com peso e clareza.
   - **Barra de Navegação Central/Superior:**
     - "Chamados" (acessível para todos os perfis autenticados).
@@ -108,8 +108,8 @@ Este roadmap define o plano de evolução visual do frontend, transformando o CH
     - Nome do usuário logado e email truncado.
     - Badge de papel (`ADMIN`, `TECNICO`, `USUARIO`).
     - Botão de logout com ícone discreto e feedback imediato.
-- [ ] Atualizar [src/app/layouts/AppLayout.tsx](file:///home/ferreito/Sistema%20de%20chamados/frontend/src/app/layouts/AppLayout.tsx) para incluir o `AppHeader`, área de conteúdo centralizada (`max-w-7xl mx-auto px-4 py-8`) e background neutro claro (`bg-background`).
-- [ ] Garantir que a tela de login (`/login`) não renderize o Header corporativo.
+- [x] Atualizar [src/app/layouts/AppLayout.tsx](file:///home/ferreito/Sistema%20de%20chamados/frontend/src/app/layouts/AppLayout.tsx) para incluir o `AppHeader`, área de conteúdo centralizada (`max-w-7xl mx-auto px-4 py-8`) e background neutro claro (`bg-background`).
+- [x] Garantir que a tela de login (`/login`) não renderize o Header corporativo.
 
 ---
 

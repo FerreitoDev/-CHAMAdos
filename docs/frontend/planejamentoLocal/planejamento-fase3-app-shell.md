@@ -1,6 +1,6 @@
 # Planejamento Técnico — Fase 3 Visual: App Shell Corporativo (Layout Global & Navegação)
 
-> **Status:** Pronto para Execução  
+> **Status:** Concluído  
 > **Roadmap:** [ROADMAP do Frontend](../ROADMAP.md) — Fase 3  
 > **Diretrizes:** [AD-001 — Paleta de Cores](../design/AD-001-paleta-de-cores.md) e [Design System README](../design/README.md)  
 > **Objetivo:** Criar o App Shell corporativo que envolve todas as páginas autenticadas do sistema, fornecendo identidade visual unificada (CHAMAdos com chama alaranjada), navegação contextual por papel de acesso (RBAC), controle de perfil e logout imediato.
@@ -139,15 +139,15 @@ Estrutura visual em 3 zonas:
 2. `npm run test:run`
 
 **Checklist:**
-- [ ] `npm run build` verde sem erros de tipagem.
-- [ ] `npm run test:run` executado com 100% de testes aprovados (164+ testes).
+- [x] `npm run build` verde sem erros de tipagem.
+- [x] `npm run test:run` executado com 100% de testes aprovados (169 testes).
 
 ---
 
 ## 4. Critérios de Aceitação da Fase 3
 
-1. **Identidade Visual Presente:** O logo do CHAMAdos com ícone alaranjado é exibido no topo de todas as páginas autenticadas.
-2. **Navegação RBAC Funcional:** Administradores têm acesso rápido a Chamados, Categorias e Usuários; Técnicos e Usuários visualizam apenas Chamados.
-3. **Controle de Sessão Claro:** E-mail e badge de perfil visíveis com ação de logout direta e funcional.
-4. **Login Isolado:** A página de login permanece limpa e focada no formulário de autenticação.
-5. **Qualidade Comprovada:** Testes unitários dedicados ao Header e 100% da suíte existente mantida verde.
+1. [x] **Identidade Visual Presente:** O logo do CHAMAdos com ícone alaranjado é exibido no topo de todas as páginas autenticadas.
+2. [x] **Navegação RBAC Funcional:** Administradores têm acesso rápido a Chamados, Categorias e Usuários; Técnicos e Usuários visualizam apenas Chamados.
+3. [x] **Controle de Sessão Claro:** E-mail e badge de perfil visíveis com ação de logout direta e funcional.
+4. [x] **Login Isolado:** A página de login permanece limpa e focada no formulário de autenticação.
+5. [x] **Qualidade Comprovada:** Testes unitários dedicados ao Header e 100% da suíte existente mantida verde (169/169).
