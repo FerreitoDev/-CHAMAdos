@@ -1,6 +1,6 @@
 # Planejamento Técnico — Fase 2 Visual: Expansão da Biblioteca de Componentes UI (`src/components/ui`)
 
-> **Status:** Pronto para Execução  
+> **Status:** Concluído  
 > **Roadmap:** [ROADMAP do Frontend](../ROADMAP.md) — Fase 2  
 > **Diretrizes:** [AD-001 — Paleta de Cores e Identidade Visual](../design/AD-001-paleta-de-cores.md) e [Design System README](../design/README.md)  
 > **Objetivo:** Fornecer os blocos primitivos acessíveis e estilizados segundo a nova escala de laranja e superfícies neutras em `src/components/ui`, preparando o ecossistema de componentes para o App Shell (Fase 3) e para a padronização das telas de chamados, categorias e usuários (Fases 4 a 6).
@@ -153,13 +153,13 @@ Variantes alinhadas ao AD-001:
 2. `npm run test:run` (164 testes intactos)
 
 **Checklist:**
-- [ ] `npm run build` verde sem erros de TypeScript ou CSS.
-- [ ] `npm run test:run` aprovado com 33 arquivos e 164 testes passando.
+- [x] `npm run build` verde sem erros de TypeScript ou CSS.
+- [x] `npm run test:run` aprovado com 33 arquivos e 164 testes passando.
 
 ---
 
 ## 4. Critérios de Aceitação da Fase 2
 
-1. **Biblioteca Expandida:** `badge.tsx`, `skeleton.tsx`, `textarea.tsx`, `select.tsx`, `table.tsx`, `dialog.tsx` e `dropdown-menu.tsx` presentes em `src/components/ui`.
-2. **Padrão de Código Coeso:** Todos os componentes utilizam `@/lib/utils` e a identidade de tokens do tema claro e escala de laranja do AD-001.
-3. **Zero Regressão:** `npm run build` e `npm run test:run` aprovados com 100% de sucesso.
+1. [x] **Biblioteca Expandida:** `badge.tsx`, `skeleton.tsx`, `textarea.tsx`, `select.tsx`, `table.tsx`, `dialog.tsx` e `dropdown-menu.tsx` presentes em `src/components/ui`.
+2. [x] **Padrão de Código Coeso:** Todos os componentes utilizam `@/lib/utils` e a identidade de tokens do tema claro e escala de laranja do AD-001.
+3. [x] **Zero Regressão:** `npm run build` e `npm run test:run` aprovados com 100% de sucesso.

@@ -81,16 +81,16 @@ Este roadmap define o plano de evolução visual do frontend, transformando o CH
 ### Fase 2: Expansão da Biblioteca de Componentes UI (`src/components/ui`)
 **Objetivo:** Fornecer os blocos de construção primitivos acessíveis e estilizados segundo a nova escala de laranja e superfícies neutras.
 
-- [ ] **`badge.tsx`:** Suporte a variantes:
+- [x] **`badge.tsx`:** Suporte a variantes:
   - `default`: Fundo Laranja suave (`bg-orange-100 text-orange-900 border-orange-200`) com dot animado.
   - `secondary`: Fundo neutro suave (`bg-zinc-100 text-zinc-800 border-zinc-200`).
   - `outline`: Borda neutra com fundo transparente.
   - `destructive`: Vermelho sutil para prioridade urgente ou falhas (`bg-red-100 text-red-800 border-red-200`).
-- [ ] **`dialog.tsx`:** Modal base com backdrop blur suave (`bg-black/40 backdrop-blur-xs`), card centralizado em branco puro, header com título semântico, corpo espaçado e footer com botões de ação à direita.
-- [ ] **`table.tsx`:** Componentes semânticos (`Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`), com cabeçalho em cinza suave (`#F9FAFB`), bordas finas e hover agradável nas linhas.
-- [ ] **`select.tsx`** e **`textarea.tsx`:** Controles com visual idêntico ao `Input`, altura padronizada (`h-9` para select) e anel de foco em laranja.
-- [ ] **`dropdown-menu.tsx`:** Menu contextual acessível para ações de tabela e menu de perfil.
-- [ ] **`skeleton.tsx`:** Retângulos pulsantes em cinza neutro para carregamento fluido.
+- [x] **`dialog.tsx`:** Modal base com backdrop blur suave (`bg-black/40 backdrop-blur-xs`), card centralizado em branco puro, header com título semântico, corpo espaçado e footer com botões de ação à direita.
+- [x] **`table.tsx`:** Componentes semânticos (`Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`), com cabeçalho em cinza suave (`#F9FAFB`), bordas finas e hover agradável nas linhas.
+- [x] **`select.tsx`** e **`textarea.tsx`:** Controles com visual idêntico ao `Input`, altura padronizada (`h-9` para select) e anel de foco em laranja.
+- [x] **`dropdown-menu.tsx`:** Menu contextual acessível para ações de tabela e menu de perfil.
+- [x] **`skeleton.tsx`:** Retângulos pulsantes em cinza neutro para carregamento fluido.
 
 ---
 
