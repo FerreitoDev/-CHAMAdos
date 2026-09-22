@@ -69,9 +69,9 @@ O módulo de tickets é a principal funcionalidade do CHAMAdos. Funcionalmente, 
 3. Manter os textos e testes unitários existentes 100% compatíveis.
 
 **Checklist:**
-- [ ] `TicketStatusBadge.tsx` refatorado com tema claro.
-- [ ] `TicketPriorityBadge.tsx` refatorado com tema claro.
-- [ ] Testes unitários dos badges validados com sucesso.
+- [x] `TicketStatusBadge.tsx` refatorado com tema claro.
+- [x] `TicketPriorityBadge.tsx` refatorado com tema claro.
+- [x] Testes unitários dos badges validados com sucesso.
 
 ---
 
