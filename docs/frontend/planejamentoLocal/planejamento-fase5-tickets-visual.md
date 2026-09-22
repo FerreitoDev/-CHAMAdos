@@ -106,9 +106,9 @@ O módulo de tickets é a principal funcionalidade do CHAMAdos. Funcionalmente, 
 3. Estilizar cabeçalho suave, divisores finos e suporte nativo a scroll horizontal.
 
 **Checklist:**
-- [ ] `TicketTable.tsx` migrado para os primitivos `Table`.
-- [ ] Seletores de testes preservados.
-- [ ] Testes de `TicketTable.test.tsx` verdes.
+- [x] `TicketTable.tsx` migrado para os primitivos `Table`.
+- [x] Seletores de testes preservados.
+- [x] Testes de `TicketTable.test.tsx` verdes.
 
 ---
 
