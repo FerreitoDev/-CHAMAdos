@@ -297,20 +297,23 @@ Fase 12 — Qualidade e estabilidade [Futuro] Cobertura de testes ampla
 
 ---
 
-### Fase 8 — Frontend (telas e integração) `[MVP]`
+### Fase 8 — Frontend (telas, identidade visual e integração) `[MVP]`
 
-**Objetivo:** Interface funcional cobrindo todos os fluxos do MVP com autenticação integrada.
+**Objetivo:** Interface funcional e consistente cobrindo todos os fluxos do MVP, com identidade monocromática em laranja, tema exclusivamente claro e componentes padronizados via shadcn/ui.
 
-> Esta fase pode ser desenvolvida em paralelo com as fases 2–7, entregando cada tela conforme o respectivo módulo do backend fica pronto.
+> 📌 **Roadmap detalhado do frontend:** Veja [docs/frontend/ROADMAP.md](frontend/ROADMAP.md) para o planejamento completo em 8 fases visuais.
 
 **Tarefas**
-- [ ] Layout principal: sidebar com navegação por papel
+- [ ] App Shell: header corporativo com logo, navegação por papel e perfil
 - [ ] Roteamento protegido por papel (redirecionar para tela adequada após login)
-- [ ] Página de perfil do usuário logado
-- [ ] Integração com API (client HTTP centralizado, tipagem dos endpoints)
-- [ ] Tratamento de erros global (toast ou alert para erros de API)
-- [ ] Estado de carregamento (loading states) nas operações assíncronas
-- [ ] Responsividade básica (funcional em desktop)
+- [ ] Padronização visual da tela de login (monocromática em laranja)
+- [ ] Padronização visual da listagem de chamados e filtros
+- [ ] Padronização visual do detalhe de chamado (layout bipartido, comentários e auditoria)
+- [ ] Padronização visual das telas de categorias e usuários (tabelas e modais com `Table` e `Dialog`)
+- [ ] Biblioteca de UI: novos componentes primitivos (`dialog`, `table`, `badge`, `select`, `skeleton`)
+- [ ] Tratamento de erros global (alerta padronizado / toast)
+- [ ] Estados de carregamento (loading skeletons) nas operações assíncronas
+- [ ] Responsividade básica e acessibilidade WCAG 2.1 AA
 
 **Dependências:** Fases 1–7.
 
@@ -449,5 +452,6 @@ O MVP está concluído quando:
 - [ARCHITECTURE.md](ARCHITECTURE.md) — domínio, regras de negócio, ciclo de vida dos chamados
 - [backend/README.md](../backend/README.md) — setup e comandos do backend
 - [frontend/README.md](../frontend/README.md) — setup e comandos do frontend
+- [frontend/ROADMAP.md](frontend/ROADMAP.md) — roadmap de evolução visual e funcional do frontend
 - [backend/decisions/](backend/decisions/) — decisões arquiteturais do backend
 - [frontend/decisions/](frontend/decisions/) — decisões arquiteturais do frontend

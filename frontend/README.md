@@ -80,14 +80,16 @@ Componentes verdadeiramente reutilizáveis entre features ficam em `components/`
 
 A identidade visual do CHAMAdos está definida em `src/index.css` como CSS custom properties.
 
-- **Tema padrão:** dark mode
-- **Cor primária:** laranja queimado (inspirado no conceito do "fogo" do CHAMAdos)
-- **Tipografia:** Inter Variable
+- **Tema:** Exclusivamente claro (Light Mode) com superfícies neutras em escala Zinc
+- **Identidade visual:** Monocromática ancorada em escala tonal de laranja (`#EA580C` como ação primária)
+- **Tipografia:** Inter Variable com suporte a números tabulares
+- **Grid & Espaçamentos:** Base 8px para densidade corporativa balanceada
 - **Componentes:** shadcn/ui adaptados à identidade do projeto
 
 ## Documentação
 
 A documentação técnica detalhada do frontend está em [`../docs/frontend/`](../docs/frontend/).
 
+- [`ROADMAP.md`](../docs/frontend/ROADMAP.md) — Roadmap de evolução visual e funcional do frontend
 - [`decisions/`](../docs/frontend/decisions/) — Decisões arquiteturais (ADs)
-- [`design/`](../docs/frontend/design/) — Design system e identidade visual
+- [`design/`](../docs/frontend/design/) — Design system, tokens e especificações visuais
