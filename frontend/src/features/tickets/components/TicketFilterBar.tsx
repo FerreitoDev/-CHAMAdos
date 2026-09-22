@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { Search, X } from 'lucide-react'
+
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Search, X } from 'lucide-react'
 import type { TicketPriority, TicketStatus } from '../types/tickets.types'
 import type { Category } from '@/features/categories/types/categories.types'
 import { categoriesApi } from '@/features/categories/api/categories.api'
@@ -42,12 +43,15 @@ export const TicketFilterBar: React.FC<TicketFilterBarProps> = ({
 
   const hasActiveFilters = Boolean(search || status || priority || categoryId)
 
+  const selectClassName =
+    'h-9 rounded-md border border-input bg-card px-3 py-1 text-sm text-foreground shadow-2xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50'
+
   return (
-    <div className="w-full bg-card p-4 rounded-lg border border-border flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+    <div className="w-full rounded-xl border border-border bg-card p-4 shadow-xs flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
       <div className="flex-1 flex flex-col sm:flex-row flex-wrap gap-3 items-stretch sm:items-center">
         {/* Search Input */}
-        <div className="relative flex-1 min-w-[200px]">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+        <div className="relative flex-1 min-w-[220px]">
+          <Search className="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
           <Input
             type="text"
             placeholder="Buscar por título ou descrição..."
@@ -60,7 +64,7 @@ export const TicketFilterBar: React.FC<TicketFilterBarProps> = ({
                 categoryId,
               })
             }
-            className="pl-9 text-sm"
+            className="pl-9 text-sm h-9"
           />
         </div>
 
@@ -76,7 +80,7 @@ export const TicketFilterBar: React.FC<TicketFilterBarProps> = ({
             })
           }
           aria-label="Filtrar por Status"
-          className="h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-foreground"
+          className={selectClassName}
         >
           <option value="">Todos os Status</option>
           <option value="OPEN">Aberto</option>
@@ -97,7 +101,7 @@ export const TicketFilterBar: React.FC<TicketFilterBarProps> = ({
             })
           }
           aria-label="Filtrar por Prioridade"
-          className="h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-foreground"
+          className={selectClassName}
         >
           <option value="">Todas as Prioridades</option>
           <option value="LOW">Baixa</option>
@@ -118,7 +122,7 @@ export const TicketFilterBar: React.FC<TicketFilterBarProps> = ({
             })
           }
           aria-label="Filtrar por Categoria"
-          className="h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-foreground"
+          className={selectClassName}
         >
           <option value="">Todas as Categorias</option>
           {categories.map((cat) => (
@@ -135,9 +139,9 @@ export const TicketFilterBar: React.FC<TicketFilterBarProps> = ({
           variant="outline"
           size="sm"
           onClick={onClearFilters}
-          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground self-end lg:self-center"
+          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted/60 self-end lg:self-center shrink-0"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="size-3.5" />
           Limpar Filtros
         </Button>
       )}

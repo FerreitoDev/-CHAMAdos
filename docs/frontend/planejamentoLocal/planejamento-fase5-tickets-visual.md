@@ -88,8 +88,8 @@ O módulo de tickets é a principal funcionalidade do CHAMAdos. Funcionalmente, 
 3. Manter contratos e testes existentes de disparo de filtros e botão "Limpar filtros".
 
 **Checklist:**
-- [ ] `TicketFilterBar.tsx` refatorado com card e layout 8px.
-- [ ] Testes de `TicketFilterBar.test.tsx` verdes.
+- [x] `TicketFilterBar.tsx` refatorado com card e layout 8px.
+- [x] Testes de `TicketFilterBar.test.tsx` verdes.
 
 ---
 
